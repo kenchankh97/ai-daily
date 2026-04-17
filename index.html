@@ -46,7 +46,7 @@
   .post-meta { display: flex; align-items: center; gap: 10px; padding: 18px 24px 0; }
   .post-date { font-size: 0.75rem; color: var(--faint); letter-spacing: 1px; }
   .post-cat { font-size: 0.7rem; font-weight: 700; background: rgba(59,130,246,0.15); color: var(--blue); border-radius: 20px; padding: 2px 10px; }
-  .post-card h2 { font-size: 1.15rem; font-weight: 800; padding: 10px 24px 0; color: var(--text); }
+  .post-card h2 { font-size: 1.35rem; font-weight: 800; padding: 10px 24px 0; color: var(--text); line-height: 1.4; }
   .post-infographic { width: 100%; background: #000; margin: 16px 0 0; display: block; }
   .post-infographic svg { width: 100%; height: auto; display: block; }
 
@@ -55,12 +55,14 @@
   .lang-btn { padding: 7px 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; border: none; background: var(--surface2); color: var(--muted); transition: all 0.15s; }
   .lang-btn.active { background: var(--blue); color: #fff; }
 
-  .post-body { padding: 16px 24px; white-space: pre-wrap; font-size: 0.9rem; line-height: 1.85; color: var(--text); }
+  .post-body { padding: 16px 24px; white-space: pre-wrap; font-size: 1.05rem; line-height: 1.95; color: var(--text); }
   .post-body.hidden { display: none; }
+  .post-body a { color: #60a5fa; word-break: break-all; }
+  .post-body a:hover { color: #93c5fd; text-decoration: underline; }
 
-  .hashtags { padding: 0 24px; color: var(--blue); font-size: 0.8rem; opacity: 0.7; }
+  .hashtags { padding: 0 24px; color: var(--blue); font-size: 0.88rem; opacity: 0.7; }
   .post-footer { padding: 16px 24px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); margin-top: 16px; }
-  .source-link { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .source-link { font-size: 0.92rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
   .source-link:hover { color: var(--blue); text-decoration: none; }
   .copy-btn { font-size: 0.75rem; font-weight: 700; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: var(--blue); border-radius: 8px; padding: 6px 14px; cursor: pointer; transition: all 0.15s; }
   .copy-btn:hover { background: var(--blue); color: #fff; }
@@ -606,6 +608,37 @@ function copyPost(postId) {
     setTimeout(() => { btn.textContent = 'Copy post text'; btn.classList.remove('copied'); }, 2000);
   });
 }
+
+// Auto-linkify all URLs inside post bodies
+function linkifyPostBodies() {
+  const urlPattern = /(\bhttps?:\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|])/g;
+  document.querySelectorAll('.post-body').forEach(el => {
+    // Walk text nodes only — avoid re-processing existing <a> tags
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) textNodes.push(node);
+    textNodes.forEach(textNode => {
+      if (!urlPattern.test(textNode.textContent)) return;
+      urlPattern.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, match;
+      while ((match = urlPattern.exec(textNode.textContent)) !== null) {
+        frag.appendChild(document.createTextNode(textNode.textContent.slice(last, match.index)));
+        const a = document.createElement('a');
+        a.href = match[1];
+        a.textContent = match[1];
+        a.target = '_blank';
+        a.rel = 'noopener';
+        frag.appendChild(a);
+        last = match.index + match[1].length;
+      }
+      frag.appendChild(document.createTextNode(textNode.textContent.slice(last)));
+      textNode.parentNode.replaceChild(frag, textNode);
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', linkifyPostBodies);
 </script>
 </body>
 </html>
