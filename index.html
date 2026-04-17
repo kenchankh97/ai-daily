@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ken's AI Daily — Bilingual AI news digest in English and Traditional Chinese, posted every day.">
+<meta property="og:title" content="Ken's AI Daily">
+<meta property="og:description" content="Daily AI news in English + 繁中, curated by Ken.">
+<meta property="og:type" content="website">
+<title>Ken's AI Daily</title>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --surface2: #0f172a;
+    --blue: #3b82f6; --purple: #8b5cf6; --green: #22c55e;
+    --text: #e2e8f0; --muted: #94a3b8; --faint: #475569;
+    --border: #1e3a5f; --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.7; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav { border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; background: rgba(15,23,42,0.95); backdrop-filter: blur(10px); z-index: 100; }
+  .nav-logo { font-weight: 900; font-size: 1.1rem; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 20px; font-size: 0.85rem; color: var(--muted); }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+  /* HERO */
+  .hero { text-align: center; padding: 72px 24px 48px; }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: var(--muted); margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
+  .hero h1 span { background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto 28px; }
+  .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .badge { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 0.78rem; color: var(--muted); }
+
+  /* FEED */
+  .feed { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
+  .feed-header { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: var(--faint); margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+
+  /* POST CARD */
+  .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 32px; overflow: hidden; transition: border-color 0.2s; }
+  .post-card:hover { border-color: var(--blue); }
+  .post-meta { display: flex; align-items: center; gap: 10px; padding: 18px 24px 0; }
+  .post-date { font-size: 0.75rem; color: var(--faint); letter-spacing: 1px; }
+  .post-cat { font-size: 0.7rem; font-weight: 700; background: rgba(59,130,246,0.15); color: var(--blue); border-radius: 20px; padding: 2px 10px; }
+  .post-card h2 { font-size: 1.15rem; font-weight: 800; padding: 10px 24px 0; color: var(--text); }
+  .post-infographic { width: 100%; background: #000; margin: 16px 0 0; display: block; }
+  .post-infographic svg { width: 100%; height: auto; display: block; }
+
+  /* LANG TOGGLE */
+  .lang-toggle { display: flex; gap: 0; margin: 20px 24px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); width: fit-content; }
+  .lang-btn { padding: 7px 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; border: none; background: var(--surface2); color: var(--muted); transition: all 0.15s; }
+  .lang-btn.active { background: var(--blue); color: #fff; }
+
+  .post-body { padding: 16px 24px; white-space: pre-wrap; font-size: 0.9rem; line-height: 1.85; color: var(--text); }
+  .post-body.hidden { display: none; }
+
+  .hashtags { padding: 0 24px; color: var(--blue); font-size: 0.8rem; opacity: 0.7; }
+  .post-footer { padding: 16px 24px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); margin-top: 16px; }
+  .source-link { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .source-link:hover { color: var(--blue); text-decoration: none; }
+  .copy-btn { font-size: 0.75rem; font-weight: 700; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: var(--blue); border-radius: 8px; padding: 6px 14px; cursor: pointer; transition: all 0.15s; }
+  .copy-btn:hover { background: var(--blue); color: #fff; }
+  .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); color: var(--faint); font-size: 0.8rem; }
+  footer strong { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ken's AI Daily 🤖</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="https://www.linkedin.com/in/kenchankh" target="_blank">LinkedIn</a>
+    <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">Latest Source</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">DAILY · BILINGUAL · HUMAN-CURATED</div>
+  <h1>Ken's <span>AI Daily</span></h1>
+  <p>Every morning I pick the AI story that actually matters — and explain it in plain English and 繁體中文.</p>
+  <div class="hero-badges">
+    <span class="badge">🇬🇧 English</span>
+    <span class="badge">🇹🇼 繁體中文</span>
+    <span class="badge">📊 Infographic</span>
+    <span class="badge">🔗 Verified Source</span>
+    <span class="badge">🤖 AI-assisted, Human-reviewed</span>
+  </div>
+</div>
+
+<div class="feed">
+  <div class="feed-header">LATEST POSTS</div>
+
+  <!-- ═══ POST: Stanford AI Index ═══ -->
+  <div class="post-card">
+    <div class="post-meta">
+      <span class="post-date">APR 17, 2026</span>
+      <span class="post-cat">AI Adoption</span>
+    </div>
+    <h2>Half the world now uses generative AI — and it happened faster than the internet</h2>
+
+    <div class="post-infographic">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+        <defs>
+          <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0f172a"/><stop offset="100%" style="stop-color:#1e3a5f"/>
+          </linearGradient>
+          <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#3b82f6"/><stop offset="100%" style="stop-color:#8b5cf6"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="800" height="500" fill="url(#bg)" rx="16"/>
+        <rect x="0" y="0" width="800" height="5" fill="url(#accentGrad)" rx="3"/>
+        <text x="40" y="55" font-size="13" fill="#94a3b8" letter-spacing="3" font-weight="600">STANFORD AI INDEX 2026</text>
+        <text x="40" y="100" font-size="36" fill="#ffffff" font-weight="800">AI Adoption Hits</text>
+        <text x="40" y="145" font-size="36" fill="url(#accentGrad)" font-weight="800">Historic Milestones</text>
+        <rect x="40" y="162" width="720" height="1.5" fill="#1e40af" opacity="0.6"/>
+        <rect x="40" y="182" width="158" height="130" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+        <circle cx="119" cy="210" r="18" fill="none" stroke="#3b82f6" stroke-width="2"/>
+        <ellipse cx="119" cy="210" rx="9" ry="18" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+        <line x1="101" y1="210" x2="137" y2="210" stroke="#3b82f6" stroke-width="1.5"/>
+        <line x1="104" y1="200" x2="134" y2="200" stroke="#3b82f6" stroke-width="1"/>
+        <line x1="104" y1="220" x2="134" y2="220" stroke="#3b82f6" stroke-width="1"/>
+        <text x="119" y="255" font-size="30" fill="#3b82f6" font-weight="900" text-anchor="middle" filter="url(#glow)">53%</text>
+        <text x="119" y="275" font-size="11" fill="#94a3b8" text-anchor="middle">Global AI adoption</text>
+        <text x="119" y="291" font-size="10" fill="#64748b" text-anchor="middle">Faster than PC &amp; Internet</text>
+        <rect x="213" y="182" width="158" height="130" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+        <rect x="244" y="196" width="8" height="20" rx="2" fill="#8b5cf6"/>
+        <rect x="258" y="188" width="8" height="28" rx="2" fill="#8b5cf6"/>
+        <rect x="272" y="193" width="8" height="23" rx="2" fill="#8b5cf6"/>
+        <rect x="286" y="184" width="8" height="32" rx="2" fill="#8b5cf6"/>
+        <line x1="240" y1="219" x2="298" y2="219" stroke="#8b5cf6" stroke-width="1.5"/>
+        <text x="292" y="255" font-size="22" fill="#8b5cf6" font-weight="900" text-anchor="middle" filter="url(#glow)">$581B</text>
+        <text x="292" y="275" font-size="11" fill="#94a3b8" text-anchor="middle">Global AI investment</text>
+        <text x="292" y="291" font-size="10" fill="#64748b" text-anchor="middle">+130% year-over-year</text>
+        <rect x="386" y="182" width="158" height="130" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="446" y="191" width="40" height="32" rx="2" fill="none" stroke="#10b981" stroke-width="2"/>
+        <rect x="451" y="196" width="7" height="7" rx="1" fill="#10b981"/>
+        <rect x="463" y="196" width="7" height="7" rx="1" fill="#10b981"/>
+        <rect x="475" y="196" width="7" height="7" rx="1" fill="#10b981"/>
+        <rect x="451" y="208" width="7" height="7" rx="1" fill="#10b981"/>
+        <rect x="463" y="208" width="7" height="7" rx="1" fill="#10b981"/>
+        <rect x="475" y="208" width="7" height="7" rx="1" fill="#10b981"/>
+        <text x="465" y="255" font-size="30" fill="#10b981" font-weight="900" text-anchor="middle" filter="url(#glow)">88%</text>
+        <text x="465" y="275" font-size="11" fill="#94a3b8" text-anchor="middle">Enterprise AI adoption</text>
+        <text x="465" y="291" font-size="10" fill="#64748b" text-anchor="middle">At least 1 business function</text>
+        <rect x="559" y="182" width="201" height="130" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="659" y="248" font-size="22" fill="#f59e0b" font-weight="900" text-anchor="middle" filter="url(#glow)">US = 24th</text>
+        <text x="659" y="268" font-size="11" fill="#94a3b8" text-anchor="middle">In global AI adoption</text>
+        <text x="659" y="286" font-size="10" fill="#64748b" text-anchor="middle">🇸🇬 SG 61% · 🇦🇪 UAE 54% · 🇺🇸 US 28%</text>
+        <text x="40" y="345" font-size="13" fill="#64748b" font-weight="600" letter-spacing="1">ADOPTION SPEED COMPARISON</text>
+        <text x="40" y="375" font-size="12" fill="#94a3b8">Personal Computer</text>
+        <rect x="200" y="362" width="300" height="16" rx="4" fill="#334155"/>
+        <text x="510" y="375" font-size="12" fill="#64748b">~16 years to 50%</text>
+        <text x="40" y="410" font-size="12" fill="#94a3b8">Internet</text>
+        <rect x="200" y="397" width="250" height="16" rx="4" fill="#334155"/>
+        <text x="460" y="410" font-size="12" fill="#64748b">~10 years to 50%</text>
+        <text x="40" y="445" font-size="12" fill="#3b82f6" font-weight="700">Generative AI 🔥</text>
+        <rect x="200" y="432" width="140" height="16" rx="4" fill="url(#accentGrad)" filter="url(#glow)"/>
+        <text x="350" y="445" font-size="12" fill="#3b82f6" font-weight="700">3 years to 53% ← fastest ever</text>
+        <text x="40" y="485" font-size="10" fill="#475569">Source: Stanford HAI AI Index 2026</text>
+        <text x="760" y="485" font-size="10" fill="#475569" text-anchor="end">Ken's AI Daily · Apr 17, 2026</text>
+      </svg>
+    </div>
+
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="switchLang(this,'en','p1')">🇬🇧 English</button>
+      <button class="lang-btn" onclick="switchLang(this,'zh','p1')">🇹🇼 繁中</button>
+    </div>
+
+    <div id="p1-en" class="post-body">I've been telling people for a while now that AI is moving faster than anything we've seen before — and Stanford just proved it with hard data.
+
+Their 2026 AI Index dropped this week, and the headline number stopped me in my tracks: <strong>53% of the global population now uses generative AI</strong>. That's over half the world. In just three years. For context, the internet took about 10 years to reach the same milestone. The PC took 16.
+
+Here's what else jumped out at me:
+
+→ 88% of companies are now using AI in at least one core business function
+→ Global corporate AI investment hit US$581.7 billion last year — up 130% in a single year
+→ AI models now match or beat humans on PhD-level science and math questions
+→ US consumers are already getting $172 billion in annual value from AI tools, most of which are free
+
+And the plot twist that nobody in Silicon Valley likes to talk about? <strong>The US ranks 24th in AI adoption</strong> — behind Singapore (61%), UAE (54%), and a dozen other countries. The countries actually <em>using</em> AI most are not necessarily the ones building it.
+
+The revolution is already here. The only question is whether you're riding it or watching it.
+
+🔗 Full report: https://hai.stanford.edu/ai-index/2026-ai-index-report
+
+#AI #ArtificialIntelligence #StanfordAI #FutureOfWork #TechTrends #AIAdoption #GenerativeAI #Innovation</div>
+
+    <div id="p1-zh" class="post-body hidden">我跟很多朋友說過，AI 的發展速度是前所未有的——而 Stanford（史丹福）這週用實際數據正式證明了這件事。
+
+他們發布的 2026 AI Index 年度報告，有個數字讓我看了停下來：<strong>全球 53% 的人口已在使用 generative AI（生成式人工智能）</strong>。換句話說，超過一半的地球人，在短短三年內就開始用 AI 了。相比之下，互聯網達到同樣的普及率花了約 10 年，個人電腦花了 16 年。
+
+還有幾個數字讓我印象深刻：
+
+→ 88% 的企業已在至少一個核心業務流程中使用 AI
+→ 去年全球企業 AI 投資達 5,817 億美元，一年內增長了 130%
+→ AI 模型在 PhD 級別的科學和數學測試中，表現已達到甚至超越人類水平
+→ 美國消費者每年從 AI 工具（大部分免費）中獲得 1,720 億美元的使用價值
+
+而那個矽谷沒人愛討論的反轉？<strong>美國的 AI 普及率只排全球第 24 位</strong>——落後於新加坡（61%）、阿聯酋（54%），以及其他十幾個國家。真正「在用」AI 的國家，不一定是那些「在造」AI 的國家。
+
+革命已經到來。唯一的問題是：你是在浪頭上，還是在岸邊看？
+
+🔗 完整報告：https://hai.stanford.edu/ai-index/2026-ai-index-report
+
+#AI #人工智能 #StanfordAI #科技趨勢 #GenerativeAI #未來工作 #AIAdoption #創新</div>
+
+    <div class="post-footer">
+      <a class="source-link" href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">🔗 Stanford HAI AI Index 2026</a>
+      <button class="copy-btn" onclick="copyPost('p1')">Copy post text</button>
+    </div>
+  </div>
+
+  <!-- ═══ POST: TurboQuant ═══ -->
+  <div class="post-card">
+    <div class="post-meta">
+      <span class="post-date">APR 17, 2026</span>
+      <span class="post-cat">AI Technology</span>
+    </div>
+    <h2>Google just made AI 6× cheaper to run — without losing a single bit of quality</h2>
+
+    <div class="post-infographic">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+        <defs>
+          <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0a0a1a"/><stop offset="100%" style="stop-color:#0d2137"/>
+          </linearGradient>
+          <linearGradient id="googleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#4285f4"/><stop offset="33%" style="stop-color:#34a853"/>
+            <stop offset="66%" style="stop-color:#fbbc05"/><stop offset="100%" style="stop-color:#ea4335"/>
+          </linearGradient>
+          <linearGradient id="blueGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#4285f4"/><stop offset="100%" style="stop-color:#00c2ff"/>
+          </linearGradient>
+          <linearGradient id="barOld" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ef4444"/><stop offset="100%" style="stop-color:#f97316"/>
+          </linearGradient>
+          <linearGradient id="barNew" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#22c55e"/><stop offset="100%" style="stop-color:#4ade80"/>
+          </linearGradient>
+          <filter id="glow2"><feGaussianBlur stdDeviation="4" result="cb2"/><feMerge><feMergeNode in="cb2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="800" height="500" fill="url(#bg2)" rx="16"/>
+        <rect x="0" y="0" width="800" height="5" fill="url(#googleGrad)" rx="3"/>
+        <text x="40" y="50" font-size="13" fill="#6b7280" letter-spacing="3" font-weight="600">GOOGLE RESEARCH · ICLR 2026</text>
+        <text x="40" y="92" font-size="38" fill="#ffffff" font-weight="900">TurboQuant</text>
+        <text x="40" y="130" font-size="18" fill="url(#blueGrad2)" font-weight="600">6× Less Memory · Zero Accuracy Loss</text>
+        <rect x="40" y="148" width="720" height="1.5" fill="#1d4ed8" opacity="0.5"/>
+        <text x="40" y="180" font-size="13" fill="#6b7280" letter-spacing="2" font-weight="600">KV CACHE MEMORY COMPARISON</text>
+        <text x="40" y="215" font-size="14" fill="#f87171" font-weight="700">BEFORE  (16-bit)</text>
+        <rect x="40" y="222" width="600" height="40" rx="6" fill="url(#barOld)"/>
+        <text x="650" y="248" font-size="20" fill="#f87171" font-weight="800">16 bit</text>
+        <text x="40" y="295" font-size="14" fill="#4ade80" font-weight="700">AFTER  (TurboQuant 3-bit)</text>
+        <rect x="40" y="302" width="100" height="40" rx="6" fill="url(#barNew)" filter="url(#glow2)"/>
+        <text x="650" y="328" font-size="20" fill="#4ade80" font-weight="800">3 bit</text>
+        <text x="155" y="346" font-size="16" fill="#facc15" font-weight="800" filter="url(#glow2)">↑ 6× smaller footprint</text>
+        <rect x="40" y="365" width="720" height="1" fill="#1e3a5f"/>
+        <rect x="40" y="382" width="210" height="72" rx="10" fill="#0f172a" stroke="#4285f4" stroke-width="1.5"/>
+        <text x="145" y="407" font-size="22" fill="#4285f4" font-weight="900" text-anchor="middle" filter="url(#glow2)">8×</text>
+        <text x="145" y="424" font-size="11" fill="#94a3b8" text-anchor="middle">Faster GPU processing</text>
+        <text x="145" y="440" font-size="10" fill="#6b7280" text-anchor="middle">on NVIDIA H100</text>
+        <rect x="265" y="382" width="210" height="72" rx="10" fill="#0f172a" stroke="#34a853" stroke-width="1.5"/>
+        <text x="370" y="407" font-size="18" fill="#34a853" font-weight="900" text-anchor="middle" filter="url(#glow2)">0% loss</text>
+        <text x="370" y="424" font-size="11" fill="#94a3b8" text-anchor="middle">Accuracy unchanged</text>
+        <text x="370" y="440" font-size="10" fill="#6b7280" text-anchor="middle">Same AI quality output</text>
+        <rect x="490" y="382" width="250" height="72" rx="10" fill="#0f172a" stroke="#fbbc05" stroke-width="1.5"/>
+        <text x="615" y="407" font-size="16" fill="#fbbc05" font-weight="900" text-anchor="middle" filter="url(#glow2)">No retraining</text>
+        <text x="615" y="424" font-size="11" fill="#94a3b8" text-anchor="middle">Drop-in for existing models</text>
+        <text x="615" y="440" font-size="10" fill="#6b7280" text-anchor="middle">Works with current LLMs</text>
+        <text x="40" y="485" font-size="10" fill="#374151">Source: Google Research · arXiv 2504.19874</text>
+        <text x="760" y="485" font-size="10" fill="#374151" text-anchor="end">Ken's AI Daily · Apr 17, 2026</text>
+      </svg>
+    </div>
+
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="switchLang(this,'en','p2')">🇬🇧 English</button>
+      <button class="lang-btn" onclick="switchLang(this,'zh','p2')">🇹🇼 繁中</button>
+    </div>
+
+    <div id="p2-en" class="post-body">Here's something that doesn't get enough attention: one of the biggest barriers to AI being everywhere is simply memory. Running a large language model requires an enormous amount of RAM — which is why it still costs so much to run AI at scale, and why truly smart AI on your phone feels far away.
+
+Google may have just changed that equation.
+
+Their research team unveiled something called <strong>TurboQuant</strong> at ICLR 2026 — a new algorithm that compresses the "working memory" of AI models (technically called the KV cache) from 16 bits down to just 3 bits. Think of it like discovering a much better ZIP format specifically for AI's brain.
+
+The numbers are genuinely impressive:
+→ 6× less RAM needed to run large AI models
+→ Up to 8× faster processing speed on high-end GPUs
+→ <strong>Zero accuracy loss</strong> — the AI answers just as well, just uses a fraction of the memory
+→ No need to retrain or modify existing models — it works as a drop-in
+
+What this means in plain English: AI that currently needs a data centre could soon run on your laptop. AI assistants that feel slow could feel instant. And the cost of running AI services could drop dramatically for everyone.
+
+The open-source community has already started building with it — which means we'll likely see real products using this within months.
+
+🔗 Google Research blog: https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/
+
+#AI #GoogleAI #TurboQuant #LLM #MachineLearning #TechInnovation #EdgeAI #ArtificialIntelligence</div>
+
+    <div id="p2-zh" class="post-body hidden">有一件事很少人注意到：AI 無法無處不在，最大的障礙之一其實是「記憶體」。運行大型語言模型（LLM）需要消耗巨量的 RAM——這也是為什麼大規模運行 AI 成本高昂，為什麼真正強大的 AI 在手機上感覺遙不可及。
+
+Google 可能剛剛改變了這個方程式。
+
+他們的研究團隊在 ICLR 2026 發布了一種叫 <strong>TurboQuant</strong> 的新演算法——它能將 AI 模型的「工作記憶」（技術上稱為 KV cache，鍵值快取）從 16 位元壓縮至僅 3 位元。可以把它想象成一種專門為 AI 大腦設計的更高效「壓縮包（ZIP）」格式。
+
+數字非常驚人：
+→ 運行大型 AI 模型所需 RAM（記憶體）減少 6 倍
+→ 在高端 GPU 上處理速度最高提升 8 倍
+→ <strong>準確率零損失</strong>——AI 的回答品質不變，只是用了幾分之一的記憶體
+→ 無需重新訓練（retraining）現有模型，可直接套用
+
+用最簡單的話說：原本需要數據中心才能跑的 AI，可能很快就能在你的筆記本電腦上運行。現在感覺緩慢的 AI 助手，將來可能快如閃電。AI 服務的運行成本，也可能對所有人大幅下降。
+
+開源社群已經開始基於此建構應用——這意味著我們可能在幾個月內就能看到使用這項技術的真實產品。
+
+🔗 Google Research 部落格：https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/
+
+#AI #GoogleAI #TurboQuant #LLM #MachineLearning #技術突破 #EdgeAI #人工智能</div>
+
+    <div class="post-footer">
+      <a class="source-link" href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/" target="_blank">🔗 Google Research Blog</a>
+      <button class="copy-btn" onclick="copyPost('p2')">Copy post text</button>
+    </div>
+  </div>
+
+</div><!-- /feed -->
+
+<footer>
+  <p><strong>Ken's AI Daily</strong> — Curated daily by Ken Chan</p>
+  <p style="margin-top:8px">AI-assisted · Human-reviewed · Always free</p>
+</footer>
+
+<script>
+function switchLang(btn, lang, postId) {
+  const card = btn.closest('.post-card');
+  card.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  card.querySelectorAll('.post-body').forEach(el => el.classList.add('hidden'));
+  document.getElementById(postId + '-' + lang).classList.remove('hidden');
+}
+
+function copyPost(postId) {
+  const activeLang = document.querySelector('#' + postId + '-en').classList.contains('hidden') ? 'zh' : 'en';
+  const el = document.getElementById(postId + '-' + activeLang);
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.closest('.post-card').querySelector('.copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy post text'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
