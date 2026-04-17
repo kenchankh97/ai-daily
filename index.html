@@ -8,87 +8,465 @@
 <meta property="og:description" content="Daily AI news in English + 繁中, curated by Ken.">
 <meta property="og:type" content="website">
 <title>Ken's AI Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f172a; --surface: #1e293b; --surface2: #0f172a;
-    --blue: #3b82f6; --purple: #8b5cf6; --green: #22c55e;
-    --text: #e2e8f0; --muted: #94a3b8; --faint: #475569;
-    --border: #1e3a5f; --radius: 14px;
+    --bg: #060b18;
+    --bg2: #0a1120;
+    --surface: rgba(255,255,255,0.04);
+    --surface-hover: rgba(255,255,255,0.07);
+    --glass: rgba(15,25,50,0.6);
+    --blue: #3b82f6;
+    --blue-light: #60a5fa;
+    --blue-dim: rgba(59,130,246,0.15);
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: rgba(255,255,255,0.07);
+    --border-bright: rgba(59,130,246,0.3);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --grad-text: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%);
+    --grad-blue: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    --grad-accent: linear-gradient(90deg, #3b82f6, #8b5cf6, #f59e0b);
+    --shadow-card: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.5);
+    --shadow-hover: 0 0 0 1px rgba(59,130,246,0.3), 0 8px 40px rgba(59,130,246,0.12), 0 2px 8px rgba(0,0,0,0.6);
+    --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.7; }
-  a { color: var(--blue); text-decoration: none; }
-  a:hover { text-decoration: underline; }
 
-  /* NAV */
-  nav { border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; background: rgba(15,23,42,0.95); backdrop-filter: blur(10px); z-index: 100; }
-  .nav-logo { font-weight: 900; font-size: 1.1rem; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .nav-links { display: flex; gap: 20px; font-size: 0.85rem; color: var(--muted); }
-  .nav-links a { color: var(--muted); }
-  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* HERO */
-  .hero { text-align: center; padding: 72px 24px 48px; }
-  .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: var(--muted); margin-bottom: 16px; }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
-  .hero h1 span { background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero p { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto 28px; }
-  .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .badge { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 0.78rem; color: var(--muted); }
+  html { scroll-behavior: smooth; }
 
-  /* FEED */
-  .feed { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
-  .feed-header { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; color: var(--faint); margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-  /* POST CARD */
-  .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 32px; overflow: hidden; transition: border-color 0.2s; }
-  .post-card:hover { border-color: var(--blue); }
-  .post-meta { display: flex; align-items: center; gap: 10px; padding: 18px 24px 0; }
-  .post-date { font-size: 0.75rem; color: var(--faint); letter-spacing: 1px; }
-  .post-cat { font-size: 0.7rem; font-weight: 700; background: rgba(59,130,246,0.15); color: var(--blue); border-radius: 20px; padding: 2px 10px; }
-  .post-card h2 { font-size: 1.35rem; font-weight: 800; padding: 10px 24px 0; color: var(--text); line-height: 1.4; }
-  .post-headline-en { font-size: 1.35rem; font-weight: 800; color: var(--text); line-height: 1.4; }
-  .post-headline-zh { font-size: 1.05rem; font-weight: 600; color: #7dd3fc; line-height: 1.5; margin-top: 6px; letter-spacing: 0.5px; }
-  .post-infographic { width: 100%; background: #000; margin: 16px 0 0; display: block; }
-  .post-infographic svg { width: 100%; height: auto; display: block; }
+  /* Subtle noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
 
-  /* LANG TOGGLE */
-  .lang-toggle { display: flex; gap: 0; margin: 20px 24px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); width: fit-content; }
-  .lang-btn { padding: 7px 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; border: none; background: var(--surface2); color: var(--muted); transition: all 0.15s; }
-  .lang-btn.active { background: var(--blue); color: #fff; }
+  a { color: var(--blue-light); text-decoration: none; transition: color var(--transition); }
+  a:hover { color: #93c5fd; text-decoration: none; }
 
-  .post-body { padding: 16px 24px; white-space: pre-wrap; font-size: 1.05rem; line-height: 1.95; color: var(--text); }
+  /* ── NAVIGATION ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; padding: 0 32px;
+    background: rgba(6,11,24,0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 1rem; font-weight: 800; letter-spacing: -0.3px;
+    background: var(--grad-text);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    font-size: 0.82rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 8px;
+    transition: all var(--transition);
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  .nav-pill {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+    background: var(--blue-dim); color: var(--blue-light);
+    border: 1px solid rgba(59,130,246,0.2);
+    padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* ── HERO BANNER ── */
+  .hero-wrap {
+    width: 100%; line-height: 0; overflow: hidden;
+    position: relative;
+  }
+
+  .hero-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+  }
+
+  .hero-wrap svg { width: 100%; display: block; }
+
+  /* ── SUB-HERO ── */
+  .sub-hero {
+    text-align: center;
+    padding: 56px 24px 40px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .sub-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 6px 16px; border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .sub-hero-eyebrow span { color: var(--blue-light); }
+
+  .sub-hero-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 900; letter-spacing: -1px; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .sub-hero-title em {
+    font-style: normal;
+    background: var(--grad-text);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sub-hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem; font-weight: 400;
+    max-width: 480px; margin: 0 auto 28px;
+  }
+
+  .hero-badges {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+    transition: all var(--transition);
+  }
+
+  .badge:hover { background: var(--surface); color: var(--text); border-color: rgba(255,255,255,0.12); }
+
+  /* ── FEED ── */
+  .feed-outer { background: var(--bg2); border-top: 1px solid var(--border); padding: 60px 0 100px; }
+
+  .feed {
+    max-width: 800px; margin: 0 auto; padding: 0 24px;
+  }
+
+  .feed-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .feed-header-label {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+
+  .feed-header-line {
+    flex: 1; height: 1px; background: var(--border);
+  }
+
+  .feed-header-count {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 3px 10px; border-radius: 20px;
+  }
+
+  /* ── POST CARD ── */
+  .post-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+    position: relative;
+  }
+
+  .post-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.5), rgba(139,92,246,0.5), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(59,130,246,0.2);
+    transform: translateY(-2px);
+  }
+
+  .post-card:hover::before { opacity: 1; }
+
+  .post-meta {
+    display: flex; align-items: center; gap: 10px;
+    padding: 20px 24px 0;
+  }
+
+  .post-date {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+
+  .post-cat {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px;
+    background: var(--blue-dim);
+    color: var(--blue-light);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 20px; padding: 2px 10px;
+    text-transform: uppercase;
+  }
+
+  .post-card h2 {
+    padding: 14px 24px 0;
+    line-height: 1.3;
+  }
+
+  .post-headline-en {
+    font-size: 1.45rem; font-weight: 800; letter-spacing: -0.3px;
+    color: var(--text); line-height: 1.35;
+  }
+
+  .post-headline-zh {
+    font-size: 1.12rem; font-weight: 600;
+    color: #93c5fd; line-height: 1.6;
+    margin-top: 8px; letter-spacing: 0.3px;
+    font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  }
+
+  .post-infographic {
+    width: 100%; margin: 20px 0 0; display: block; background: transparent;
+  }
+
+  .post-infographic svg { width: 100%; height: auto; display: block; border-radius: 0; }
+
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    display: flex; gap: 0; margin: 20px 24px 0;
+    border-radius: var(--radius-sm); overflow: hidden;
+    border: 1px solid var(--border);
+    width: fit-content;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .lang-btn {
+    padding: 8px 22px;
+    font-size: 0.8rem; font-weight: 700; font-family: var(--font);
+    cursor: pointer; border: none;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all var(--transition);
+    letter-spacing: 0.3px;
+  }
+
+  .lang-btn:hover:not(.active) { color: var(--text-secondary); background: rgba(255,255,255,0.03); }
+
+  .lang-btn.active {
+    background: var(--grad-blue);
+    color: #fff;
+  }
+
+  /* ── POST BODY ── */
+  .post-body {
+    padding: 20px 24px 4px;
+    white-space: pre-wrap;
+    font-size: 1.1rem; line-height: 2;
+    color: #cbd5e1;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+  }
+
+  .post-body.zh-body {
+    font-family: 'Noto Sans TC', 'Inter', sans-serif;
+    font-size: 1.08rem; line-height: 2.1; letter-spacing: 0.5px;
+  }
+
   .post-body.hidden { display: none; }
-  .post-body a { color: #60a5fa; word-break: break-all; }
-  .post-body a:hover { color: #93c5fd; text-decoration: underline; }
 
-  .hashtags { padding: 0 24px; color: var(--blue); font-size: 0.88rem; opacity: 0.7; }
-  .post-footer { padding: 16px 24px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); margin-top: 16px; }
-  .source-link { font-size: 0.92rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .source-link:hover { color: var(--blue); text-decoration: none; }
-  .copy-btn { font-size: 0.75rem; font-weight: 700; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: var(--blue); border-radius: 8px; padding: 6px 14px; cursor: pointer; transition: all 0.15s; }
-  .copy-btn:hover { background: var(--blue); color: #fff; }
-  .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+  .post-body strong { color: var(--text); font-weight: 700; }
+  .post-body em { font-style: italic; color: #e2e8f0; }
 
-  /* FOOTER */
-  footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); color: var(--faint); font-size: 0.8rem; }
-  footer strong { color: var(--muted); }
+  .post-body a {
+    color: #60a5fa;
+    text-decoration: underline;
+    text-decoration-color: rgba(96,165,250,0.3);
+    text-underline-offset: 2px;
+    word-break: break-all;
+    transition: all var(--transition);
+  }
+
+  .post-body a:hover {
+    color: #93c5fd;
+    text-decoration-color: rgba(147,197,253,0.6);
+  }
+
+  /* ── POST FOOTER ── */
+  .post-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .source-link {
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--text-secondary);
+    display: flex; align-items: center; gap: 6px;
+    transition: color var(--transition);
+  }
+
+  .source-link:hover { color: var(--blue-light); }
+
+  .copy-btn {
+    font-size: 0.75rem; font-weight: 700; font-family: var(--font);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .copy-btn:hover {
+    background: var(--blue-dim);
+    border-color: rgba(59,130,246,0.3);
+    color: var(--blue-light);
+  }
+
+  .copy-btn.copied {
+    background: rgba(34,197,94,0.12);
+    border-color: rgba(34,197,94,0.3);
+    color: #4ade80;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 1px;
+    background: var(--grad-accent);
+    opacity: 0.5;
+  }
+
+  .footer-logo {
+    font-size: 1.1rem; font-weight: 900; letter-spacing: -0.3px;
+    background: var(--grad-text);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .footer-desc {
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;
+  }
+
+  .footer-links {
+    display: flex; gap: 24px; justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem; color: var(--text-muted);
+    transition: color var(--transition);
+  }
+
+  .footer-links a:hover { color: var(--text-secondary); }
+
+  .footer-divider {
+    height: 1px; background: var(--border);
+    margin: 24px auto; max-width: 200px;
+  }
+
+  .footer-credit {
+    font-size: 0.75rem; color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  .footer-credit span {
+    display: inline-block; width: 4px; height: 4px;
+    border-radius: 50%; background: var(--text-muted); opacity: 0.5;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+  /* Selection */
+  ::selection { background: rgba(59,130,246,0.3); color: var(--text); }
 </style>
 </head>
 <body>
 
+<!-- ── NAVIGATION ── -->
 <nav>
   <div class="nav-logo">Ken's AI Daily 🤖</div>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="https://www.linkedin.com/in/ken-chan-1b247720/" target="_blank">Ken Chan | LinkedIn</a>
-    <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">Latest Source</a>
+    <div class="nav-pill">Live Daily</div>
   </div>
 </nav>
 
-<div class="hero" style="padding:0;background:none;">
-  <div style="width:100%;overflow:hidden;border-radius:0 0 0 0;line-height:0;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 480" style="width:100%;display:block;" font-family="'Segoe UI', system-ui, Arial, sans-serif">
+<!-- ── HERO BANNER ── -->
+<div class="hero-wrap">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 480" style="width:100%;display:block;" font-family="'Inter', 'Segoe UI', system-ui, Arial, sans-serif">
 <defs>
   <radialGradient id="bgGlow" cx="40%" cy="50%" r="60%">
     <stop offset="0%" style="stop-color:#0d1f45;stop-opacity:1"/>
@@ -208,12 +586,34 @@
 <text x="1083" y="373" font-size="11" fill="#fbbf24" font-weight="700" text-anchor="middle">📊 Daily Infographic</text>
 <rect x="0" y="474" width="1400" height="6" fill="url(#accentBar)" rx="0"/>
 <text x="1380" y="462" font-size="10" fill="#334155" text-anchor="end" letter-spacing="1">POWERED BY CLAUDE AI</text>
-    </svg>
+  </svg>
+</div>
+
+<!-- ── SUB-HERO ── -->
+<div class="sub-hero">
+  <div class="sub-hero-eyebrow">
+    <span>●</span> Updated Daily · Free Forever
+  </div>
+  <h1 class="sub-hero-title">AI News that <em>actually makes sense</em></h1>
+  <p class="sub-hero-desc">Every morning, the most important AI developments — explained clearly in English and Traditional Chinese, with infographics.</p>
+  <div class="hero-badges">
+    <div class="badge">🇬🇧 English</div>
+    <div class="badge">🇹🇼 繁體中文</div>
+    <div class="badge">📊 Infographic</div>
+    <div class="badge">🔗 Source-linked</div>
+    <div class="badge">🤖 AI-assisted</div>
   </div>
 </div>
 
+<!-- ── FEED ── -->
+<div class="feed-outer">
 <div class="feed">
-  <div class="feed-header">LATEST POSTS</div>
+
+  <div class="feed-header">
+    <div class="feed-header-label">Latest Posts</div>
+    <div class="feed-header-line"></div>
+    <div class="feed-header-count">3 posts</div>
+  </div>
 
   <!-- ═══ POST: OpenAI $122B Funding ═══ -->
   <div class="post-card">
@@ -227,7 +627,7 @@
     </h2>
 
     <div class="post-infographic">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Inter', 'Segoe UI', Arial, sans-serif">
         <defs>
           <linearGradient id="bgOAI" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style="stop-color:#0a0f1e"/><stop offset="100%" style="stop-color:#0d1f3c"/>
@@ -242,51 +642,36 @@
         </defs>
         <rect width="800" height="500" fill="url(#bgOAI)" rx="16"/>
         <rect x="0" y="0" width="800" height="5" fill="url(#goldGrad)" rx="3"/>
-        <!-- Header -->
         <text x="40" y="52" font-size="12" fill="#92400e" letter-spacing="3" font-weight="700">OPENAI · MARCH 2026</text>
         <text x="40" y="95" font-size="38" fill="#ffffff" font-weight="900" letter-spacing="-1">$122 Billion.</text>
         <text x="40" y="133" font-size="18" fill="url(#goldGrad)" font-weight="600">The Biggest Private Fundraise in History</text>
         <rect x="40" y="150" width="720" height="1.5" fill="#78350f" opacity="0.8"/>
-
-        <!-- Big valuation stat -->
         <rect x="40" y="168" width="220" height="110" rx="12" fill="#1c1a10" stroke="#f59e0b" stroke-width="1.5"/>
         <text x="150" y="210" font-size="13" fill="#92400e" text-anchor="middle" font-weight="700" letter-spacing="1">VALUATION</text>
         <text x="150" y="252" font-size="28" fill="#fbbf24" font-weight="900" text-anchor="middle" filter="url(#glowOAI)">$852B</text>
         <text x="150" y="270" font-size="10" fill="#78350f" text-anchor="middle">More than most countries' GDP</text>
-
-        <!-- Revenue stat -->
         <rect x="278" y="168" width="220" height="110" rx="12" fill="#0a1f15" stroke="#10b981" stroke-width="1.5"/>
         <text x="388" y="210" font-size="13" fill="#065f46" text-anchor="middle" font-weight="700" letter-spacing="1">MONTHLY REVENUE</text>
         <text x="388" y="252" font-size="28" fill="#34d399" font-weight="900" text-anchor="middle" filter="url(#glowOAI)">$2B</text>
         <text x="388" y="270" font-size="10" fill="#065f46" text-anchor="middle">$24B annualised run rate</text>
-
-        <!-- Users stat -->
         <rect x="516" y="168" width="244" height="110" rx="12" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
         <text x="638" y="210" font-size="13" fill="#1e3a8a" text-anchor="middle" font-weight="700" letter-spacing="1">WEEKLY USERS</text>
         <text x="638" y="252" font-size="28" fill="#60a5fa" font-weight="900" text-anchor="middle" filter="url(#glowOAI)">900M</text>
         <text x="638" y="270" font-size="10" fill="#1e3a8a" text-anchor="middle">Nearly 1 in 8 people on Earth</text>
-
-        <!-- Who invested -->
         <text x="40" y="318" font-size="12" fill="#6b7280" letter-spacing="2" font-weight="700">WHO BET THE MOST</text>
         <rect x="40" y="330" width="720" height="1" fill="#1e293b"/>
-
-        <!-- Investor bars -->
         <text x="40" y="360" font-size="13" fill="#94a3b8">Amazon</text>
         <rect x="140" y="347" width="420" height="20" rx="4" fill="url(#goldGrad)" opacity="0.9"/>
         <text x="570" y="362" font-size="13" fill="#fbbf24" font-weight="700">$50B</text>
-
         <text x="40" y="398" font-size="13" fill="#94a3b8">Nvidia</text>
         <rect x="140" y="385" width="252" height="20" rx="4" fill="#10b981" opacity="0.8"/>
         <text x="402" y="400" font-size="13" fill="#34d399" font-weight="700">$30B</text>
-
         <text x="40" y="436" font-size="13" fill="#94a3b8">SoftBank</text>
         <rect x="140" y="423" width="252" height="20" rx="4" fill="#8b5cf6" opacity="0.8"/>
         <text x="402" y="438" font-size="13" fill="#a78bfa" font-weight="700">$30B</text>
-
         <text x="40" y="474" font-size="13" fill="#94a3b8">Retail investors</text>
         <rect x="140" y="461" width="25" height="20" rx="4" fill="#3b82f6" opacity="0.8"/>
         <text x="175" y="476" font-size="13" fill="#60a5fa" font-weight="700">$3B</text>
-
         <text x="760" y="490" font-size="10" fill="#374151" text-anchor="end">Ken's AI Daily · Apr 17, 2026</text>
       </svg>
     </div>
@@ -320,7 +705,7 @@ When the companies selling shovels start buying the gold mine, pay attention.
 
 #OpenAI #AI #ArtificialIntelligence #TechInvesting #Startup #FutureOfWork #GenerativeAI #Innovation</div>
 
-    <div id="p20260417c-zh" class="post-body hidden">我一直有個習慣：當真正聰明的人用巨額資金下注某件事，我會認真研究他們在賭什麼。
+    <div id="p20260417c-zh" class="post-body zh-body hidden">我一直有個習慣：當真正聰明的人用巨額資金下注某件事，我會認真研究他們在賭什麼。
 
 上個月，全球最精明的一批投資者，做出了私人市場歷史上最大的一筆賭注。
 
@@ -364,7 +749,7 @@ OpenAI 剛完成了 <strong>1,220 億美元（$122B）的融資</strong>——�
     </h2>
 
     <div class="post-infographic">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Inter', 'Segoe UI', Arial, sans-serif">
         <defs>
           <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style="stop-color:#0f172a"/><stop offset="100%" style="stop-color:#1e3a5f"/>
@@ -452,7 +837,7 @@ The revolution is already here. The only question is whether you're riding it or
 
 #AI #ArtificialIntelligence #StanfordAI #FutureOfWork #TechTrends #AIAdoption #GenerativeAI #Innovation</div>
 
-    <div id="p1-zh" class="post-body hidden">我跟很多朋友說過，AI 的發展速度是前所未有的——而 Stanford（史丹福）這週用實際數據正式證明了這件事。
+    <div id="p1-zh" class="post-body zh-body hidden">我跟很多朋友說過，AI 的發展速度是前所未有的——而 Stanford（史丹福）這週用實際數據正式證明了這件事。
 
 他們發布的 2026 AI Index 年度報告，有個數字讓我看了停下來：<strong>全球 53% 的人口已在使用 generative AI（生成式人工智能）</strong>。換句話說，超過一半的地球人，在短短三年內就開始用 AI 了。相比之下，互聯網達到同樣的普及率花了約 10 年，個人電腦花了 16 年。
 
@@ -489,7 +874,7 @@ The revolution is already here. The only question is whether you're riding it or
     </h2>
 
     <div class="post-infographic">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Inter', 'Segoe UI', Arial, sans-serif">
         <defs>
           <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style="stop-color:#0a0a1a"/><stop offset="100%" style="stop-color:#0d2137"/>
@@ -566,7 +951,7 @@ The open-source community has already started building with it — which means w
 
 #AI #GoogleAI #TurboQuant #LLM #MachineLearning #TechInnovation #EdgeAI #ArtificialIntelligence</div>
 
-    <div id="p2-zh" class="post-body hidden">有一件事很少人注意到：AI 無法無處不在，最大的障礙之一其實是「記憶體」。運行大型語言模型（LLM）需要消耗巨量的 RAM——這也是為什麼大規模運行 AI 成本高昂，為什麼真正強大的 AI 在手機上感覺遙不可及。
+    <div id="p2-zh" class="post-body zh-body hidden">有一件事很少人注意到：AI 無法無處不在，最大的障礙之一其實是「記憶體」。運行大型語言模型（LLM）需要消耗巨量的 RAM——這也是為什麼大規模運行 AI 成本高昂，為什麼真正強大的 AI 在手機上感覺遙不可及。
 
 Google 可能剛剛改變了這個方程式。
 
@@ -593,10 +978,21 @@ Google 可能剛剛改變了這個方程式。
   </div>
 
 </div><!-- /feed -->
+</div><!-- /feed-outer -->
 
+<!-- ── FOOTER ── -->
 <footer>
-  <p><strong>Ken's AI Daily</strong> — Curated daily by Ken Chan</p>
-  <p style="margin-top:8px">AI-assisted · Human-reviewed · Always free</p>
+  <div class="footer-logo">Ken's AI Daily 🤖</div>
+  <div class="footer-desc">Curated daily by Ken Chan · AI-assisted · Human-reviewed · Always free</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="https://www.linkedin.com/in/ken-chan-1b247720/" target="_blank">Ken Chan | LinkedIn</a>
+    <a href="https://kenchankh97.github.io/ai-daily" target="_blank">Live Site</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-credit">
+    Powered by Claude AI <span></span> © 2026 Ken Chan
+  </div>
 </footer>
 
 <script>
@@ -624,7 +1020,6 @@ function copyPost(postId) {
 function linkifyPostBodies() {
   const urlPattern = /(\bhttps?:\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|])/g;
   document.querySelectorAll('.post-body').forEach(el => {
-    // Walk text nodes only — avoid re-processing existing <a> tags
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
     const textNodes = [];
     let node;
@@ -649,6 +1044,7 @@ function linkifyPostBodies() {
     });
   });
 }
+
 // Collapse 3+ consecutive blank lines down to a single blank line in post bodies
 function normalizePostSpacing() {
   document.querySelectorAll('.post-body').forEach(el => {
