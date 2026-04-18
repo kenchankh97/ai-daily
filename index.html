@@ -7,615 +7,1197 @@
 <meta property="og:title" content="Ken's AI Daily">
 <meta property="og:description" content="Daily AI news in English + 繁中, curated by Ken.">
 <meta property="og:type" content="website">
-<title>Ken's AI Daily</title>
+<title>Ken's AI Daily — The Premium Bilingual AI Brief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* ═══════════════════════════════════════════════════════════
+     KEN'S AI DAILY — EDITORIAL REDESIGN
+     A premium publication aesthetic.
+     System: Source Serif 4 (display) · Inter (UI) · Noto Serif TC (中文 display)
+     Palette: Ink black + warm bone + a single editorial vermillion
+     ═══════════════════════════════════════════════════════════ */
+
   :root {
-    --bg: #060b18;
-    --bg2: #0a1120;
-    --surface: rgba(255,255,255,0.04);
-    --surface-hover: rgba(255,255,255,0.07);
-    --glass: rgba(15,25,50,0.6);
-    --blue: #3b82f6;
-    --blue-light: #60a5fa;
-    --blue-dim: rgba(59,130,246,0.15);
-    --purple: #8b5cf6;
-    --purple-light: #a78bfa;
-    --green: #22c55e;
-    --amber: #f59e0b;
-    --text: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border: rgba(255,255,255,0.07);
-    --border-bright: rgba(59,130,246,0.3);
-    --radius: 16px;
-    --radius-sm: 10px;
-    --font: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-    --grad-text: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%);
-    --grad-blue: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    --grad-accent: linear-gradient(90deg, #3b82f6, #8b5cf6, #f59e0b);
-    --shadow-card: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.5);
-    --shadow-hover: 0 0 0 1px rgba(59,130,246,0.3), 0 8px 40px rgba(59,130,246,0.12), 0 2px 8px rgba(0,0,0,0.6);
-    --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+    /* Surfaces */
+    --ink:        #0a0a0c;          /* primary background */
+    --ink-2:      #111114;          /* secondary surface */
+    --ink-3:      #18181d;          /* card / raised */
+    --ink-4:      #1f1f25;          /* hover / borders */
+    --hairline:   rgba(237,234,224,0.10);
+    --hairline-strong: rgba(237,234,224,0.18);
+
+    /* Type */
+    --bone:       #ededea;          /* primary text */
+    --bone-2:     #c9c7bf;          /* secondary text */
+    --bone-3:     #8a8880;          /* muted text */
+    --bone-4:     #5a5852;          /* faint */
+
+    /* Accent — single editorial mark (vermillion press-red) */
+    --mark:       oklch(0.68 0.19 35);
+    --mark-soft:  oklch(0.68 0.19 35 / 0.14);
+    --mark-line:  oklch(0.68 0.19 35 / 0.35);
+
+    /* Sub-accent for ZH */
+    --jade:       oklch(0.78 0.09 165);
+
+    /* Type stacks */
+    --serif:      'Source Serif 4', 'Noto Serif TC', Georgia, 'Times New Roman', serif;
+    --display:    'Source Serif 4', 'Noto Serif TC', Georgia, serif;
+    --instrument: 'Instrument Serif', 'Source Serif 4', Georgia, serif;
+    --sans:       'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --tc-serif:   'Noto Serif TC', 'Source Serif 4', serif;
+    --tc-sans:    'Noto Sans TC', 'Inter', sans-serif;
+    --mono:       'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    line-height: 1.7;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     min-height: 100vh;
     overflow-x: hidden;
+    font-feature-settings: 'kern', 'liga', 'onum';
   }
 
-  /* Subtle noise texture overlay */
+  /* Subtle paper-grain noise */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.93  0 0 0 0 0.92  0 0 0 0 0.88  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: screen;
+    opacity: 0.45;
   }
+  body > * { position: relative; z-index: 2; }
 
-  a { color: var(--blue-light); text-decoration: none; transition: color var(--transition); }
-  a:hover { color: #93c5fd; text-decoration: none; }
+  ::selection { background: var(--mark); color: var(--ink); }
 
-  /* ── NAVIGATION ── */
-  nav {
-    position: sticky; top: 0; z-index: 200;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px; padding: 0 32px;
-    background: rgba(6,11,24,0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--border);
-  }
+  a { color: inherit; text-decoration: none; }
 
-  .nav-logo {
-    font-size: 1rem; font-weight: 800; letter-spacing: -0.3px;
-    background: var(--grad-text);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .nav-links {
-    display: flex; align-items: center; gap: 8px;
-  }
-
-  .nav-links a {
-    color: var(--text-secondary);
-    font-size: 0.82rem; font-weight: 500;
-    padding: 6px 14px; border-radius: 8px;
-    transition: all var(--transition);
-  }
-
-  .nav-links a:hover {
-    color: var(--text);
-    background: var(--surface);
-  }
-
-  .nav-pill {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
-    background: var(--blue-dim); color: var(--blue-light);
-    border: 1px solid rgba(59,130,246,0.2);
-    padding: 4px 12px; border-radius: 20px;
-  }
-
-  /* ── HERO BANNER ── */
-  .hero-wrap {
-    width: 100%; line-height: 0; overflow: hidden;
-    position: relative;
-  }
-
-  .hero-wrap::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--bg));
-    pointer-events: none;
-  }
-
-  .hero-wrap svg { width: 100%; display: block; }
-
-  /* ── SUB-HERO ── */
-  .sub-hero {
-    text-align: center;
-    padding: 56px 24px 40px;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  .sub-hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
-    color: var(--text-muted);
+  /* ═══════════════════════════════════════════════════════════
+     UTILITY BAR — top of page, very thin, like FT/Economist
+     ═══════════════════════════════════════════════════════════ */
+  .utility {
+    border-bottom: 1px solid var(--hairline);
+    background: #060607;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    padding: 6px 16px; border-radius: 20px;
-    margin-bottom: 24px;
+    color: var(--bone-3);
+  }
+  .utility-inner {
+    max-width: 1320px; margin: 0 auto;
+    padding: 9px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+  }
+  .utility-left { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .utility-left .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mark); box-shadow: 0 0 8px var(--mark);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .utility-left span.live { color: var(--bone); font-weight: 700; }
+  .utility-right { display: flex; gap: 22px; }
+  .utility-right a { color: var(--bone-3); transition: color .18s; }
+  .utility-right a:hover { color: var(--bone); }
+
+  /* ═══════════════════════════════════════════════════════════
+     MASTHEAD — magazine nameplate
+     ═══════════════════════════════════════════════════════════ */
+  .masthead {
+    border-bottom: 1px solid var(--hairline-strong);
+    background: var(--ink);
+  }
+  .masthead-inner {
+    max-width: 1320px; margin: 0 auto;
+    padding: 36px 32px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 32px;
+  }
+  .masthead-meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    line-height: 1.7;
+  }
+  .masthead-meta strong { color: var(--bone); font-weight: 600; letter-spacing: 0.14em; }
+  .masthead-meta .vrule { display: inline-block; width: 1px; height: 10px; background: var(--bone-4); vertical-align: middle; margin: 0 10px; }
+
+  .nameplate {
+    text-align: center;
+    line-height: 0.9;
+  }
+  .nameplate-en {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(44px, 7vw, 86px);
+    letter-spacing: -0.04em;
+    color: var(--bone);
+    font-style: italic;
+    font-feature-settings: 'kern', 'liga', 'dlig';
+  }
+  .nameplate-en .amp {
+    font-family: var(--instrument);
+    font-style: italic;
+    color: var(--mark);
+    font-weight: 400;
+    margin: 0 -.02em;
+  }
+  .nameplate-zh {
+    font-family: var(--tc-serif);
+    font-weight: 700;
+    font-size: clamp(15px, 1.4vw, 19px);
+    letter-spacing: 0.6em;
+    color: var(--bone-2);
+    margin-top: 16px;
+    padding-left: 0.6em; /* optical compensation for letter-spacing */
   }
 
-  .sub-hero-eyebrow span { color: var(--blue-light); }
-
-  .sub-hero-title {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    font-weight: 900; letter-spacing: -1px; line-height: 1.2;
-    margin-bottom: 16px;
+  .masthead-actions {
+    display: flex; justify-content: flex-end; align-items: center; gap: 14px;
+    font-family: var(--sans); font-size: 12px;
   }
-
-  .sub-hero-title em {
-    font-style: normal;
-    background: var(--grad-text);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .sub-hero-desc {
-    color: var(--text-secondary);
-    font-size: 1.05rem; font-weight: 400;
-    max-width: 480px; margin: 0 auto 28px;
-  }
-
-  .hero-badges {
-    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
-  }
-
-  .badge {
+  .pill {
     display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 20px; padding: 6px 16px;
-    font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
-    transition: all var(--transition);
+    padding: 7px 13px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 100px;
+    color: var(--bone-2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    font-size: 10.5px;
+    transition: all .18s;
+  }
+  .pill:hover { border-color: var(--mark-line); color: var(--bone); }
+  .pill.is-mark { border-color: var(--mark-line); color: var(--bone); background: var(--mark-soft); }
+
+  /* Section nav (newspaper sections row) */
+  .section-nav {
+    border-bottom: 1px solid var(--hairline);
+    background: var(--ink);
+    font-family: var(--sans);
+  }
+  .section-nav-inner {
+    max-width: 1320px; margin: 0 auto;
+    padding: 0 32px;
+    display: flex; gap: 28px; overflow-x: auto;
+  }
+  .section-nav a {
+    display: inline-block;
+    padding: 14px 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-2);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    transition: color .18s, border-color .18s;
+  }
+  .section-nav a:hover { color: var(--bone); }
+  .section-nav a.active {
+    color: var(--bone);
+    border-bottom-color: var(--mark);
   }
 
-  .badge:hover { background: var(--surface); color: var(--text); border-color: rgba(255,255,255,0.12); }
-
-  /* ── FEED ── */
-  .feed-outer { background: var(--bg2); border-top: 1px solid var(--border); padding: 60px 0 100px; }
-
-  .feed {
-    max-width: 800px; margin: 0 auto; padding: 0 24px;
+  /* ═══════════════════════════════════════════════════════════
+     LEAD HERO — magazine cover
+     ═══════════════════════════════════════════════════════════ */
+  .lead {
+    border-bottom: 1px solid var(--hairline);
+    background: var(--ink);
   }
-
-  .feed-header {
+  .lead-inner {
+    max-width: 1320px; margin: 0 auto;
+    padding: 56px 32px 64px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .lead-text .kicker {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mark);
     display: flex; align-items: center; gap: 12px;
-    margin-bottom: 36px;
+    margin-bottom: 22px;
   }
-
-  .feed-header-label {
-    font-size: 0.7rem; font-weight: 800; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--text-muted);
+  .lead-text .kicker::before {
+    content: ''; width: 28px; height: 1px; background: var(--mark);
   }
-
-  .feed-header-line {
-    flex: 1; height: 1px; background: var(--border);
+  .lead-headline {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(36px, 4.8vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--bone);
+    margin-bottom: 20px;
+    text-wrap: balance;
   }
-
-  .feed-header-count {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
-    color: var(--text-muted);
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    padding: 3px 10px; border-radius: 20px;
+  .lead-headline em {
+    font-style: italic;
+    font-family: var(--instrument);
+    font-weight: 400;
+    color: var(--mark);
+    letter-spacing: -0.01em;
   }
-
-  /* ── POST CARD ── */
-  .post-card {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+  .lead-deck {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--bone-2);
+    font-weight: 400;
+    max-width: 36ch;
     margin-bottom: 28px;
+    text-wrap: pretty;
+  }
+  .lead-deck-zh {
+    font-family: var(--tc-serif);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--bone-3);
+    margin-bottom: 28px;
+    max-width: 28ch;
+    border-left: 2px solid var(--mark);
+    padding-left: 16px;
+  }
+  .lead-byline {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--bone-3);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 14px;
+    flex-wrap: wrap;
+  }
+  .lead-byline strong { color: var(--bone); font-weight: 600; }
+  .lead-byline .sep { width: 4px; height: 4px; border-radius: 50%; background: var(--bone-4); }
+
+  .lead-art {
+    aspect-ratio: 10/7.2;
+    border: 1px solid var(--hairline-strong);
+    background: #0c0c10;
     overflow: hidden;
-    box-shadow: var(--shadow-card);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-    transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+    position: relative;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.04) inset;
+  }
+  .lead-art svg { width: 100%; height: 100%; display: block; }
+  .lead-art::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(232,90,44,0.06), transparent 60%);
+    pointer-events: none; z-index: 1;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     STATS BAR — running ticker beneath hero
+     ═══════════════════════════════════════════════════════════ */
+  .ticker {
+    border-bottom: 1px solid var(--hairline);
+    background: var(--ink-2);
+    overflow: hidden;
+  }
+  .ticker-inner {
+    max-width: 1320px; margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat {
+    padding: 22px 0;
+    border-right: 1px solid var(--hairline);
+    padding-right: 28px;
+  }
+  .stat:nth-child(n+2) { padding-left: 28px; }
+  .stat:last-child { border-right: 0; }
+  .stat .label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    margin-bottom: 6px;
+  }
+  .stat .value {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+  }
+  .stat .value .small {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mark);
+    margin-left: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     MAIN GRID — feed + sidebar
+     ═══════════════════════════════════════════════════════════ */
+  .container {
+    max-width: 1320px; margin: 0 auto;
+    padding: 0 32px;
+  }
+  .feed-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 64px;
+    padding: 72px 0 80px;
+  }
+  @media (max-width: 980px) {
+    .feed-grid { grid-template-columns: 1fr; gap: 48px; }
+    .lead-inner { grid-template-columns: 1fr; gap: 36px; padding: 40px 24px; }
+    .ticker-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: 0; border-bottom: 1px solid var(--hairline); padding: 18px 16px !important; }
+    .masthead-inner { grid-template-columns: 1fr; text-align: center; gap: 20px; padding: 28px 24px; }
+    .masthead-meta, .masthead-actions { justify-content: center; display: flex; }
+    .masthead-actions { flex-wrap: wrap; }
+    .container { padding: 0 24px; }
+  }
+
+  /* Feed header */
+  .feed-section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--bone);
+    padding-bottom: 12px;
+    margin-bottom: 40px;
+  }
+  .feed-section-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+  }
+  .feed-section-head h2 em {
+    font-family: var(--instrument);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--mark);
+  }
+  .feed-section-head .count {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     POST CARD — editorial article
+     ═══════════════════════════════════════════════════════════ */
+  .post-card {
+    border-top: 1px solid var(--hairline-strong);
+    padding: 44px 0 56px;
     position: relative;
   }
-
-  .post-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.5), rgba(139,92,246,0.5), transparent);
-    opacity: 0;
-    transition: opacity var(--transition);
-  }
-
-  .post-card:hover {
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(59,130,246,0.2);
-    transform: translateY(-2px);
-  }
-
-  .post-card:hover::before { opacity: 1; }
+  .post-card:first-of-type { border-top: 0; padding-top: 0; }
 
   .post-meta {
-    display: flex; align-items: center; gap: 10px;
-    padding: 20px 24px 0;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 22px;
+    font-family: var(--sans);
+    flex-wrap: wrap;
   }
-
   .post-date {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px;
-    color: var(--text-muted); text-transform: uppercase;
-  }
-
-  .post-cat {
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px;
-    background: var(--blue-dim);
-    color: var(--blue-light);
-    border: 1px solid rgba(59,130,246,0.2);
-    border-radius: 20px; padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--bone-3);
+  }
+  .post-cat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mark);
+    padding: 4px 10px;
+    border: 1px solid var(--mark-line);
+    background: var(--mark-soft);
+  }
+  .post-meta .read-time {
+    font-size: 11px;
+    color: var(--bone-3);
+    letter-spacing: 0.06em;
+    margin-left: auto;
+    font-style: italic;
+    font-family: var(--instrument);
+    font-size: 14px;
   }
 
   .post-card h2 {
-    padding: 14px 24px 0;
-    line-height: 1.3;
+    font-weight: 900;
+    margin-bottom: 28px;
   }
-
   .post-headline-en {
-    font-size: 1.45rem; font-weight: 800; letter-spacing: -0.3px;
-    color: var(--text); line-height: 1.35;
+    font-family: var(--display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: var(--bone);
+    font-weight: 900;
+    margin-bottom: 14px;
+    text-wrap: balance;
   }
-
+  .post-headline-en::first-letter {
+    color: var(--mark);
+  }
   .post-headline-zh {
-    font-size: 1.12rem; font-weight: 600;
-    color: #93c5fd; line-height: 1.6;
-    margin-top: 8px; letter-spacing: 0.3px;
-    font-family: 'Noto Sans TC', 'Inter', sans-serif;
+    font-family: var(--tc-serif);
+    font-weight: 500;
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.55;
+    color: var(--bone-2);
+    letter-spacing: 0.02em;
+    padding-left: 14px;
+    border-left: 1px solid var(--mark-line);
   }
 
   .post-infographic {
-    width: 100%; margin: 20px 0 0; display: block; background: transparent;
+    margin: 0 0 32px;
+    border: 1px solid var(--hairline-strong);
+    overflow: hidden;
+    position: relative;
+    background: #06070b;
   }
-
   .post-infographic svg { width: 100%; height: auto; display: block; border-radius: 0; }
+  .post-infographic::before {
+    content: 'Fig.';
+    position: absolute; top: 10px; left: 12px;
+    font-family: var(--instrument); font-style: italic;
+    font-size: 14px; color: rgba(255,255,255,0.4);
+    z-index: 2;
+  }
 
-  /* ── LANG TOGGLE ── */
+  /* Language toggle — segmented, editorial */
   .lang-toggle {
-    display: flex; gap: 0; margin: 20px 24px 0;
-    border-radius: var(--radius-sm); overflow: hidden;
-    border: 1px solid var(--border);
-    width: fit-content;
-    background: rgba(255,255,255,0.02);
+    display: inline-flex;
+    background: var(--ink-3);
+    border: 1px solid var(--hairline-strong);
+    margin-bottom: 28px;
+    border-radius: 0;
   }
-
   .lang-btn {
-    padding: 8px 22px;
-    font-size: 0.8rem; font-weight: 700; font-family: var(--font);
-    cursor: pointer; border: none;
+    padding: 10px 20px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     background: transparent;
-    color: var(--text-muted);
-    transition: all var(--transition);
-    letter-spacing: 0.3px;
-  }
-
-  .lang-btn:hover:not(.active) { color: var(--text-secondary); background: rgba(255,255,255,0.03); }
-
-  .lang-btn.active {
-    background: var(--grad-blue);
-    color: #fff;
-  }
-
-  /* ── POST BODY ── */
-  .post-body {
-    padding: 20px 24px 4px;
-    white-space: pre-wrap;
-    font-size: 1.1rem; line-height: 2;
-    color: #cbd5e1;
-    font-weight: 400;
-    letter-spacing: 0.1px;
-  }
-
-  .post-body.zh-body {
-    font-family: 'Noto Sans TC', 'Inter', sans-serif;
-    font-size: 1.08rem; line-height: 2.1; letter-spacing: 0.5px;
-  }
-
-  .post-body.hidden { display: none; }
-
-  .post-body strong { color: var(--text); font-weight: 700; }
-  .post-body em { font-style: italic; color: #e2e8f0; }
-
-  .post-body a {
-    color: #60a5fa;
-    text-decoration: underline;
-    text-decoration-color: rgba(96,165,250,0.3);
-    text-underline-offset: 2px;
-    word-break: break-all;
-    transition: all var(--transition);
-  }
-
-  .post-body a:hover {
-    color: #93c5fd;
-    text-decoration-color: rgba(147,197,253,0.6);
-  }
-
-  /* ── POST FOOTER ── */
-  .post-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 24px 20px;
-    border-top: 1px solid var(--border);
-    margin-top: 20px;
-    gap: 12px;
-  }
-
-  .source-link {
-    font-size: 0.88rem; font-weight: 500;
-    color: var(--text-secondary);
-    display: flex; align-items: center; gap: 6px;
-    transition: color var(--transition);
-  }
-
-  .source-link:hover { color: var(--blue-light); }
-
-  .copy-btn {
-    font-size: 0.75rem; font-weight: 700; font-family: var(--font);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    border-radius: var(--radius-sm);
-    padding: 7px 16px;
+    color: var(--bone-3);
+    border: 0;
     cursor: pointer;
-    transition: all var(--transition);
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-  }
-
-  .copy-btn:hover {
-    background: var(--blue-dim);
-    border-color: rgba(59,130,246,0.3);
-    color: var(--blue-light);
-  }
-
-  .copy-btn.copied {
-    background: rgba(34,197,94,0.12);
-    border-color: rgba(34,197,94,0.3);
-    color: #4ade80;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 48px 24px;
-    border-top: 1px solid var(--border);
-    background: var(--bg);
+    transition: all .15s;
     position: relative;
   }
-
-  footer::before {
-    content: '';
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 200px; height: 1px;
-    background: var(--grad-accent);
-    opacity: 0.5;
+  .lang-btn + .lang-btn { border-left: 1px solid var(--hairline-strong); }
+  .lang-btn:hover:not(.active) { color: var(--bone); background: var(--ink-4); }
+  .lang-btn.active {
+    background: var(--bone);
+    color: var(--ink);
   }
 
-  .footer-logo {
-    font-size: 1.1rem; font-weight: 900; letter-spacing: -0.3px;
-    background: var(--grad-text);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
+  /* ═══════════════════════════════════════════════════════════
+     POST BODY — magazine prose
+     ═══════════════════════════════════════════════════════════ */
+  .post-body {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--bone);
+    font-weight: 400;
+    white-space: pre-wrap;
+    max-width: 64ch;
+    letter-spacing: -0.005em;
+    font-feature-settings: 'kern', 'liga', 'onum';
+  }
+  .post-body.zh-body {
+    font-family: var(--tc-serif);
+    font-size: 17.5px;
+    line-height: 1.95;
+    letter-spacing: 0.025em;
+    color: var(--bone);
+    font-weight: 400;
+  }
+  /* Drop cap, only English first paragraph (first text node) */
+  .post-body:not(.zh-body):first-letter {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 5.6em;
+    line-height: 0.85;
+    float: left;
+    color: var(--mark);
+    margin: 0.06em 0.12em -0.05em 0;
+    padding-top: 0.04em;
+  }
+  .post-body.hidden { display: none; }
+
+  .post-body strong {
+    color: var(--bone);
+    font-weight: 700;
+    background: linear-gradient(transparent 62%, var(--mark-soft) 62%);
+    padding: 0 2px;
+  }
+  .post-body em {
+    font-family: var(--instrument);
+    font-style: italic;
+    color: var(--bone);
+    font-weight: 400;
+    font-size: 1.05em;
+  }
+  .post-body.zh-body em {
+    font-family: var(--tc-serif);
+    font-style: normal;
+    color: var(--mark);
+    font-weight: 700;
+  }
+  .post-body.zh-body strong {
+    color: var(--bone);
+    font-weight: 700;
+    background: linear-gradient(transparent 70%, var(--mark-soft) 70%);
+    padding: 0 2px;
+  }
+  .post-body a {
+    color: var(--bone);
+    text-decoration: underline;
+    text-decoration-color: var(--mark);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    word-break: break-all;
+    transition: all .18s;
+  }
+  .post-body a:hover {
+    color: var(--mark);
+    text-decoration-color: var(--mark);
   }
 
-  .footer-desc {
-    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;
-  }
-
-  .footer-links {
-    display: flex; gap: 24px; justify-content: center;
+  /* Post footer */
+  .post-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid var(--hairline);
+    gap: 16px;
     flex-wrap: wrap;
   }
-
-  .footer-links a {
-    font-size: 0.8rem; color: var(--text-muted);
-    transition: color var(--transition);
+  .source-link {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--bone-2);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color .18s;
+    text-transform: uppercase;
+  }
+  .source-link::before {
+    content: ''; width: 14px; height: 1px; background: var(--mark);
+    transition: width .2s;
+  }
+  .source-link:hover { color: var(--bone); }
+  .source-link:hover::before { width: 22px; }
+  .copy-btn {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--bone-2);
+    border: 1px solid var(--hairline-strong);
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: all .18s;
+    border-radius: 0;
+  }
+  .copy-btn:hover {
+    background: var(--bone);
+    color: var(--ink);
+    border-color: var(--bone);
+  }
+  .copy-btn.copied {
+    background: var(--mark);
+    color: var(--ink);
+    border-color: var(--mark);
   }
 
-  .footer-links a:hover { color: var(--text-secondary); }
+  /* ═══════════════════════════════════════════════════════════
+     SIDEBAR — sticky aside
+     ═══════════════════════════════════════════════════════════ */
+  .sidebar {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    font-family: var(--sans);
+  }
+  @media (max-width: 980px) {
+    .sidebar { position: static; }
+  }
+  .side-block {
+    border: 1px solid var(--hairline-strong);
+    padding: 22px 22px 24px;
+    margin-bottom: 22px;
+    background: var(--ink-2);
+  }
+  .side-block.subscribe {
+    background: var(--bone);
+    color: var(--ink);
+    border-color: var(--bone);
+  }
+  .side-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .side-block.subscribe .side-eyebrow { color: var(--mark); }
+  .side-eyebrow::before {
+    content: ''; width: 12px; height: 1px; background: currentColor;
+  }
+  .side-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    color: var(--bone);
+    margin-bottom: 12px;
+  }
+  .side-block.subscribe .side-title { color: var(--ink); }
+  .side-title em { font-family: var(--instrument); font-style: italic; color: var(--mark); }
+  .side-desc {
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--bone-2);
+    margin-bottom: 16px;
+  }
+  .side-block.subscribe .side-desc { color: #4a4a48; }
 
-  .footer-divider {
-    height: 1px; background: var(--border);
-    margin: 24px auto; max-width: 200px;
+  .toc-list { list-style: none; }
+  .toc-list li {
+    border-top: 1px solid var(--hairline);
+    padding: 12px 0;
+  }
+  .toc-list li:first-child { border-top: 0; padding-top: 4px; }
+  .toc-list a {
+    display: block;
+    color: var(--bone-2);
+    transition: color .15s;
+  }
+  .toc-list a:hover { color: var(--bone); }
+  .toc-num {
+    font-family: var(--instrument);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--mark);
+    margin-right: 8px;
+  }
+  .toc-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-top: 4px;
+    color: var(--bone);
+  }
+  .toc-cat {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mark);
   }
 
-  .footer-credit {
-    font-size: 0.75rem; color: var(--text-muted);
-    display: flex; align-items: center; justify-content: center; gap: 8px;
+  .sub-input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #cbc8be;
+    background: #fff;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .sub-input:focus { outline: 2px solid var(--mark); outline-offset: -2px; }
+  .sub-btn {
+    width: 100%;
+    padding: 11px;
+    background: var(--ink);
+    color: var(--bone);
+    border: 0;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .sub-btn:hover { background: var(--mark); }
+  .sub-fine {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    color: #6e6c64;
+    margin-top: 10px;
+    line-height: 1.45;
   }
 
-  .footer-credit span {
-    display: inline-block; width: 4px; height: 4px;
-    border-radius: 50%; background: var(--text-muted); opacity: 0.5;
+  .pull-quote {
+    border-left: 3px solid var(--mark);
+    padding: 6px 0 6px 16px;
+    margin: 18px 0 0;
+  }
+  .pull-quote p {
+    font-family: var(--instrument);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.35;
+    color: var(--bone);
+    letter-spacing: -0.005em;
+  }
+  .pull-quote .attrib {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    margin-top: 10px;
   }
 
-  /* Scrollbar styling */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+  /* ═══════════════════════════════════════════════════════════
+     COLOPHON / FOOTER
+     ═══════════════════════════════════════════════════════════ */
+  .colophon {
+    border-top: 1px solid var(--hairline-strong);
+    background: #060607;
+    padding: 64px 32px 40px;
+  }
+  .colophon-inner {
+    max-width: 1320px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 720px) {
+    .colophon-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+  .colophon-brand .nameplate-en { font-size: 38px; text-align: left; }
+  .colophon-brand .tagline {
+    font-family: var(--instrument);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--bone-2);
+    margin-top: 14px;
+    max-width: 36ch;
+    line-height: 1.4;
+  }
+  .col-h {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bone-3);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .col-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .col-list a {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    color: var(--bone-2);
+    transition: color .15s;
+  }
+  .col-list a:hover { color: var(--bone); }
 
-  /* Selection */
-  ::selection { background: rgba(59,130,246,0.3); color: var(--text); }
+  .colophon-base {
+    max-width: 1320px; margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--bone-3);
+  }
+  .colophon-base strong { color: var(--bone-2); font-weight: 600; }
+  .colophon-base .signature {
+    font-family: var(--instrument); font-style: italic; font-size: 16px;
+    color: var(--bone-2);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .colophon-base .signature span { color: var(--mark); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--ink-4); border: 2px solid var(--ink); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2a2a32; }
 </style>
 </head>
 <body>
 
-<!-- ── NAVIGATION ── -->
-<nav>
-  <div class="nav-logo">Ken's AI Daily 🤖</div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="https://www.linkedin.com/in/ken-chan-1b247720/" target="_blank">Ken Chan | LinkedIn</a>
-    <div class="nav-pill">Live Daily</div>
-  </div>
-</nav>
-
-<!-- ── HERO BANNER ── -->
-<div class="hero-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 480" style="width:100%;display:block;" font-family="'Inter', 'Segoe UI', system-ui, Arial, sans-serif">
-<defs>
-  <radialGradient id="bgGlow" cx="40%" cy="50%" r="60%">
-    <stop offset="0%" style="stop-color:#0d1f45;stop-opacity:1"/>
-    <stop offset="100%" style="stop-color:#020810;stop-opacity:1"/>
-  </radialGradient>
-  <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.25"/>
-    <stop offset="60%" style="stop-color:#8b5cf6;stop-opacity:0.08"/>
-    <stop offset="100%" style="stop-color:#000;stop-opacity:0"/>
-  </radialGradient>
-  <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.15"/>
-    <stop offset="100%" style="stop-color:#000;stop-opacity:0"/>
-  </radialGradient>
-  <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" style="stop-color:#60a5fa"/>
-    <stop offset="40%" style="stop-color:#a78bfa"/>
-    <stop offset="100%" style="stop-color:#f0abfc"/>
-  </linearGradient>
-  <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8"/>
-    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8"/>
-  </linearGradient>
-  <linearGradient id="accentBar" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" style="stop-color:#3b82f6"/>
-    <stop offset="50%" style="stop-color:#8b5cf6"/>
-    <stop offset="100%" style="stop-color:#f59e0b"/>
-  </linearGradient>
-  <filter id="glowBlue" x="-30%" y="-30%" width="160%" height="160%">
-    <feGaussianBlur stdDeviation="6" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-  <filter id="glowText" x="-10%" y="-30%" width="120%" height="160%">
-    <feGaussianBlur stdDeviation="8" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-  <filter id="nodeShadow">
-    <feGaussianBlur stdDeviation="4" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-    <circle cx="20" cy="20" r="1" fill="#3b82f6" opacity="0.08"/>
-  </pattern>
-  <style>
-    .hn { animation: hpulse 3s ease-in-out infinite; }
-    .hn2 { animation: hpulse 3s ease-in-out infinite 0.8s; }
-    .hn3 { animation: hpulse 3s ease-in-out infinite 1.5s; }
-    .hn4 { animation: hpulse 3s ease-in-out infinite 2.2s; }
-    .hr1 { animation: hspin 18s linear infinite; transform-origin: 420px 240px; }
-    .hr2 { animation: hspin 28s linear infinite reverse; transform-origin: 420px 240px; }
-    .hp1 { animation: hfloat 4s ease-in-out infinite; }
-    .hp2 { animation: hfloat 5s ease-in-out infinite 1s; }
-    .hp3 { animation: hfloat 3.5s ease-in-out infinite 2s; }
-    .hp4 { animation: hfloat 6s ease-in-out infinite 0.5s; }
-    .hp5 { animation: hfloat 4.5s ease-in-out infinite 1.8s; }
-    @keyframes hpulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-    @keyframes hspin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-    @keyframes hfloat { 0%,100%{transform:translateY(0);opacity:.5} 50%{transform:translateY(-12px);opacity:1} }
-  </style>
-</defs>
-<rect width="1400" height="480" fill="url(#bgGlow)"/>
-<rect width="1400" height="480" fill="url(#dots)"/>
-<circle cx="420" cy="240" r="190" fill="url(#orb1)"/>
-<circle cx="1100" cy="380" r="160" fill="url(#orb2)" opacity="0.6"/>
-<g opacity="0.35" stroke="url(#lineGrad)" stroke-width="1" fill="none">
-  <line x1="120" y1="90" x2="260" y2="170"/><line x1="260" y1="170" x2="380" y2="120"/>
-  <line x1="380" y1="120" x2="530" y2="200"/><line x1="120" y1="90" x2="200" y2="290"/>
-  <line x1="200" y1="290" x2="260" y2="170"/><line x1="200" y1="290" x2="380" y2="350"/>
-  <line x1="380" y1="350" x2="530" y2="310"/><line x1="530" y1="200" x2="530" y2="310"/>
-  <line x1="380" y1="120" x2="380" y2="350"/><line x1="260" y1="170" x2="380" y2="350"/>
-  <line x1="530" y1="200" x2="680" y2="160"/><line x1="530" y1="310" x2="680" y2="380"/>
-  <line x1="680" y1="160" x2="680" y2="380"/><line x1="80" y1="340" x2="200" y2="290"/>
-  <line x1="80" y1="340" x2="120" y2="90"/><line x1="120" y1="90" x2="380" y2="120"/>
-  <line x1="680" y1="160" x2="780" y2="240"/><line x1="680" y1="380" x2="780" y2="240"/>
-</g>
-<g opacity="0.7" stroke="#3b82f6" stroke-width="1.5" fill="none" filter="url(#glowBlue)">
-  <line x1="260" y1="170" x2="380" y2="120"/>
-  <line x1="380" y1="120" x2="530" y2="200"/>
-  <line x1="530" y1="200" x2="680" y2="160"/>
-</g>
-<g filter="url(#nodeShadow)">
-  <circle class="hn"  cx="380" cy="120" r="10" fill="#60a5fa" opacity="0.9"/>
-  <circle cx="380" cy="120" r="16" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.4"/>
-  <circle class="hn2" cx="530" cy="200" r="8" fill="#a78bfa" opacity="0.9"/>
-  <circle cx="530" cy="200" r="14" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.4"/>
-  <circle class="hn3" cx="260" cy="170" r="7" fill="#60a5fa" opacity="0.8"/>
-  <circle class="hn"  cx="680" cy="160" r="9" fill="#f0abfc" opacity="0.8"/>
-  <circle class="hn4" cx="380" cy="350" r="7" fill="#34d399" opacity="0.8"/>
-  <circle class="hn2" cx="530" cy="310" r="6" fill="#a78bfa" opacity="0.7"/>
-  <circle class="hn3" cx="680" cy="380" r="7" fill="#60a5fa" opacity="0.7"/>
-  <circle class="hn"  cx="200" cy="290" r="6" fill="#fbbf24" opacity="0.8"/>
-  <circle class="hn4" cx="120" cy="90"  r="5" fill="#60a5fa" opacity="0.6"/>
-  <circle class="hn2" cx="80"  cy="340" r="5" fill="#a78bfa" opacity="0.6"/>
-  <circle class="hn3" cx="780" cy="240" r="7" fill="#60a5fa" opacity="0.6"/>
-</g>
-<g class="hr1"><circle cx="420" cy="240" r="145" fill="none" stroke="#3b82f6" stroke-width="1" stroke-dasharray="8 16" opacity="0.25"/></g>
-<g class="hr2"><circle cx="420" cy="240" r="200" fill="none" stroke="#8b5cf6" stroke-width="0.8" stroke-dasharray="4 20" opacity="0.15"/></g>
-<circle class="hp1" cx="950" cy="80" r="3" fill="#3b82f6" opacity="0.6"/>
-<circle class="hp2" cx="1050" cy="140" r="2" fill="#8b5cf6" opacity="0.5"/>
-<circle class="hp3" cx="1180" cy="60" r="2.5" fill="#f59e0b" opacity="0.4"/>
-<circle class="hp4" cx="1280" cy="200" r="2" fill="#3b82f6" opacity="0.5"/>
-<circle class="hp5" cx="1100" cy="300" r="3" fill="#a78bfa" opacity="0.4"/>
-<circle class="hp1" cx="870" cy="380" r="2" fill="#34d399" opacity="0.4"/>
-<circle class="hp3" cx="1320" cy="380" r="2.5" fill="#60a5fa" opacity="0.3"/>
-<line x1="800" y1="60" x2="800" y2="420" stroke="url(#lineGrad)" stroke-width="1" opacity="0.2"/>
-<text x="840" y="148" font-size="12" fill="#64748b" font-weight="700" letter-spacing="4">DAILY · BILINGUAL · AI-POWERED</text>
-<text x="836" y="232" font-size="82" font-weight="900" fill="#3b82f6" opacity="0.15" letter-spacing="-2" filter="url(#glowText)">Ken's AI Daily</text>
-<text x="836" y="228" font-size="82" font-weight="900" fill="url(#titleGrad)" letter-spacing="-2">Ken's AI Daily</text>
-<text x="840" y="276" font-size="28" fill="#94a3b8" font-weight="500" letter-spacing="6">每日 AI 資訊精選</text>
-<rect x="840" y="292" width="480" height="2.5" rx="2" fill="url(#accentBar)" opacity="0.8"/>
-<text x="840" y="332" font-size="16" fill="#64748b" letter-spacing="1">Curated every morning · English + Traditional Chinese</text>
-<rect x="840" y="356" width="82" height="26" rx="13" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1"/>
-<text x="881" y="373" font-size="11" fill="#60a5fa" font-weight="700" text-anchor="middle">🇬🇧 English</text>
-<rect x="934" y="356" width="82" height="26" rx="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1"/>
-<text x="975" y="373" font-size="11" fill="#a78bfa" font-weight="700" text-anchor="middle">🇹🇼 繁體中文</text>
-<rect x="1028" y="356" width="110" height="26" rx="13" fill="rgba(245,158,11,0.10)" stroke="#f59e0b" stroke-width="1"/>
-<text x="1083" y="373" font-size="11" fill="#fbbf24" font-weight="700" text-anchor="middle">📊 Daily Infographic</text>
-<rect x="0" y="474" width="1400" height="6" fill="url(#accentBar)" rx="0"/>
-<text x="1380" y="462" font-size="10" fill="#334155" text-anchor="end" letter-spacing="1">POWERED BY CLAUDE AI</text>
-  </svg>
-</div>
-
-<!-- ── SUB-HERO ── -->
-<div class="sub-hero">
-  <div class="sub-hero-eyebrow">
-    <span>●</span> Updated Daily · Free Forever
-  </div>
-  <h1 class="sub-hero-title">AI News that <em>actually makes sense</em></h1>
-  <p class="sub-hero-desc">Every morning, the most important AI developments — explained clearly in English and Traditional Chinese, with infographics.</p>
-  <div class="hero-badges">
-    <div class="badge">🇬🇧 English</div>
-    <div class="badge">🇹🇼 繁體中文</div>
-    <div class="badge">📊 Infographic</div>
-    <div class="badge">🔗 Source-linked</div>
-    <div class="badge">🤖 AI-assisted</div>
+<!-- ═══════════════════════════════════════════════════════════
+     UTILITY BAR
+     ═══════════════════════════════════════════════════════════ -->
+<div class="utility">
+  <div class="utility-inner">
+    <div class="utility-left">
+      <span class="dot"></span>
+      <span class="live">Live · Updated daily at 06:00 HKT</span>
+      <span style="opacity:.5">·</span>
+      <span>Issue Nº 042 · Vol. I</span>
+    </div>
+    <div class="utility-right">
+      <a href="#feed">The Brief</a>
+      <a href="#archive">Archive</a>
+      <a href="#about">About</a>
+      <a href="https://www.linkedin.com/in/ken-chan-1b247720/" target="_blank">Ken Chan ↗</a>
+    </div>
   </div>
 </div>
 
-<!-- ── FEED ── -->
-<div class="feed-outer">
-<div class="feed">
-
-  <div class="feed-header">
-    <div class="feed-header-label">Latest Posts</div>
-    <div class="feed-header-line"></div>
-    <div class="feed-header-count">3 posts</div>
+<!-- ═══════════════════════════════════════════════════════════
+     MASTHEAD
+     ═══════════════════════════════════════════════════════════ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-meta">
+      <strong>Friday</strong><br>
+      April 17, 2026<br>
+      <span class="vrule"></span>香港 · 多雲 23°
+    </div>
+    <div class="nameplate">
+      <div class="nameplate-en">Ken<span class="amp">'s</span> AI Daily</div>
+      <div class="nameplate-zh">每 日 人 工 智 能</div>
+    </div>
+    <div class="masthead-actions">
+      <span class="pill">EN</span>
+      <span class="pill">繁中</span>
+      <span class="pill is-mark">● Subscribe</span>
+    </div>
   </div>
+  <nav class="section-nav">
+    <div class="section-nav-inner">
+      <a href="#feed" class="active">The Brief</a>
+      <a href="#">AI Business</a>
+      <a href="#">Adoption</a>
+      <a href="#">Research</a>
+      <a href="#">Tools</a>
+      <a href="#">Geopolitics</a>
+      <a href="#">Long Reads</a>
+      <a href="#">Infographics</a>
+      <a href="#">繁體中文</a>
+    </div>
+  </nav>
+</header>
 
-  <!-- ═══ POST: OpenAI $122B Funding ═══ -->
+<!-- ═══════════════════════════════════════════════════════════
+     LEAD HERO — magazine cover
+     ═══════════════════════════════════════════════════════════ -->
+<section class="lead">
+  <div class="lead-inner">
+    <div class="lead-text">
+      <div class="kicker">The Cover Story · April 17</div>
+      <h1 class="lead-headline">
+        Half the world is now using AI&mdash;and it happened <em>faster than the internet.</em>
+      </h1>
+      <p class="lead-deck">
+        Stanford's 2026 AI Index landed this week with a number that should stop everyone in their tracks: 53% of the planet is on generative AI in three years. The PC took sixteen.
+      </p>
+      <p class="lead-deck-zh">
+        全球 53% 人口已使用生成式 AI——比互聯網普及還要快。這是 Stanford 2026 報告的核心數字。
+      </p>
+      <div class="lead-byline">
+        <span><strong>By Ken Chan</strong></span>
+        <span class="sep"></span>
+        <span>5 min read</span>
+        <span class="sep"></span>
+        <span>EN · 繁中</span>
+        <span class="sep"></span>
+        <span style="color: var(--mark);">↓ Read below</span>
+      </div>
+    </div>
+    <div class="lead-art">
+      <svg class="cover-poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
+        <defs>
+          <linearGradient id="paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0c0c10"/>
+            <stop offset="100%" stop-color="#16161c"/>
+          </linearGradient>
+          <linearGradient id="vermillion" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f06b3a"/>
+            <stop offset="100%" stop-color="#d94a1f"/>
+          </linearGradient>
+          <linearGradient id="vermShade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#e85a2c" stop-opacity="0"/>
+            <stop offset="60%" stop-color="#e85a2c" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#e85a2c" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="boneFade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ededea" stop-opacity="0.92"/>
+            <stop offset="100%" stop-color="#ededea" stop-opacity="0.42"/>
+          </linearGradient>
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e85a2c" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#e85a2c" stop-opacity="0"/>
+          </radialGradient>
+          <pattern id="microgrid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M30 0 L0 0 0 30" fill="none" stroke="#ededea" stroke-width="0.5" opacity="0.04"/>
+          </pattern>
+          <filter id="softGlow">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <style>
+            .cover-poster text { font-family: 'Source Serif 4', 'Noto Serif TC', Georgia, serif; }
+            .cp-sans { font-family: 'Inter', system-ui, sans-serif; }
+            .cp-it   { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+            .cp-tc   { font-family: 'Noto Serif TC', serif; }
+
+            .cp-rotate-slow { transform-origin: 500px 360px; animation: cpRot 60s linear infinite; }
+            .cp-rotate-rev  { transform-origin: 500px 360px; animation: cpRot 90s linear infinite reverse; }
+            @keyframes cpRot { to { transform: rotate(360deg); } }
+
+            .cp-pulse  { animation: cpPul 2.6s ease-in-out infinite; transform-origin: center; }
+            .cp-pulse2 { animation: cpPul 2.6s ease-in-out infinite 0.7s; transform-origin: center; }
+            .cp-pulse3 { animation: cpPul 2.6s ease-in-out infinite 1.4s; transform-origin: center; }
+            @keyframes cpPul { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+
+            .cp-blink  { animation: cpBlnk 1.2s steps(1) infinite; }
+            @keyframes cpBlnk { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+            .cp-orbit  { transform-origin: 500px 360px; animation: cpOrb 14s linear infinite; }
+            .cp-orbit2 { transform-origin: 500px 360px; animation: cpOrb 22s linear infinite reverse; }
+            @keyframes cpOrb { to { transform: rotate(360deg); } }
+
+            .cp-fade-in   { animation: cpFI 1.2s ease-out both; }
+            .cp-fade-in-2 { animation: cpFI 1.2s ease-out 0.25s both; }
+            .cp-fade-in-3 { animation: cpFI 1.2s ease-out 0.5s both; }
+            @keyframes cpFI { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+            .cp-rise   { animation: cpRs 1.4s cubic-bezier(.2,.7,.2,1) both; }
+            @keyframes cpRs { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+            .cp-bar-fill { transform-origin: left center; animation: cpBar 2s cubic-bezier(.2,.7,.2,1) 0.6s both; }
+            @keyframes cpBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+            .cp-spark line { stroke-dasharray: 200; stroke-dashoffset: 200; animation: cpDash 3s ease-out 0.8s forwards; }
+            @keyframes cpDash { to { stroke-dashoffset: 0; } }
+
+            .cp-shimmer rect { animation: cpShim 4s ease-in-out infinite; }
+            @keyframes cpShim { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+          </style>
+        </defs>
+
+        <!-- Background -->
+        <rect width="1000" height="720" fill="url(#paperGrad)"/>
+        <rect width="1000" height="720" fill="url(#microgrid)"/>
+        <rect width="1000" height="720" fill="url(#centerGlow)"/>
+        <rect x="0" y="0" width="1000" height="720" fill="url(#vermShade)" opacity="0.5"/>
+
+        <!-- Top metadata strip -->
+        <g class="cp-fade-in">
+          <line x1="40" y1="48" x2="960" y2="48" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          <text x="40" y="38" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">VOL. I &#8201;·&#8201; ISSUE Nº 042 &#8201;·&#8201; FRI 17 APR 2026</text>
+          <text x="960" y="38" class="cp-sans" font-size="10" letter-spacing="3" fill="#e85a2c" font-weight="700" text-anchor="end">THE COVER STORY<tspan fill="#ededea" opacity="0.6"> &#8201;·&#8201; HKT 06:00</tspan></text>
+        </g>
+
+        <!-- Center composition: orbital ring system around a giant typographic A·I -->
+        <g class="cp-rotate-slow">
+          <circle cx="500" cy="360" r="240" fill="none" stroke="#ededea" stroke-width="0.6" opacity="0.18" stroke-dasharray="2 8"/>
+        </g>
+        <g class="cp-rotate-rev">
+          <circle cx="500" cy="360" r="285" fill="none" stroke="#ededea" stroke-width="0.5" opacity="0.10" stroke-dasharray="1 14"/>
+        </g>
+
+        <!-- Solid orbit (vermillion) with traveling node -->
+        <g>
+          <circle cx="500" cy="360" r="200" fill="none" stroke="#e85a2c" stroke-width="1" opacity="0.45"/>
+          <g class="cp-orbit">
+            <circle cx="700" cy="360" r="6" fill="#e85a2c"/>
+            <circle cx="700" cy="360" r="14" fill="none" stroke="#e85a2c" stroke-width="0.6" opacity="0.5"/>
+          </g>
+          <g class="cp-orbit2">
+            <circle cx="500" cy="160" r="4" fill="#ededea" opacity="0.85"/>
+          </g>
+        </g>
+
+        <!-- Tick marks around the orbit ring (12 ticks) -->
+        <g opacity="0.5">
+          <g transform="translate(500 360)">
+            <line x1="200.0" y1="0.0" x2="192.0" y2="0.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="193.2" y1="51.8" x2="189.3" y2="50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="173.2" y1="100.0" x2="169.7" y2="98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="141.4" y1="141.4" x2="135.8" y2="135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="100.0" y1="173.2" x2="98.0" y2="169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="51.8" y1="193.2" x2="50.7" y2="189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="0.0" y1="200.0" x2="0.0" y2="192.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-51.8" y1="193.2" x2="-50.7" y2="189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-100.0" y1="173.2" x2="-98.0" y2="169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-141.4" y1="141.4" x2="-135.8" y2="135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-173.2" y1="100.0" x2="-169.7" y2="98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-193.2" y1="51.8" x2="-189.3" y2="50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-200.0" y1="0.0" x2="-192.0" y2="0.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-193.2" y1="-51.8" x2="-189.3" y2="-50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-173.2" y1="-100.0" x2="-169.7" y2="-98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-141.4" y1="-141.4" x2="-135.8" y2="-135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-100.0" y1="-173.2" x2="-98.0" y2="-169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-51.8" y1="-193.2" x2="-50.7" y2="-189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-0.0" y1="-200.0" x2="-0.0" y2="-192.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="51.8" y1="-193.2" x2="50.7" y2="-189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="100.0" y1="-173.2" x2="98.0" y2="-169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="141.4" y1="-141.4" x2="135.8" y2="-135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="173.2" y1="-100.0" x2="169.7" y2="-98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="193.2" y1="-51.8" x2="189.3" y2="-50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/>
+          </g>
+        </g>
+
+        <!-- Centered nameplate AI · 智 -->
+        <g class="cp-rise">
+          <!-- 'AI' giant -->
+          <text x="500" y="395" text-anchor="middle" font-size="280" font-weight="900" fill="url(#boneFade)" letter-spacing="-12">A<tspan dx="0" fill="#e85a2c" class="cp-it" font-weight="400" font-size="280" dy="0">·</tspan>I</text>
+          <!-- TC mark below -->
+          <text x="500" y="455" text-anchor="middle" class="cp-tc" font-size="34" letter-spacing="14" fill="#ededea" opacity="0.7" font-weight="500">每 日 智 能</text>
+        </g>
+
+        <!-- Left edge column: large numeral 53% with mini-bar -->
+        <g class="cp-fade-in-2">
+          <text x="60" y="220" class="cp-sans" font-size="10" letter-spacing="3" fill="#e85a2c" font-weight="700">FIG. 01 · GLOBAL ADOPTION</text>
+          <text x="60" y="320" font-size="120" font-weight="900" fill="#ededea" letter-spacing="-6">53<tspan font-size="58" class="cp-it" font-weight="400" fill="#e85a2c">%</tspan></text>
+          <line x1="60" y1="340" x2="240" y2="340" stroke="#ededea" stroke-width="0.5" opacity="0.25"/>
+          <text x="60" y="362" class="cp-sans" font-size="11" fill="#ededea" opacity="0.7" font-weight="500">of the world is now on</text>
+          <text x="60" y="378" class="cp-sans" font-size="11" fill="#ededea" opacity="0.7" font-weight="500">generative AI · in <tspan fill="#e85a2c" font-weight="700">3 years</tspan></text>
+
+          <!-- Mini comparison bars -->
+          <g transform="translate(60 410)">
+            <text x="0" y="0" class="cp-sans" font-size="9" letter-spacing="2" fill="#ededea" opacity="0.5" font-weight="700">VS. PREVIOUS WAVES</text>
+            <g transform="translate(0 18)">
+              <text x="0" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">PC</text>
+              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.18"/>
+              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.6" class="cp-bar-fill"/>
+              <text x="246" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">16y</text>
+            </g>
+            <g transform="translate(0 36)">
+              <text x="0" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">WEB</text>
+              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.18"/>
+              <rect x="40" y="2" width="125" height="6" fill="#ededea" opacity="0.6" class="cp-bar-fill" style="animation-delay:0.8s"/>
+              <text x="171" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">10y</text>
+            </g>
+            <g transform="translate(0 54)">
+              <text x="0" y="9" class="cp-sans" font-size="9" fill="#e85a2c" font-weight="700">AI</text>
+              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.18"/>
+              <rect x="40" y="2" width="38" height="6" fill="url(#vermillion)" class="cp-bar-fill" style="animation-delay:1.0s"/>
+              <text x="84" y="9" class="cp-sans" font-size="9" fill="#e85a2c" font-weight="700">3y</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- Right edge column: $122B + $581B stack -->
+        <g class="cp-fade-in-3">
+          <text x="940" y="220" class="cp-sans" font-size="10" letter-spacing="3" fill="#e85a2c" font-weight="700" text-anchor="end">FIG. 02 · CAPITAL INFLOWS</text>
+
+          <text x="940" y="290" font-size="64" font-weight="900" fill="#ededea" letter-spacing="-3" text-anchor="end">$122<tspan class="cp-it" font-size="40" fill="#e85a2c" font-weight="400">B</tspan></text>
+          <text x="940" y="312" class="cp-sans" font-size="10" fill="#ededea" opacity="0.55" font-weight="500" text-anchor="end" letter-spacing="1">OPENAI · LARGEST PRIVATE ROUND</text>
+
+          <line x1="760" y1="332" x2="940" y2="332" stroke="#ededea" stroke-width="0.5" opacity="0.2"/>
+
+          <text x="940" y="380" font-size="48" font-weight="900" fill="#ededea" letter-spacing="-2" text-anchor="end">$581<tspan class="cp-it" font-size="32" fill="#e85a2c" font-weight="400">B</tspan></text>
+          <text x="940" y="400" class="cp-sans" font-size="10" fill="#ededea" opacity="0.55" font-weight="500" text-anchor="end" letter-spacing="1">CORPORATE AI SPEND · +130% YoY</text>
+
+          <line x1="760" y1="420" x2="940" y2="420" stroke="#ededea" stroke-width="0.5" opacity="0.2"/>
+
+          <!-- Small spark -->
+          <g class="cp-spark" transform="translate(760 440)">
+            <text x="0" y="0" class="cp-sans" font-size="9" letter-spacing="2" fill="#ededea" opacity="0.5" font-weight="700">3-YR INVESTMENT TRAJECTORY</text>
+            <line x1="0" y1="38" x2="180" y2="10" stroke="#e85a2c" stroke-width="1.5" fill="none"/>
+            <circle cx="180" cy="10" r="3" fill="#e85a2c" class="cp-pulse"/>
+            <line x1="0" y1="48" x2="180" y2="48" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          </g>
+        </g>
+
+        <!-- Bottom band: pull-quote + signature -->
+        <g class="cp-fade-in-3">
+          <line x1="40" y1="562" x2="960" y2="562" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          <text x="500" y="608" text-anchor="middle" class="cp-it" font-size="34" fill="#ededea" font-style="italic">
+            <tspan fill="#e85a2c">&#8220;</tspan> The largest bet in private-market history. <tspan fill="#e85a2c">&#8221;</tspan>
+          </text>
+          <text x="500" y="640" text-anchor="middle" class="cp-sans" font-size="10" letter-spacing="4" fill="#ededea" opacity="0.5" font-weight="700">ON THE OPENAI ROUND &#8201;·&#8201; APRIL 2026</text>
+
+          <line x1="40" y1="678" x2="960" y2="678" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          <text x="40" y="700" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">KEN<tspan fill="#e85a2c">'</tspan>S AI DAILY &#8201;·&#8201; HONG KONG</text>
+          <text x="500" y="700" text-anchor="middle" class="cp-it" font-size="14" fill="#ededea" opacity="0.6">Bilingual reporting, every morning.</text>
+          <text x="960" y="700" text-anchor="end" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">EN <tspan fill="#e85a2c">/</tspan> 繁中 &#8201;·&#8201; ALWAYS FREE</text>
+        </g>
+
+        <!-- Floating dots accent -->
+        <g class="cp-shimmer">
+          <rect x="320" y="92" width="4" height="4" fill="#e85a2c"/>
+          <rect x="676" y="116" width="4" height="4" fill="#ededea"/>
+          <rect x="296" y="540" width="4" height="4" fill="#ededea"/>
+          <rect x="704" y="528" width="4" height="4" fill="#e85a2c"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     RUNNING TICKER — by-the-numbers
+     ═══════════════════════════════════════════════════════════ -->
+<section class="ticker">
+  <div class="ticker-inner">
+    <div class="stat">
+      <div class="label">OpenAI Round</div>
+      <div class="value">$122B<span class="small">↑ record</span></div>
+    </div>
+    <div class="stat">
+      <div class="label">Global GenAI Users</div>
+      <div class="value">53%<span class="small">+38pp YoY</span></div>
+    </div>
+    <div class="stat">
+      <div class="label">Corporate AI Spend</div>
+      <div class="value">$581B<span class="small">+130%</span></div>
+    </div>
+    <div class="stat">
+      <div class="label">Inference Memory</div>
+      <div class="value">−6×<span class="small">TurboQuant</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN GRID — feed + sidebar
+     ═══════════════════════════════════════════════════════════ -->
+<main class="container">
+  <div class="feed-grid">
+
+    <div class="feed" id="feed">
+
+      <div class="feed-section-head">
+        <h2>The <em>Brief</em></h2>
+        <span class="count">3 stories · April 17, 2026</span>
+      </div>
+
+      <!-- ═══ POST: OpenAI $122B Funding ═══ -->
   <div class="post-card">
     <div class="post-meta">
       <span class="post-date">APR 17, 2026</span>
@@ -737,7 +1319,9 @@ OpenAI 剛完成了 <strong>1,220 億美元（$122B）的融資</strong>——�
     </div>
   </div>
 
-  <!-- ═══ POST: Stanford AI Index ═══ -->
+  
+
+      <!-- ═══ POST: Stanford AI Index ═══ -->
   <div class="post-card">
     <div class="post-meta">
       <span class="post-date">APR 17, 2026</span>
@@ -862,7 +1446,9 @@ The revolution is already here. The only question is whether you're riding it or
     </div>
   </div>
 
-  <!-- ═══ POST: TurboQuant ═══ -->
+  
+
+      <!-- ═══ POST: TurboQuant ═══ -->
   <div class="post-card">
     <div class="post-meta">
       <span class="post-date">APR 17, 2026</span>
@@ -977,25 +1563,94 @@ Google 可能剛剛改變了這個方程式。
     </div>
   </div>
 
-</div><!-- /feed -->
-</div><!-- /feed-outer -->
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-logo">Ken's AI Daily 🤖</div>
-  <div class="footer-desc">Curated daily by Ken Chan · AI-assisted · Human-reviewed · Always free</div>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="https://www.linkedin.com/in/ken-chan-1b247720/" target="_blank">Ken Chan | LinkedIn</a>
-    <a href="https://kenchankh97.github.io/ai-daily" target="_blank">Live Site</a>
+
+    </div><!-- /feed -->
+
+    <aside class="sidebar">
+
+      <div class="side-block">
+        <div class="side-eyebrow">In this Issue</div>
+        <ol class="toc-list">
+          <li><a href="#"><span class="toc-num">01</span><span class="toc-cat">AI Business</span><div class="toc-title">A $122 billion bet on the next phase of intelligence</div></a></li>
+          <li><a href="#"><span class="toc-num">02</span><span class="toc-cat">Adoption</span><div class="toc-title">Half the world is now on generative AI</div></a></li>
+          <li><a href="#"><span class="toc-num">03</span><span class="toc-cat">Research</span><div class="toc-title">Google's TurboQuant, and the end of expensive AI</div></a></li>
+        </ol>
+      </div>
+
+      <div class="side-block">
+        <div class="side-eyebrow">Quoted</div>
+        <div class="pull-quote">
+          <p>&ldquo;When the companies selling shovels start buying the gold mine, pay attention.&rdquo;</p>
+          <div class="attrib">— On the OpenAI round</div>
+        </div>
+      </div>
+
+      <div class="side-block subscribe">
+        <div class="side-eyebrow">The Daily Brief</div>
+        <div class="side-title">Get tomorrow's <em>edition</em> in your inbox</div>
+        <p class="side-desc">A two-minute bilingual digest of the day's most important AI news. Every weekday morning, free.</p>
+        <input class="sub-input" type="email" placeholder="you@somewhere.com">
+        <button class="sub-btn">Subscribe →</button>
+        <p class="sub-fine">No tracking · Unsubscribe in one click · 繁中 / English</p>
+      </div>
+
+      <div class="side-block">
+        <div class="side-eyebrow">Colophon</div>
+        <p class="side-desc" style="margin-bottom:0;">
+          Edited &amp; written by <strong style="color:var(--bone);">Ken Chan</strong> in Hong Kong. Drafts assisted by Claude. Every story is human-reviewed and source-linked. <em style="font-family:var(--instrument);font-style:italic;color:var(--mark);">Always free.</em>
+        </p>
+      </div>
+
+    </aside>
+
   </div>
-  <div class="footer-divider"></div>
-  <div class="footer-credit">
-    Powered by Claude AI <span></span> © 2026 Ken Chan
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COLOPHON / FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-brand">
+      <div class="nameplate-en">Ken<span class="amp" style="color:var(--mark);">'s</span> AI Daily</div>
+      <p class="tagline">Bilingual artificial-intelligence reporting from Hong Kong. Every morning, in English and 繁體中文.</p>
+    </div>
+    <div>
+      <div class="col-h">Sections</div>
+      <ul class="col-list">
+        <li><a href="#">The Brief</a></li>
+        <li><a href="#">AI Business</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">Long Reads</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-h">Editions</div>
+      <ul class="col-list">
+        <li><a href="#">English</a></li>
+        <li><a href="#">繁體中文</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">RSS</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-h">The Editor</div>
+      <ul class="col-list">
+        <li><a href="https://www.linkedin.com/in/ken-chan-1b247720/" target="_blank">Ken Chan · LinkedIn ↗</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#7a12133a1f021b170a161f54191517">Tip the editor</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Masthead</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="colophon-base">
+    <div>© 2026 <strong>Ken Chan</strong> · Published in Hong Kong · 香港出版</div>
+    <div class="signature">Set in Source Serif &amp; Inter <span>·</span> Drafted with <span>Claude</span></div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
 function switchLang(btn, lang, postId) {
   const card = btn.closest('.post-card');
   card.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -1063,5 +1718,6 @@ document.addEventListener('DOMContentLoaded', () => {
   linkifyPostBodies();
 });
 </script>
+
 </body>
 </html>
