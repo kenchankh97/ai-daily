@@ -960,198 +960,178 @@
       <svg class="cover-poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
         <defs>
           <linearGradient id="paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#0c0c10"/>
-            <stop offset="100%" stop-color="#16161c"/>
+            <stop offset="0%" stop-color="#1a0e05"/>
+            <stop offset="100%" stop-color="#0d0800"/>
           </linearGradient>
-          <linearGradient id="vermillion" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f06b3a"/>
-            <stop offset="100%" stop-color="#d94a1f"/>
+          <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#76b900"/>
+            <stop offset="50%" stop-color="#e85a2c"/>
+            <stop offset="100%" stop-color="#7c4dff"/>
           </linearGradient>
-          <linearGradient id="vermShade" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#e85a2c" stop-opacity="0"/>
-            <stop offset="60%" stop-color="#e85a2c" stop-opacity="0.16"/>
-            <stop offset="100%" stop-color="#e85a2c" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="boneFade" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#ededea" stop-opacity="0.92"/>
-            <stop offset="100%" stop-color="#ededea" stop-opacity="0.42"/>
-          </linearGradient>
-          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+          <radialGradient id="glowCenter" cx="50%" cy="48%" r="38%">
             <stop offset="0%" stop-color="#e85a2c" stop-opacity="0.18"/>
-            <stop offset="100%" stop-color="#e85a2c" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#0d0800" stop-opacity="0"/>
           </radialGradient>
-          <pattern id="microgrid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-            <path d="M30 0 L0 0 0 30" fill="none" stroke="#ededea" stroke-width="0.5" opacity="0.04"/>
-          </pattern>
-          <filter id="softGlow">
-            <feGaussianBlur stdDeviation="6" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#76b900" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#76b900" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#7c4dff" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#7c4dff" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="softshadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
           </filter>
-          <style>
-            .cover-poster text { font-family: 'Source Serif 4', 'Noto Serif TC', Georgia, serif; }
-            .cp-sans { font-family: 'Inter', system-ui, sans-serif; }
-            .cp-it   { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
-            .cp-tc   { font-family: 'Noto Serif TC', serif; }
-
-            .cp-rotate-slow { transform-origin: 500px 360px; animation: cpRot 60s linear infinite; }
-            .cp-rotate-rev  { transform-origin: 500px 360px; animation: cpRot 90s linear infinite reverse; }
-            @keyframes cpRot { to { transform: rotate(360deg); } }
-
-            .cp-pulse  { animation: cpPul 2.6s ease-in-out infinite; transform-origin: center; }
-            .cp-pulse2 { animation: cpPul 2.6s ease-in-out infinite 0.7s; transform-origin: center; }
-            .cp-pulse3 { animation: cpPul 2.6s ease-in-out infinite 1.4s; transform-origin: center; }
-            @keyframes cpPul { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
-
-            .cp-blink  { animation: cpBlnk 1.2s steps(1) infinite; }
-            @keyframes cpBlnk { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
-
-            .cp-orbit  { transform-origin: 500px 360px; animation: cpOrb 14s linear infinite; }
-            .cp-orbit2 { transform-origin: 500px 360px; animation: cpOrb 22s linear infinite reverse; }
-            @keyframes cpOrb { to { transform: rotate(360deg); } }
-
-            .cp-fade-in   { animation: cpFI 1.2s ease-out both; }
-            .cp-fade-in-2 { animation: cpFI 1.2s ease-out 0.25s both; }
-            .cp-fade-in-3 { animation: cpFI 1.2s ease-out 0.5s both; }
-            @keyframes cpFI { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-            .cp-rise   { animation: cpRs 1.4s cubic-bezier(.2,.7,.2,1) both; }
-            @keyframes cpRs { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-            .cp-bar-fill { transform-origin: left center; animation: cpBar 2s cubic-bezier(.2,.7,.2,1) 0.6s both; }
-            @keyframes cpBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-
-            .cp-spark line { stroke-dasharray: 200; stroke-dashoffset: 200; animation: cpDash 3s ease-out 0.8s forwards; }
-            @keyframes cpDash { to { stroke-dashoffset: 0; } }
-
-            .cp-shimmer rect { animation: cpShim 4s ease-in-out infinite; }
-            @keyframes cpShim { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
-          </style>
         </defs>
 
         <!-- Background -->
         <rect width="1000" height="720" fill="url(#paperGrad)"/>
-        <rect width="1000" height="720" fill="url(#microgrid)"/>
-        <rect width="1000" height="720" fill="url(#centerGlow)"/>
-        <rect x="0" y="0" width="1000" height="720" fill="url(#vermShade)" opacity="0.5"/>
+        <rect width="1000" height="720" fill="url(#glowCenter)"/>
 
-        <!-- Top metadata strip -->
-        <g class="cp-fade-in">
-          <line x1="40" y1="48" x2="960" y2="48" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
-          <text x="40" y="38" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">VOL. I &#8201;·&#8201; ISSUE Nº 043 &#8201;·&#8201; SAT 18 APR 2026</text>
-          <text x="960" y="38" class="cp-sans" font-size="10" letter-spacing="3" fill="#e85a2c" font-weight="700" text-anchor="end">THE COVER STORY<tspan fill="#ededea" opacity="0.6"> &#8201;·&#8201; HKT 06:00</tspan></text>
-        </g>
+        <!-- Subtle grid -->
+        <line x1="500" y1="0" x2="500" y2="720" stroke="#ffffff06" stroke-width="1"/>
+        <line x1="0" y1="360" x2="1000" y2="360" stroke="#ffffff06" stroke-width="1"/>
+        <line x1="0" y1="120" x2="1000" y2="120" stroke="#ffffff05" stroke-width="1"/>
+        <line x1="0" y1="600" x2="1000" y2="600" stroke="#ffffff05" stroke-width="1"/>
+        <line x1="200" y1="0" x2="200" y2="720" stroke="#ffffff04" stroke-width="1"/>
+        <line x1="800" y1="0" x2="800" y2="720" stroke="#ffffff04" stroke-width="1"/>
 
-        <!-- Center composition: orbital ring system around a giant typographic A·I -->
-        <g class="cp-rotate-slow">
-          <circle cx="500" cy="360" r="240" fill="none" stroke="#ededea" stroke-width="0.6" opacity="0.18" stroke-dasharray="2 8"/>
-        </g>
-        <g class="cp-rotate-rev">
-          <circle cx="500" cy="360" r="285" fill="none" stroke="#ededea" stroke-width="0.5" opacity="0.10" stroke-dasharray="1 14"/>
-        </g>
+        <!-- Decorative corner dots -->
+        <circle cx="52" cy="68" r="2.5" fill="#e85a2c" opacity="0.5"/>
+        <circle cx="948" cy="68" r="2.5" fill="#e85a2c" opacity="0.5"/>
+        <circle cx="52" cy="652" r="2.5" fill="#e85a2c" opacity="0.3"/>
+        <circle cx="948" cy="652" r="2.5" fill="#e85a2c" opacity="0.3"/>
+        <circle cx="500" cy="92" r="2" fill="#ffffff" opacity="0.2"/>
+        <circle cx="500" cy="628" r="2" fill="#ffffff" opacity="0.2"/>
 
-        <!-- Solid orbit (vermillion) with traveling node -->
-        <g>
-          <circle cx="500" cy="360" r="200" fill="none" stroke="#e85a2c" stroke-width="1" opacity="0.45"/>
-          <g class="cp-orbit">
-            <circle cx="700" cy="360" r="6" fill="#e85a2c"/>
-            <circle cx="700" cy="360" r="14" fill="none" stroke="#e85a2c" stroke-width="0.6" opacity="0.5"/>
-          </g>
-          <g class="cp-orbit2">
-            <circle cx="500" cy="160" r="4" fill="#ededea" opacity="0.85"/>
-          </g>
-        </g>
+        <!-- Header rule -->
+        <rect x="40" y="40" width="920" height="1" fill="#e8e8e020"/>
+        <rect x="40" y="78" width="920" height="1" fill="#e8e8e015"/>
 
-        <!-- Tick marks around the orbit ring (12 ticks) -->
-        <g opacity="0.5">
-          <g transform="translate(500 360)">
-            <line x1="200.0" y1="0.0" x2="192.0" y2="0.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="193.2" y1="51.8" x2="189.3" y2="50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="173.2" y1="100.0" x2="169.7" y2="98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="141.4" y1="141.4" x2="135.8" y2="135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="100.0" y1="173.2" x2="98.0" y2="169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="51.8" y1="193.2" x2="50.7" y2="189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="0.0" y1="200.0" x2="0.0" y2="192.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-51.8" y1="193.2" x2="-50.7" y2="189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-100.0" y1="173.2" x2="-98.0" y2="169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-141.4" y1="141.4" x2="-135.8" y2="135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-173.2" y1="100.0" x2="-169.7" y2="98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-193.2" y1="51.8" x2="-189.3" y2="50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-200.0" y1="0.0" x2="-192.0" y2="0.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-193.2" y1="-51.8" x2="-189.3" y2="-50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-173.2" y1="-100.0" x2="-169.7" y2="-98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-141.4" y1="-141.4" x2="-135.8" y2="-135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="-100.0" y1="-173.2" x2="-98.0" y2="-169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-51.8" y1="-193.2" x2="-50.7" y2="-189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="-0.0" y1="-200.0" x2="-0.0" y2="-192.0" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="51.8" y1="-193.2" x2="50.7" y2="-189.3" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="100.0" y1="-173.2" x2="98.0" y2="-169.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="141.4" y1="-141.4" x2="135.8" y2="-135.8" stroke="#ededea" stroke-width="0.6" opacity="0.7"/><line x1="173.2" y1="-100.0" x2="169.7" y2="-98.0" stroke="#ededea" stroke-width="0.6" opacity="0.3"/><line x1="193.2" y1="-51.8" x2="189.3" y2="-50.7" stroke="#ededea" stroke-width="0.6" opacity="0.3"/>
-          </g>
-        </g>
+        <!-- Masthead line: Vol / Issue / Date left; Cover Story right -->
+        <text x="52" y="64" font-family="'Inter','Arial Narrow',Arial,sans-serif" font-size="10.5" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">VOL. I &#8201;·&#8201; ISSUE N&#186; 043 &#8201;·&#8201; SAT 18 APR 2026</text>
+        <text x="948" y="64" font-family="'Inter','Arial Narrow',Arial,sans-serif" font-size="10.5" letter-spacing="3" fill="#e85a2c" font-weight="700" text-anchor="end">THE COVER STORY<tspan fill="#ededea" opacity="0.6"> &#8201;·&#8201; HKT 06:00</tspan></text>
 
-        <!-- Centered nameplate AI · 智 -->
-        <g class="cp-rise">
-          <!-- 'AI' giant -->
-          <text x="500" y="395" text-anchor="middle" font-size="280" font-weight="900" fill="url(#boneFade)" letter-spacing="-12">A<tspan dx="0" fill="#e85a2c" class="cp-it" font-weight="400" font-size="280" dy="0">·</tspan>I</text>
-          <!-- TC mark below -->
-          <text x="500" y="455" text-anchor="middle" class="cp-tc" font-size="34" letter-spacing="14" fill="#ededea" opacity="0.7" font-weight="500">每 日 智 能</text>
-        </g>
+        <!-- ── LEFT COLUMN: Story 1 NVIDIA GR00T ── -->
+        <!-- Glow blob -->
+        <ellipse cx="185" cy="370" rx="160" ry="180" fill="url(#glow1)" opacity="0.7"/>
 
-        <!-- Left edge column: large numeral 53% with mini-bar -->
-        <g class="cp-fade-in-2">
-          <text x="60" y="220" class="cp-sans" font-size="10" letter-spacing="3" fill="#e85a2c" font-weight="700">FIG. 01 · GLOBAL ADOPTION</text>
-          <text x="60" y="320" font-size="120" font-weight="900" fill="#ededea" letter-spacing="-6">53<tspan font-size="58" class="cp-it" font-weight="400" fill="#e85a2c">%</tspan></text>
-          <line x1="60" y1="340" x2="240" y2="340" stroke="#ededea" stroke-width="0.5" opacity="0.25"/>
-          <text x="60" y="362" class="cp-sans" font-size="11" fill="#ededea" opacity="0.7" font-weight="500">of the world is now on</text>
-          <text x="60" y="378" class="cp-sans" font-size="11" fill="#ededea" opacity="0.7" font-weight="500">generative AI · in <tspan fill="#e85a2c" font-weight="700">3 years</tspan></text>
+        <text x="52" y="120" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="3.5" fill="#76b900" font-weight="700">FIG. 01 &#8201;·&#8201; ROBOTICS</text>
 
-          <!-- Mini comparison bars -->
-          <g transform="translate(60 410)">
-            <text x="0" y="0" class="cp-sans" font-size="9" letter-spacing="2" fill="#ededea" opacity="0.5" font-weight="700">VS. PREVIOUS WAVES</text>
-            <g transform="translate(0 18)">
-              <text x="0" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">PC</text>
-              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.18"/>
-              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.6" class="cp-bar-fill"/>
-              <text x="246" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">16y</text>
-            </g>
-            <g transform="translate(0 36)">
-              <text x="0" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">WEB</text>
-              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.18"/>
-              <rect x="40" y="2" width="125" height="6" fill="#ededea" opacity="0.6" class="cp-bar-fill" style="animation-delay:0.8s"/>
-              <text x="171" y="9" class="cp-sans" font-size="9" fill="#ededea" opacity="0.55">10y</text>
-            </g>
-            <g transform="translate(0 54)">
-              <text x="0" y="9" class="cp-sans" font-size="9" fill="#e85a2c" font-weight="700">AI</text>
-              <rect x="40" y="2" width="200" height="6" fill="#ededea" opacity="0.18"/>
-              <rect x="40" y="2" width="38" height="6" fill="url(#vermillion)" class="cp-bar-fill" style="animation-delay:1.0s"/>
-              <text x="84" y="9" class="cp-sans" font-size="9" fill="#e85a2c" font-weight="700">3y</text>
-            </g>
-          </g>
-        </g>
+        <!-- Big stat -->
+        <text x="52" y="198" font-family="Georgia,'Times New Roman',serif" font-size="105" font-weight="700" fill="#76b900" opacity="0.95">50</text>
+        <text x="189" y="198" font-family="Georgia,'Times New Roman',serif" font-size="60" font-weight="400" fill="#76b900" opacity="0.8">M+</text>
 
-        <!-- Right edge column: $122B + $581B stack -->
-        <g class="cp-fade-in-3">
-          <text x="940" y="220" class="cp-sans" font-size="10" letter-spacing="3" fill="#e85a2c" font-weight="700" text-anchor="end">FIG. 02 · CAPITAL INFLOWS</text>
+        <!-- Divider -->
+        <rect x="52" y="210" width="130" height="1.5" fill="#76b900" opacity="0.5"/>
 
-          <text x="940" y="290" font-size="64" font-weight="900" fill="#ededea" letter-spacing="-3" text-anchor="end">$122<tspan class="cp-it" font-size="40" fill="#e85a2c" font-weight="400">B</tspan></text>
-          <text x="940" y="312" class="cp-sans" font-size="10" fill="#ededea" opacity="0.55" font-weight="500" text-anchor="end" letter-spacing="1">OPENAI · LARGEST PRIVATE ROUND</text>
+        <text x="52" y="234" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#ededea" opacity="0.88">global jobs robots could fill</text>
+        <text x="52" y="253" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#ededea" opacity="0.88">that humans <tspan fill="#76b900" font-weight="700">can&#39;t or won&#39;t</tspan> do</text>
 
-          <line x1="760" y1="332" x2="940" y2="332" stroke="#ededea" stroke-width="0.5" opacity="0.2"/>
+        <!-- VS bar chart: before vs after GR00T -->
+        <text x="52" y="285" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600">WHAT CHANGED WITH GR00T</text>
 
-          <text x="940" y="380" font-size="48" font-weight="900" fill="#ededea" letter-spacing="-2" text-anchor="end">$581<tspan class="cp-it" font-size="32" fill="#e85a2c" font-weight="400">B</tspan></text>
-          <text x="940" y="400" class="cp-sans" font-size="10" fill="#ededea" opacity="0.55" font-weight="500" text-anchor="end" letter-spacing="1">CORPORATE AI SPEND · +130% YoY</text>
+        <text x="52" y="308" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.6">BEFORE</text>
+        <rect x="110" y="296" width="210" height="13" rx="2" fill="#ffffff12"/>
+        <rect x="110" y="296" width="210" height="13" rx="2" fill="#e85a2c" opacity="0.35"/>
+        <text x="326" y="308" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#e85a2c" opacity="0.9"> code every move</text>
 
-          <line x1="760" y1="420" x2="940" y2="420" stroke="#ededea" stroke-width="0.5" opacity="0.2"/>
+        <text x="52" y="330" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.6">NOW</text>
+        <rect x="110" y="318" width="210" height="13" rx="2" fill="#ffffff12"/>
+        <rect x="110" y="318" width="210" height="13" rx="2" fill="#76b900" opacity="0.5"/>
+        <text x="326" y="330" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#76b900"> just talk to it</text>
 
-          <!-- Small spark -->
-          <g class="cp-spark" transform="translate(760 440)">
-            <text x="0" y="0" class="cp-sans" font-size="9" letter-spacing="2" fill="#ededea" opacity="0.5" font-weight="700">3-YR INVESTMENT TRAJECTORY</text>
-            <line x1="0" y1="38" x2="180" y2="10" stroke="#e85a2c" stroke-width="1.5" fill="none"/>
-            <circle cx="180" cy="10" r="3" fill="#e85a2c" class="cp-pulse"/>
-            <line x1="0" y1="48" x2="180" y2="48" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
-          </g>
-        </g>
+        <!-- Newton 1.0 badge -->
+        <rect x="52" y="350" width="300" height="48" rx="6" fill="#76b90015" stroke="#76b90050" stroke-width="1"/>
+        <text x="70" y="370" font-family="'Inter',Arial,sans-serif" font-size="10" font-weight="700" fill="#76b900">NEWTON 1.0</text>
+        <text x="70" y="387" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">Open-source physics engine — NVIDIA</text>
+        <text x="70" y="401" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">&#43; Google DeepMind &#43; Disney Research</text>
 
-        <!-- Bottom band: pull-quote + signature -->
-        <g class="cp-fade-in-3">
-          <line x1="40" y1="562" x2="960" y2="562" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
-          <text x="500" y="608" text-anchor="middle" class="cp-it" font-size="34" fill="#ededea" font-style="italic">
-            <tspan fill="#e85a2c">&#8220;</tspan> The largest bet in private-market history. <tspan fill="#e85a2c">&#8221;</tspan>
-          </text>
-          <text x="500" y="640" text-anchor="middle" class="cp-sans" font-size="10" letter-spacing="4" fill="#ededea" opacity="0.5" font-weight="700">ON THE OPENAI ROUND &#8201;·&#8201; APRIL 2026</text>
+        <!-- Apps list -->
+        <text x="52" y="425" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600">LIVE APPLICATIONS</text>
+        <text x="52" y="445" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Surgical robotics</text>
+        <text x="52" y="463" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Agricultural harvesting</text>
+        <text x="52" y="481" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Solar panel installation</text>
+        <text x="52" y="499" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Humanoid systems</text>
 
-          <line x1="40" y1="678" x2="960" y2="678" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
-          <text x="40" y="700" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">KEN<tspan fill="#e85a2c">'</tspan>S AI DAILY &#8201;·&#8201; HONG KONG</text>
-          <text x="500" y="700" text-anchor="middle" class="cp-it" font-size="14" fill="#ededea" opacity="0.6">Bilingual reporting, every morning.</text>
-          <text x="960" y="700" text-anchor="end" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">EN <tspan fill="#e85a2c">/</tspan> 繁中 &#8201;·&#8201; ALWAYS FREE</text>
-        </g>
+        <!-- ── CENTRE WORDMARK ── -->
+        <!-- Orbit ring -->
+        <circle cx="500" cy="340" r="210" stroke="#e85a2c" stroke-width="1" fill="none" opacity="0.25"/>
+        <circle cx="500" cy="340" r="180" stroke="#e85a2c" stroke-width="0.5" fill="none" opacity="0.12"/>
+        <!-- Orbit dots -->
+        <circle cx="500" cy="130" r="5" fill="#e85a2c" opacity="0.6"/>
+        <circle cx="692" cy="448" r="7" fill="#ffffff" opacity="0.15"/>
+        <circle cx="308" cy="232" r="4" fill="#76b900" opacity="0.45"/>
+        <circle cx="694" cy="232" r="4" fill="#7c4dff" opacity="0.45"/>
 
-        <!-- Floating dots accent -->
-        <g class="cp-shimmer">
-          <rect x="320" y="92" width="4" height="4" fill="#e85a2c"/>
-          <rect x="676" y="116" width="4" height="4" fill="#ededea"/>
-          <rect x="296" y="540" width="4" height="4" fill="#ededea"/>
-          <rect x="704" y="528" width="4" height="4" fill="#e85a2c"/>
-        </g>
+        <!-- Shadow/backdrop for letters -->
+        <text x="500" y="390" font-family="Georgia,'Times New Roman',serif" font-size="190" font-weight="700" fill="#000000" opacity="0.55" text-anchor="middle" filter="url(#softshadow)">A&#8231;I</text>
+        <!-- Main letters -->
+        <text x="500" y="390" font-family="Georgia,'Times New Roman',serif" font-size="190" font-weight="700" fill="#d4cfc8" text-anchor="middle" opacity="0.93">A&#8231;I</text>
+        <!-- Orange dot accent -->
+        <circle cx="500" cy="265" r="14" fill="#e85a2c"/>
+
+        <!-- Chinese tagline -->
+        <text x="500" y="510" font-family="'Noto Serif TC','STSong',serif" font-size="26" letter-spacing="18" fill="#d4cfc8" text-anchor="middle" opacity="0.78">每 日 智 能</text>
+
+        <!-- ── RIGHT COLUMN: Story 2 Jagged Frontier ── -->
+        <!-- Glow blob -->
+        <ellipse cx="820" cy="370" rx="160" ry="180" fill="url(#glow2)" opacity="0.6"/>
+
+        <text x="948" y="120" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="3.5" fill="#7c4dff" font-weight="700" text-anchor="end">FIG. 02 &#8201;·&#8201; AI LIMITS</text>
+
+        <!-- Jagged frontier headline stat -->
+        <text x="948" y="185" font-family="Georgia,'Times New Roman',serif" font-size="80" font-weight="700" fill="#7c4dff" text-anchor="end" opacity="0.95">50.1</text>
+        <text x="948" y="198" font-family="Georgia,'Times New Roman',serif" font-size="40" font-weight="400" fill="#7c4dff" text-anchor="end" opacity="0.8">%</text>
+
+        <!-- Divider -->
+        <rect x="818" y="210" width="130" height="1.5" fill="#7c4dff" opacity="0.5"/>
+
+        <text x="948" y="234" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#ededea" text-anchor="end" opacity="0.88">AI reads analog clocks correctly</text>
+        <text x="948" y="253" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#e85a2c" text-anchor="end" font-weight="600">≈ a coin flip</text>
+
+        <!-- What AI can vs can't do -->
+        <text x="948" y="285" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600" text-anchor="end">THE JAGGED FRONTIER</text>
+
+        <text x="948" y="308" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#4caf50" text-anchor="end">PhD science &#x2714;</text>
+        <rect x="638" y="296" width="210" height="13" rx="2" fill="#ffffff12"/>
+        <rect x="638" y="296" width="199" height="13" rx="2" fill="#4caf50" opacity="0.45"/>
+
+        <text x="948" y="330" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#4caf50" text-anchor="end">Coding &#x2714;</text>
+        <rect x="638" y="318" width="210" height="13" rx="2" fill="#ffffff12"/>
+        <rect x="638" y="318" width="207" height="13" rx="2" fill="#4caf50" opacity="0.45"/>
+
+        <text x="948" y="353" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#e85a2c" text-anchor="end">Clock reading &#x2717;</text>
+        <rect x="638" y="341" width="210" height="13" rx="2" fill="#ffffff12"/>
+        <rect x="638" y="341" width="107" height="13" rx="2" fill="#e85a2c" opacity="0.45"/>
+
+        <text x="948" y="376" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#e85a2c" text-anchor="end">Folding clothes 12% &#x2717;</text>
+        <rect x="638" y="364" width="210" height="13" rx="2" fill="#ffffff12"/>
+        <rect x="638" y="364" width="25" height="13" rx="2" fill="#e85a2c" opacity="0.45"/>
+
+        <!-- Warning badges -->
+        <rect x="650" y="395" width="298" height="44" rx="6" fill="#e85a2c15" stroke="#e85a2c50" stroke-width="1"/>
+        <text x="668" y="413" font-family="'Inter',Arial,sans-serif" font-size="10" font-weight="700" fill="#e85a2c">TRANSPARENCY CRISIS</text>
+        <text x="668" y="430" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">Model transparency index: 58 &#x2192; 40</text>
+
+        <rect x="650" y="447" width="298" height="44" rx="6" fill="#7c4dff15" stroke="#7c4dff50" stroke-width="1"/>
+        <text x="668" y="465" font-family="'Inter',Arial,sans-serif" font-size="10" font-weight="700" fill="#ce93d8">US&#x2013;CHINA GAP</text>
+        <text x="668" y="482" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">US AI lead over China: only <tspan fill="#ce93d8" font-weight="700">2.7%</tspan></text>
+
+        <text x="948" y="520" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc" text-anchor="end">&#x2192; Young dev jobs &#x2212;20% since 2024</text>
+        <text x="948" y="540" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc" text-anchor="end">&#x2192; Stanford AI Index 2026</text>
+
+        <!-- ── BOTTOM QUOTE ── -->
+        <rect x="40" y="580" width="920" height="1" fill="#e8e8e018"/>
+        <text x="500" y="618" font-family="Georgia,'Times New Roman',serif" font-size="24" font-style="italic" fill="#ededea" text-anchor="middle" opacity="0.92">&#x201C; You can now just talk to a robot &#x2014; and it figures out how to move. &#x201D;</text>
+        <text x="500" y="643" font-family="'Inter',Arial,sans-serif" font-size="9.5" letter-spacing="3" fill="#e85a2c" text-anchor="middle" font-weight="600">ON THE NVIDIA GR00T RELEASE &#8201;·&#8201; APRIL 2026</text>
+
+        <!-- Footer rule + credits -->
+        <rect x="40" y="672" width="920" height="1" fill="#e8e8e018"/>
+        <text x="52" y="694" font-family="'Inter',Arial,sans-serif" font-size="10" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600">KEN&#x27;S AI DAILY &#8201;·&#8201; HONG KONG</text>
+        <text x="500" y="694" font-family="Georgia,'Times New Roman',serif" font-size="11.5" font-style="italic" fill="#ededea" opacity="0.45" text-anchor="middle">Bilingual reporting, every morning.</text>
+        <text x="948" y="694" font-family="'Inter',Arial,sans-serif" font-size="10" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600" text-anchor="end">EN / &#32321;&#20013; &#8201;·&#8201; ALWAYS FREE</text>
       </svg>
     </div>
   </div>
