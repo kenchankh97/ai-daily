@@ -909,8 +909,8 @@
 <header class="masthead">
   <div class="masthead-inner">
     <div class="masthead-meta">
-      <strong>Saturday</strong><br>
-      April 18, 2026<br>
+      <strong>Sunday</strong><br>
+      April 19, 2026<br>
       <span class="vrule"></span>香港 · 晴 28°
     </div>
     <div class="nameplate">
@@ -936,7 +936,7 @@
 <section class="lead">
   <div class="lead-inner">
     <div class="lead-text">
-      <div class="kicker">The Cover Story · April 18</div>
+      <div class="kicker">The Cover Story · April 19</div>
       <h1 class="lead-headline">
         Half the world is now using AI&mdash;and it happened <em>faster than the internet.</em>
       </h1>
@@ -957,182 +957,132 @@
       </div>
     </div>
     <div class="lead-art">
-      <svg class="cover-poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#1a0e05"/>
-            <stop offset="100%" stop-color="#0d0800"/>
-          </linearGradient>
-          <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#76b900"/>
-            <stop offset="50%" stop-color="#e85a2c"/>
-            <stop offset="100%" stop-color="#7c4dff"/>
-          </linearGradient>
-          <radialGradient id="glowCenter" cx="50%" cy="48%" r="38%">
-            <stop offset="0%" stop-color="#e85a2c" stop-opacity="0.18"/>
-            <stop offset="100%" stop-color="#0d0800" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#76b900" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#76b900" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#7c4dff" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#7c4dff" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="softshadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-          </filter>
-        </defs>
+      <svg class="cover-poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
+     preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
+  <defs>
+    <linearGradient id="cover-paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1623"/>
+      <stop offset="60%" style="stop-color:#0a0e1a"/>
+      <stop offset="100%" style="stop-color:#060810"/>
+    </linearGradient>
+    <linearGradient id="cover-accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00c8ff"/>
+      <stop offset="50%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#e11d48"/>
+    </linearGradient>
+    <linearGradient id="cover-card1grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00c8ff18"/>
+      <stop offset="100%" style="stop-color:#00c8ff05"/>
+    </linearGradient>
+    <linearGradient id="cover-card2grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f718"/>
+      <stop offset="100%" style="stop-color:#a855f705"/>
+    </linearGradient>
+  </defs>
 
-        <!-- Background -->
-        <rect width="1000" height="720" fill="url(#paperGrad)"/>
-        <rect width="1000" height="720" fill="url(#glowCenter)"/>
+  <!-- Background -->
+  <rect width="1000" height="720" fill="url(#cover-paperGrad)"/>
+  <!-- Subtle grid -->
+  <line x1="0" y1="200" x2="1000" y2="200" stroke="#ffffff06" stroke-width="1"/>
+  <line x1="0" y1="400" x2="1000" y2="400" stroke="#ffffff06" stroke-width="1"/>
+  <line x1="500" y1="0" x2="500" y2="720" stroke="#ffffff06" stroke-width="1"/>
 
-        <!-- Subtle grid -->
-        <line x1="500" y1="0" x2="500" y2="720" stroke="#ffffff06" stroke-width="1"/>
-        <line x1="0" y1="360" x2="1000" y2="360" stroke="#ffffff06" stroke-width="1"/>
-        <line x1="0" y1="120" x2="1000" y2="120" stroke="#ffffff05" stroke-width="1"/>
-        <line x1="0" y1="600" x2="1000" y2="600" stroke="#ffffff05" stroke-width="1"/>
-        <line x1="200" y1="0" x2="200" y2="720" stroke="#ffffff04" stroke-width="1"/>
-        <line x1="800" y1="0" x2="800" y2="720" stroke="#ffffff04" stroke-width="1"/>
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1000" height="4" fill="url(#cover-accentLine)"/>
 
-        <!-- Decorative corner dots -->
-        <circle cx="52" cy="68" r="2.5" fill="#e85a2c" opacity="0.5"/>
-        <circle cx="948" cy="68" r="2.5" fill="#e85a2c" opacity="0.5"/>
-        <circle cx="52" cy="652" r="2.5" fill="#e85a2c" opacity="0.3"/>
-        <circle cx="948" cy="652" r="2.5" fill="#e85a2c" opacity="0.3"/>
-        <circle cx="500" cy="92" r="2" fill="#ffffff" opacity="0.2"/>
-        <circle cx="500" cy="628" r="2" fill="#ffffff" opacity="0.2"/>
+  <!-- ── HEADER ── -->
+  <text x="500" y="62" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600"
+        fill="#ffffff44" text-anchor="middle" letter-spacing="3">KEN'S AI DAILY · ISSUE Nº 042</text>
+  <text x="500" y="106" font-family="Georgia,serif" font-size="52" font-weight="700"
+        fill="#ffffff" text-anchor="middle">The AI Brief</text>
+  <text x="500" y="134" font-family="Inter,Arial,sans-serif" font-size="14"
+        fill="#ffffff55" text-anchor="middle" letter-spacing="2">SUNDAY · APRIL 19, 2026  ·  HONG KONG  ·  晴 28°</text>
 
-        <!-- Header rule -->
-        <rect x="40" y="40" width="920" height="1" fill="#e8e8e020"/>
-        <rect x="40" y="78" width="920" height="1" fill="#e8e8e015"/>
+  <!-- Divider -->
+  <rect x="80" y="152" width="840" height="1" fill="url(#cover-accentLine)" opacity="0.5"/>
 
-        <!-- Masthead line: Vol / Issue / Date left; Cover Story right -->
-        <text x="52" y="64" font-family="'Inter','Arial Narrow',Arial,sans-serif" font-size="10.5" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">VOL. I &#8201;·&#8201; ISSUE N&#186; 043 &#8201;·&#8201; SAT 18 APR 2026</text>
-        <text x="948" y="64" font-family="'Inter','Arial Narrow',Arial,sans-serif" font-size="10.5" letter-spacing="3" fill="#e85a2c" font-weight="700" text-anchor="end">THE COVER STORY<tspan fill="#ededea" opacity="0.6"> &#8201;·&#8201; HKT 06:00</tspan></text>
+  <!-- ── STORY CARD 1 ── -->
+  <rect x="60" y="175" width="415" height="240" rx="12" fill="url(#cover-card1grad)"
+        stroke="#00c8ff33" stroke-width="1.5"/>
+  <rect x="60" y="175" width="4" height="240" rx="2" fill="#00c8ff"/>
+  <text x="82" y="203" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="700"
+        fill="#00c8ff" letter-spacing="2">01 · AI HARDWARE</text>
+  <text x="82" y="234" font-family="Georgia,serif" font-size="20" font-weight="700"
+        fill="#ffffff"><tspan x="82" dy="0">Cerebras Files for $25B IPO — The NVIDIA</tspan><tspan x="82" dy="26">Rival Built on Wafer-Scale AI Chips</tspan></text>
+  <text x="82" y="305" font-family="Inter,Arial,sans-serif" font-size="12" fill="#ffffff88">
+    <tspan x="82" dy="0">$510M revenue · 76% YoY growth</tspan>
+    <tspan x="82" dy="18">WSE-3: 58× larger than NVIDIA B200</tspan>
+    <tspan x="82" dy="18">$20B OpenAI deal · $22–25B valuation</tspan>
+  </text>
+  <text x="82" y="395" font-family="Inter,Arial,sans-serif" font-size="10" fill="#00c8ff88">
+    TechCrunch
+  </text>
 
-        <!-- ── LEFT COLUMN: Story 1 NVIDIA GR00T ── -->
-        <!-- Glow blob -->
-        <ellipse cx="185" cy="370" rx="160" ry="180" fill="url(#glow1)" opacity="0.7"/>
+  <!-- ── STORY CARD 2 ── -->
+  <rect x="525" y="175" width="415" height="240" rx="12" fill="url(#cover-card2grad)"
+        stroke="#a855f733" stroke-width="1.5"/>
+  <rect x="525" y="175" width="4" height="240" rx="2" fill="#a855f7"/>
+  <text x="547" y="203" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="700"
+        fill="#a855f7" letter-spacing="2">02 · ENTERPRISE AI</text>
+  <text x="547" y="234" font-family="Georgia,serif" font-size="20" font-weight="700"
+        fill="#ffffff"><tspan x="547" dy="0">Salesforce Reinvents Itself as AI Agent</tspan><tspan x="547" dy="26">Infrastructure With Headless 360</tspan></text>
+  <text x="547" y="305" font-family="Inter,Arial,sans-serif" font-size="12" fill="#ffffff88">
+    <tspan x="547" dy="0">60+ new MCP tools · 27-yr overhaul</tspan>
+    <tspan x="547" dy="18">150K+ enterprise customers on platform</tspan>
+    <tspan x="547" dy="18">1–2 years ahead of competitors</tspan>
+  </text>
+  <text x="547" y="395" font-family="Inter,Arial,sans-serif" font-size="10" fill="#a855f788">
+    The Register
+  </text>
 
-        <text x="52" y="120" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="3.5" fill="#76b900" font-weight="700">FIG. 01 &#8201;·&#8201; ROBOTICS</text>
+  <!-- ── KEY STAT BAR ── -->
+  <rect x="60" y="435" width="880" height="90" rx="10" fill="#ffffff06" stroke="#ffffff10" stroke-width="1"/>
+  <text x="500" y="460" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff44"
+        text-anchor="middle" letter-spacing="2">TODAY'S NUMBERS</text>
+  <!-- Stat 1 -->
+  <text x="160" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
+        fill="#00c8ff" text-anchor="middle">$25B</text>
+  <text x="160" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
+        text-anchor="middle">Cerebras IPO target</text>
+  <!-- Divider -->
+  <line x1="280" y1="450" x2="280" y2="515" stroke="#ffffff15" stroke-width="1"/>
+  <!-- Stat 2 -->
+  <text x="370" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
+        fill="#00c8ff" text-anchor="middle">76%</text>
+  <text x="370" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
+        text-anchor="middle">Revenue growth YoY</text>
+  <!-- Divider -->
+  <line x1="460" y1="450" x2="460" y2="515" stroke="#ffffff15" stroke-width="1"/>
+  <!-- Stat 3 -->
+  <text x="550" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
+        fill="#a855f7" text-anchor="middle">60+</text>
+  <text x="550" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
+        text-anchor="middle">Salesforce MCP tools</text>
+  <!-- Divider -->
+  <line x1="640" y1="450" x2="640" y2="515" stroke="#ffffff15" stroke-width="1"/>
+  <!-- Stat 4 -->
+  <text x="730" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
+        fill="#a855f7" text-anchor="middle">150K+</text>
+  <text x="730" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
+        text-anchor="middle">Enterprise customers</text>
+  <!-- Divider -->
+  <line x1="820" y1="450" x2="820" y2="515" stroke="#ffffff15" stroke-width="1"/>
+  <!-- Stat 5 -->
+  <text x="890" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
+        fill="#e11d48" text-anchor="middle">7</text>
+  <text x="890" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
+        text-anchor="middle">Total stories</text>
 
-        <!-- Big stat -->
-        <text x="52" y="198" font-family="Georgia,'Times New Roman',serif" font-size="105" font-weight="700" fill="#76b900" opacity="0.95">50</text>
-        <text x="189" y="198" font-family="Georgia,'Times New Roman',serif" font-size="60" font-weight="400" fill="#76b900" opacity="0.8">M+</text>
-
-        <!-- Divider -->
-        <rect x="52" y="210" width="130" height="1.5" fill="#76b900" opacity="0.5"/>
-
-        <text x="52" y="234" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#ededea" opacity="0.88">global jobs robots could fill</text>
-        <text x="52" y="253" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#ededea" opacity="0.88">that humans <tspan fill="#76b900" font-weight="700">can&#39;t or won&#39;t</tspan> do</text>
-
-        <!-- VS bar chart: before vs after GR00T -->
-        <text x="52" y="285" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600">WHAT CHANGED WITH GR00T</text>
-
-        <text x="52" y="308" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.6">BEFORE</text>
-        <rect x="110" y="296" width="210" height="13" rx="2" fill="#ffffff12"/>
-        <rect x="110" y="296" width="210" height="13" rx="2" fill="#e85a2c" opacity="0.35"/>
-        <text x="326" y="308" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#e85a2c" opacity="0.9"> code every move</text>
-
-        <text x="52" y="330" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.6">NOW</text>
-        <rect x="110" y="318" width="210" height="13" rx="2" fill="#ffffff12"/>
-        <rect x="110" y="318" width="210" height="13" rx="2" fill="#76b900" opacity="0.5"/>
-        <text x="326" y="330" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#76b900"> just talk to it</text>
-
-        <!-- Newton 1.0 badge -->
-        <rect x="52" y="350" width="300" height="48" rx="6" fill="#76b90015" stroke="#76b90050" stroke-width="1"/>
-        <text x="70" y="370" font-family="'Inter',Arial,sans-serif" font-size="10" font-weight="700" fill="#76b900">NEWTON 1.0</text>
-        <text x="70" y="387" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">Open-source physics engine — NVIDIA</text>
-        <text x="70" y="401" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">&#43; Google DeepMind &#43; Disney Research</text>
-
-        <!-- Apps list -->
-        <text x="52" y="425" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600">LIVE APPLICATIONS</text>
-        <text x="52" y="445" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Surgical robotics</text>
-        <text x="52" y="463" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Agricultural harvesting</text>
-        <text x="52" y="481" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Solar panel installation</text>
-        <text x="52" y="499" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc">&#x2192; Humanoid systems</text>
-
-        <!-- ── CENTRE WORDMARK ── -->
-        <!-- Orbit ring -->
-        <circle cx="500" cy="340" r="210" stroke="#e85a2c" stroke-width="1" fill="none" opacity="0.25"/>
-        <circle cx="500" cy="340" r="180" stroke="#e85a2c" stroke-width="0.5" fill="none" opacity="0.12"/>
-        <!-- Orbit dots -->
-        <circle cx="500" cy="130" r="5" fill="#e85a2c" opacity="0.6"/>
-        <circle cx="692" cy="448" r="7" fill="#ffffff" opacity="0.15"/>
-        <circle cx="308" cy="232" r="4" fill="#76b900" opacity="0.45"/>
-        <circle cx="694" cy="232" r="4" fill="#7c4dff" opacity="0.45"/>
-
-        <!-- Shadow/backdrop for letters -->
-        <text x="500" y="390" font-family="Georgia,'Times New Roman',serif" font-size="190" font-weight="700" fill="#000000" opacity="0.55" text-anchor="middle" filter="url(#softshadow)">A&#8231;I</text>
-        <!-- Main letters -->
-        <text x="500" y="390" font-family="Georgia,'Times New Roman',serif" font-size="190" font-weight="700" fill="#d4cfc8" text-anchor="middle" opacity="0.93">A&#8231;I</text>
-        <!-- Orange dot accent -->
-        <circle cx="500" cy="265" r="14" fill="#e85a2c"/>
-
-        <!-- Chinese tagline -->
-        <text x="500" y="510" font-family="'Noto Serif TC','STSong',serif" font-size="26" letter-spacing="18" fill="#d4cfc8" text-anchor="middle" opacity="0.78">每 日 智 能</text>
-
-        <!-- ── RIGHT COLUMN: Story 2 Jagged Frontier ── -->
-        <!-- Glow blob -->
-        <ellipse cx="820" cy="370" rx="160" ry="180" fill="url(#glow2)" opacity="0.6"/>
-
-        <text x="948" y="120" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="3.5" fill="#7c4dff" font-weight="700" text-anchor="end">FIG. 02 &#8201;·&#8201; AI LIMITS</text>
-
-        <!-- Jagged frontier headline stat -->
-        <text x="948" y="185" font-family="Georgia,'Times New Roman',serif" font-size="80" font-weight="700" fill="#7c4dff" text-anchor="end" opacity="0.95">50.1</text>
-        <text x="948" y="198" font-family="Georgia,'Times New Roman',serif" font-size="40" font-weight="400" fill="#7c4dff" text-anchor="end" opacity="0.8">%</text>
-
-        <!-- Divider -->
-        <rect x="818" y="210" width="130" height="1.5" fill="#7c4dff" opacity="0.5"/>
-
-        <text x="948" y="234" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#ededea" text-anchor="end" opacity="0.88">AI reads analog clocks correctly</text>
-        <text x="948" y="253" font-family="'Inter',Arial,sans-serif" font-size="13" fill="#e85a2c" text-anchor="end" font-weight="600">≈ a coin flip</text>
-
-        <!-- What AI can vs can't do -->
-        <text x="948" y="285" font-family="'Inter',Arial,sans-serif" font-size="9" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600" text-anchor="end">THE JAGGED FRONTIER</text>
-
-        <text x="948" y="308" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#4caf50" text-anchor="end">PhD science &#x2714;</text>
-        <rect x="638" y="296" width="210" height="13" rx="2" fill="#ffffff12"/>
-        <rect x="638" y="296" width="199" height="13" rx="2" fill="#4caf50" opacity="0.45"/>
-
-        <text x="948" y="330" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#4caf50" text-anchor="end">Coding &#x2714;</text>
-        <rect x="638" y="318" width="210" height="13" rx="2" fill="#ffffff12"/>
-        <rect x="638" y="318" width="207" height="13" rx="2" fill="#4caf50" opacity="0.45"/>
-
-        <text x="948" y="353" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#e85a2c" text-anchor="end">Clock reading &#x2717;</text>
-        <rect x="638" y="341" width="210" height="13" rx="2" fill="#ffffff12"/>
-        <rect x="638" y="341" width="107" height="13" rx="2" fill="#e85a2c" opacity="0.45"/>
-
-        <text x="948" y="376" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#e85a2c" text-anchor="end">Folding clothes 12% &#x2717;</text>
-        <rect x="638" y="364" width="210" height="13" rx="2" fill="#ffffff12"/>
-        <rect x="638" y="364" width="25" height="13" rx="2" fill="#e85a2c" opacity="0.45"/>
-
-        <!-- Warning badges -->
-        <rect x="650" y="395" width="298" height="44" rx="6" fill="#e85a2c15" stroke="#e85a2c50" stroke-width="1"/>
-        <text x="668" y="413" font-family="'Inter',Arial,sans-serif" font-size="10" font-weight="700" fill="#e85a2c">TRANSPARENCY CRISIS</text>
-        <text x="668" y="430" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">Model transparency index: 58 &#x2192; 40</text>
-
-        <rect x="650" y="447" width="298" height="44" rx="6" fill="#7c4dff15" stroke="#7c4dff50" stroke-width="1"/>
-        <text x="668" y="465" font-family="'Inter',Arial,sans-serif" font-size="10" font-weight="700" fill="#ce93d8">US&#x2013;CHINA GAP</text>
-        <text x="668" y="482" font-family="'Inter',Arial,sans-serif" font-size="10" fill="#ededea" opacity="0.75">US AI lead over China: only <tspan fill="#ce93d8" font-weight="700">2.7%</tspan></text>
-
-        <text x="948" y="520" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc" text-anchor="end">&#x2192; Young dev jobs &#x2212;20% since 2024</text>
-        <text x="948" y="540" font-family="'Inter',Arial,sans-serif" font-size="12" fill="#ededeacc" text-anchor="end">&#x2192; Stanford AI Index 2026</text>
-
-        <!-- ── BOTTOM QUOTE ── -->
-        <rect x="40" y="580" width="920" height="1" fill="#e8e8e018"/>
-        <text x="500" y="618" font-family="Georgia,'Times New Roman',serif" font-size="24" font-style="italic" fill="#ededea" text-anchor="middle" opacity="0.92">&#x201C; You can now just talk to a robot &#x2014; and it figures out how to move. &#x201D;</text>
-        <text x="500" y="643" font-family="'Inter',Arial,sans-serif" font-size="9.5" letter-spacing="3" fill="#e85a2c" text-anchor="middle" font-weight="600">ON THE NVIDIA GR00T RELEASE &#8201;·&#8201; APRIL 2026</text>
-
-        <!-- Footer rule + credits -->
-        <rect x="40" y="672" width="920" height="1" fill="#e8e8e018"/>
-        <text x="52" y="694" font-family="'Inter',Arial,sans-serif" font-size="10" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600">KEN&#x27;S AI DAILY &#8201;·&#8201; HONG KONG</text>
-        <text x="500" y="694" font-family="Georgia,'Times New Roman',serif" font-size="11.5" font-style="italic" fill="#ededea" opacity="0.45" text-anchor="middle">Bilingual reporting, every morning.</text>
-        <text x="948" y="694" font-family="'Inter',Arial,sans-serif" font-size="10" letter-spacing="2.5" fill="#ededea" opacity="0.45" font-weight="600" text-anchor="end">EN / &#32321;&#20013; &#8201;·&#8201; ALWAYS FREE</text>
-      </svg>
+  <!-- ── FOOTER ── -->
+  <rect x="0" y="644" width="1000" height="76" fill="#ffffff05"/>
+  <line x1="0" y1="644" x2="1000" y2="644" stroke="#ffffff12" stroke-width="1"/>
+  <text x="500" y="674" font-family="Georgia,serif" font-size="22" font-weight="700"
+        fill="#ffffff" text-anchor="middle">Ken's AI Daily</text>
+  <text x="500" y="696" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff44"
+        text-anchor="middle" letter-spacing="1">kenchankh97.github.io/ai-daily · EN + 繁中 · Updated Daily</text>
+  <text x="500" y="712" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff22"
+        text-anchor="middle">© 2026 Ken Chan · All rights reserved</text>
+</svg>
     </div>
   </div>
 </section>
@@ -1171,12 +1121,182 @@
 
       <div class="feed-section-head">
         <h2>The <em>Brief</em></h2>
-        <span class="count">5 stories · April 18, 2026</span>
+        <span class="count">7 stories · April 19, 2026</span>
       </div>
 
       
 
-  <!-- ═══ POST: NVIDIA Isaac GR00T Robotics ═══ -->
+  <!-- ═══ POST: Cerebras IPO ═══ -->
+  <div class="post-card" id="post-cerebras-ipo">
+    <div class="post-meta">
+      <span class="post-date">APR 19, 2026</span>
+      <span class="post-cat">AI Hardware</span>
+    </div>
+    <h2>
+      <div class="post-headline-en">Cerebras Files for $25B IPO — The NVIDIA Rival Built on Wafer-Scale AI Chips</div>
+      <div class="post-headline-zh">Cerebras 申請 IPO：挑戰 NVIDIA 的超大晶片公司估值達 250 億美元</div>
+    </h2>
+    <div class="post-header">
+      <div class="lang-toggle">
+        <button onclick="switchLang(this,'en','p20260419a')" class="lang-btn active">EN</button>
+        <button onclick="switchLang(this,'zh','p20260419a')" class="lang-btn">中</button>
+      </div>
+    </div>
+    <div class="post-body" id="p20260419a-en">Cerebras Systems filed for a US IPO on April 17, targeting a Nasdaq listing under ticker &quot;CBRS&quot; at a valuation of $22–25 billion. The company plans to raise approximately $2 billion, with Morgan Stanley as lead underwriter and a mid-May listing window. It marks Cerebras&#x27;s second attempt after pulling a previous IPO due to national security review concerns.&#10;&#10;The filing revealed strong financials: $510 million in revenue for 2025, up 76% year-over-year, and a swing to $87.9 million in net income from a $485 million net loss in 2024. The turnaround was driven by two landmark deals — a $20 billion agreement to supply OpenAI with computing power through 2028, and a $270 million partnership with Amazon for cloud integration on Cerebras hardware.&#10;&#10;At the heart of Cerebras&#x27;s pitch is the Wafer Scale Engine 3 (WSE-3), a chip physically 58 times larger than NVIDIA&#x27;s flagship B200 GPU and delivering 2,625 times more memory bandwidth. That architecture allows Cerebras clusters to run certain large language model inference workloads at speeds and costs that rival GPU farms, without the inter-chip communication bottlenecks that plague traditional GPU setups.&#10;&#10;The IPO comes as AI chip demand hits historic highs and investors seek alternatives to NVIDIA&#x27;s near-monopoly position. Analysts caution that customer concentration remains a risk — OpenAI accounts for the majority of Cerebras revenue — but the company&#x27;s technical moat and blue-chip partnerships make it one of the most anticipated AI listings of 2026.&#10;&#10;Source: TechCrunch → https://techcrunch.com/2026/04/18/ai-chip-startup-cerebras-files-for-ipo/</div>
+    <div class="post-body hidden" id="p20260419a-zh">AI 晶片新創公司 Cerebras Systems 於 4 月 17 日向美國監管機構遞交 IPO 申請，計劃以「CBRS」為股票代號登陸納斯達克，目標估值 220 至 250 億美元，預計融資約 20 億美元，由摩根士丹利主承銷，並於 5 月中旬掛牌。這是 Cerebras 繼此前因國家安全審查撤回申請後的第二次衝刺。&#10;&#10;招股書披露的財務數據相當亮眼：2025 年營收達 5.1 億美元，按年增長 76%；淨利潤從 2024 年的 4.85 億美元虧損大幅轉正，錄得 8,790 萬美元盈利。業績逆轉主要來自兩項重磅合約——與 OpenAI 達成的 200 億美元算力供應協議（有效期至 2028 年），以及與亞馬遜簽訂的 2.7 億美元雲端整合合作。&#10;&#10;Cerebras 的核心技術是晶圓級引擎 WSE-3（Wafer Scale Engine 3），其物理尺寸是 NVIDIA B200 GPU 的 58 倍，記憶體帶寬更高出 2,625 倍。這種架構令 Cerebras 集群在特定大型語言模型 (LLM) 推論任務上，能以媲美 GPU 農場的成本實現更高速度，同時避免傳統 GPU 互連的通訊瓶頸。&#10;&#10;此次 IPO 恰逢 AI 晶片需求創歷史新高、投資者尋求 NVIDIA 近乎壟斷地位替代方案之際。分析師提醒，客戶集中度仍是風險所在——OpenAI 佔 Cerebras 大部分收入——但其技術護城河與頂級合作夥伴關係，使其成為 2026 年最受矚目的 AI 上市案之一。&#10;&#10;來源：TechCrunch → https://techcrunch.com/2026/04/18/ai-chip-startup-cerebras-files-for-ipo/</div>
+    <div class="post-infographic">
+      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;">
+  <defs>
+    <linearGradient id="cerebras-ipo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1020"/>
+      <stop offset="100%" style="stop-color:#0d1a30"/>
+    </linearGradient>
+    <linearGradient id="cerebras-ipo-accent-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00c8ff"/>
+      <stop offset="100%" style="stop-color:#00c8ff88"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#cerebras-ipo-bg)"/>
+  <rect x="0" y="0" width="800" height="5" fill="url(#cerebras-ipo-accent-bar)"/>
+  <line x1="0" y1="260" x2="800" y2="260" stroke="#ffffff08" stroke-width="1"/>
+  <!-- Category tag -->
+  <rect x="30" y="28" width="120" height="24" rx="4" fill="#00c8ff22" stroke="#00c8ff55" stroke-width="1"/>
+  <text x="90" y="44" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600"
+        fill="#00c8ff" text-anchor="middle" letter-spacing="1">AI HARDWARE</text>
+  <!-- Date -->
+  <text x="770" y="44" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff55"
+        text-anchor="end">April 19, 2026</text>
+  <!-- Headline -->
+  <text x="400" y="120" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700"
+        fill="#ffffff" text-anchor="middle">
+    <tspan x="400" dy="0">Cerebras Files for $25B IPO — The NVIDIA Rival Built</tspan><tspan x="400" dy="34">on Wafer-Scale AI Chips</tspan>
+  </text>
+  <!-- Stats -->
+  
+        <rect x="50" y="300" width="160" height="130" rx="10"
+              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <text x="130" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">$22–25B</text>
+        <text x="130" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="130" dy="0">Target</tspan><tspan x="130" dy="16">Valuation</tspan></text>
+        
+        <rect x="230" y="300" width="160" height="130" rx="10"
+              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <text x="310" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">$510M</text>
+        <text x="310" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="310" dy="0">2025 Revenue</tspan><tspan x="310" dy="16">(+76%)</tspan></text>
+        
+        <rect x="410" y="300" width="160" height="130" rx="10"
+              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <text x="490" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">58×</text>
+        <text x="490" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="490" dy="0">Larger than</tspan><tspan x="490" dy="16">NVIDIA B200</tspan></text>
+        
+        <rect x="590" y="300" width="160" height="130" rx="10"
+              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
+        <text x="670" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">$20B</text>
+        <text x="670" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="670" dy="0">OpenAI Supply</tspan><tspan x="670" dy="16">Deal</tspan></text>
+        
+  <!-- Watermark -->
+  <text x="400" y="470" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff33"
+        text-anchor="middle" letter-spacing="1">kenchankh97.github.io/ai-daily</text>
+  <!-- Source -->
+  <text x="400" y="490" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff22"
+        text-anchor="middle">Source: TechCrunch</text>
+</svg>
+    </div>
+  </div>
+
+<!-- ═══ POST: Salesforce Headless 360 ═══ -->
+  <div class="post-card" id="post-salesforce-headless360">
+    <div class="post-meta">
+      <span class="post-date">APR 19, 2026</span>
+      <span class="post-cat">Enterprise AI</span>
+    </div>
+    <h2>
+      <div class="post-headline-en">Salesforce Reinvents Itself as AI Agent Infrastructure With Headless 360</div>
+      <div class="post-headline-zh">Salesforce 推出 Headless 360：全平台 API 化，迎接 AI 代理時代</div>
+    </h2>
+    <div class="post-header">
+      <div class="lang-toggle">
+        <button onclick="switchLang(this,'en','p20260419b')" class="lang-btn active">EN</button>
+        <button onclick="switchLang(this,'zh','p20260419b')" class="lang-btn">中</button>
+      </div>
+    </div>
+    <div class="post-body" id="p20260419b-en">Salesforce launched &quot;Headless 360&quot; this week — described internally as its most ambitious architectural overhaul in 27 years — opening every capability of its CRM platform to AI agents via APIs, MCP tools, and CLI commands. The move signals a decisive pivot from selling software to becoming infrastructure for the agentic enterprise.&#10;&#10;The initiative ships with over 60 new MCP (Model Context Protocol) tools and 30-plus preconfigured coding skills, giving external AI coding agents — including Claude Code, Cursor, Codex, and Windsurf — direct live access to a customer&#x27;s entire Salesforce org. A new Agentforce Experience Layer decouples what an agent does from how it appears, enabling rich interactive components to render natively across Slack, Microsoft Teams, ChatGPT, Claude, Gemini, and any MCP-compatible client.&#10;&#10;Alongside Headless 360, Salesforce announced an expansion of Agent Fabric — a trusted multi-vendor AI control plane. Agent Broker, which enables deterministic orchestration across AI agents from different vendors, enters beta this month with general availability targeted for June 2026. Agent Script, the company&#x27;s workflow scripting layer, is now generally available and has been open-sourced.&#10;&#10;Industry analysts are paying attention: Constellation Research placed Salesforce one to two years ahead of its enterprise software peers in agentic AI readiness. With 150,000+ enterprise customers already on the platform, the scale of potential AI agent deployment is enormous. CEO Marc Benioff framed the announcement simply: APIs are the new UI.&#10;&#10;Source: The Register → https://www.theregister.com/2026/04/15/salesforce_headless_360/</div>
+    <div class="post-body hidden" id="p20260419b-zh">Salesforce 本週推出「Headless 360」——公司內部將其定性為 27 年來最大膽的架構革新——透過 API、MCP 工具及 CLI 指令，將旗下 CRM 平台的所有功能開放予 AI 代理 (AI agents) 存取。此舉標誌著 Salesforce 從「銷售軟體」向「為代理型企業提供基礎設施」的決定性轉型。&#10;&#10;此次發布附帶超過 60 個全新 MCP（模型上下文協議）工具及 30 餘個預配置編程技能，使 Claude Code、Cursor、Codex、Windsurf 等外部 AI 編程代理能即時存取客戶的整個 Salesforce 組織。全新 Agentforce 體驗層將代理的功能與其呈現形式解耦，令豐富的互動組件可在 Slack、Microsoft Teams、ChatGPT、Claude、Gemini 及任何支持 MCP 的客戶端上原生渲染。&#10;&#10;與此同時，Salesforce 宣布擴展 Agent Fabric——一個支持多廠商 AI 的可信控制平面。Agent Broker（實現跨廠商 AI 代理的確定性編排）本月進入測試版，目標於 2026 年 6 月全面上線。代理工作流腳本層 Agent Script 現已全面上線並已開源。&#10;&#10;業界分析機構 Constellation Research 評估，Salesforce 在代理型 AI 準備程度上領先企業軟體同行一至兩年。Salesforce 現有逾 15 萬家企業客戶，AI 代理部署的潛在規模極為巨大。CEO Marc Benioff 的一句話道出了這場變革的本質：API 就是新的用戶界面。&#10;&#10;來源：The Register → https://www.theregister.com/2026/04/15/salesforce_headless_360/</div>
+    <div class="post-infographic">
+      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;">
+  <defs>
+    <linearGradient id="salesforce-headless360-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0a1a"/>
+      <stop offset="100%" style="stop-color:#1a0d2e"/>
+    </linearGradient>
+    <linearGradient id="salesforce-headless360-accent-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#a855f788"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#salesforce-headless360-bg)"/>
+  <rect x="0" y="0" width="800" height="5" fill="url(#salesforce-headless360-accent-bar)"/>
+  <line x1="0" y1="260" x2="800" y2="260" stroke="#ffffff08" stroke-width="1"/>
+  <!-- Category tag -->
+  <rect x="30" y="28" width="120" height="24" rx="4" fill="#a855f722" stroke="#a855f755" stroke-width="1"/>
+  <text x="90" y="44" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600"
+        fill="#a855f7" text-anchor="middle" letter-spacing="1">ENTERPRISE AI</text>
+  <!-- Date -->
+  <text x="770" y="44" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff55"
+        text-anchor="end">April 19, 2026</text>
+  <!-- Headline -->
+  <text x="400" y="120" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700"
+        fill="#ffffff" text-anchor="middle">
+    <tspan x="400" dy="0">Salesforce Reinvents Itself as AI Agent</tspan><tspan x="400" dy="34">Infrastructure With Headless 360</tspan>
+  </text>
+  <!-- Stats -->
+  
+        <rect x="50" y="300" width="160" height="130" rx="10"
+              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
+        <text x="130" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">60+</text>
+        <text x="130" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="130" dy="0">New MCP Tools</tspan></text>
+        
+        <rect x="230" y="300" width="160" height="130" rx="10"
+              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
+        <text x="310" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">150K+</text>
+        <text x="310" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="310" dy="0">Enterprise</tspan><tspan x="310" dy="16">Customers</tspan></text>
+        
+        <rect x="410" y="300" width="160" height="130" rx="10"
+              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
+        <text x="490" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">1–2 Yrs</text>
+        <text x="490" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="490" dy="0">Ahead of</tspan><tspan x="490" dy="16">Competitors</tspan></text>
+        
+        <rect x="590" y="300" width="160" height="130" rx="10"
+              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
+        <text x="670" y="352" font-family="Inter,Arial,sans-serif"
+              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">27 Yrs</text>
+        <text x="670" y="378" font-family="Inter,Arial,sans-serif"
+              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="670" dy="0">Biggest</tspan><tspan x="670" dy="16">Overhaul</tspan></text>
+        
+  <!-- Watermark -->
+  <text x="400" y="470" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff33"
+        text-anchor="middle" letter-spacing="1">kenchankh97.github.io/ai-daily</text>
+  <!-- Source -->
+  <text x="400" y="490" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff22"
+        text-anchor="middle">Source: The Register</text>
+</svg>
+    </div>
+  </div>
+
+<!-- ═══ POST: NVIDIA Isaac GR00T Robotics ═══ -->
   <div class="post-card" id="post-gr00t">
     <div class="post-meta">
       <span class="post-date">APR 18, 2026</span>
