@@ -537,7 +537,7 @@
     color: var(--bone);
     font-weight: 400;
     white-space: pre-wrap;
-    max-width: 100%;
+    max-width: 64ch;
     letter-spacing: -0.005em;
     font-feature-settings: 'kern', 'liga', 'onum';
   }
@@ -561,7 +561,6 @@
     margin: 0.06em 0.12em -0.05em 0;
     padding-top: 0.04em;
   }
-  .post-body p { margin: 0; padding: 0; }
   .post-body.hidden { display: none; }
 
   .post-body strong {
@@ -911,7 +910,7 @@
     <div class="masthead-meta">
       <strong>Sunday</strong><br>
       April 19, 2026<br>
-      <span class="vrule"></span>香港 · 晴 28°
+      <span class="vrule"></span>香港 · 多雲 23°
     </div>
     <div class="nameplate">
       <div class="nameplate-en">Ken<span class="amp">'s</span> AI Daily</div>
@@ -957,132 +956,134 @@
       </div>
     </div>
     <div class="lead-art">
-      <svg class="cover-poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
-     preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
-  <defs>
-    <linearGradient id="cover-paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f1623"/>
-      <stop offset="60%" style="stop-color:#0a0e1a"/>
-      <stop offset="100%" style="stop-color:#060810"/>
-    </linearGradient>
-    <linearGradient id="cover-accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00c8ff"/>
-      <stop offset="50%" style="stop-color:#a855f7"/>
-      <stop offset="100%" style="stop-color:#e11d48"/>
-    </linearGradient>
-    <linearGradient id="cover-card1grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#00c8ff18"/>
-      <stop offset="100%" style="stop-color:#00c8ff05"/>
-    </linearGradient>
-    <linearGradient id="cover-card2grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#a855f718"/>
-      <stop offset="100%" style="stop-color:#a855f705"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background -->
-  <rect width="1000" height="720" fill="url(#cover-paperGrad)"/>
-  <!-- Subtle grid -->
-  <line x1="0" y1="200" x2="1000" y2="200" stroke="#ffffff06" stroke-width="1"/>
-  <line x1="0" y1="400" x2="1000" y2="400" stroke="#ffffff06" stroke-width="1"/>
-  <line x1="500" y1="0" x2="500" y2="720" stroke="#ffffff06" stroke-width="1"/>
-
-  <!-- Top accent bar -->
-  <rect x="0" y="0" width="1000" height="4" fill="url(#cover-accentLine)"/>
-
-  <!-- ── HEADER ── -->
-  <text x="500" y="62" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600"
-        fill="#ffffff44" text-anchor="middle" letter-spacing="3">KEN'S AI DAILY · ISSUE Nº 042</text>
-  <text x="500" y="106" font-family="Georgia,serif" font-size="52" font-weight="700"
-        fill="#ffffff" text-anchor="middle">The AI Brief</text>
-  <text x="500" y="134" font-family="Inter,Arial,sans-serif" font-size="14"
-        fill="#ffffff55" text-anchor="middle" letter-spacing="2">SUNDAY · APRIL 19, 2026  ·  HONG KONG  ·  晴 28°</text>
-
-  <!-- Divider -->
-  <rect x="80" y="152" width="840" height="1" fill="url(#cover-accentLine)" opacity="0.5"/>
-
-  <!-- ── STORY CARD 1 ── -->
-  <rect x="60" y="175" width="415" height="240" rx="12" fill="url(#cover-card1grad)"
-        stroke="#00c8ff33" stroke-width="1.5"/>
-  <rect x="60" y="175" width="4" height="240" rx="2" fill="#00c8ff"/>
-  <text x="82" y="203" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="700"
-        fill="#00c8ff" letter-spacing="2">01 · AI HARDWARE</text>
-  <text x="82" y="234" font-family="Georgia,serif" font-size="20" font-weight="700"
-        fill="#ffffff"><tspan x="82" dy="0">Cerebras Files for $25B IPO — The NVIDIA</tspan><tspan x="82" dy="26">Rival Built on Wafer-Scale AI Chips</tspan></text>
-  <text x="82" y="305" font-family="Inter,Arial,sans-serif" font-size="12" fill="#ffffff88">
-    <tspan x="82" dy="0">$510M revenue · 76% YoY growth</tspan>
-    <tspan x="82" dy="18">WSE-3: 58× larger than NVIDIA B200</tspan>
-    <tspan x="82" dy="18">$20B OpenAI deal · $22–25B valuation</tspan>
-  </text>
-  <text x="82" y="395" font-family="Inter,Arial,sans-serif" font-size="10" fill="#00c8ff88">
-    TechCrunch
-  </text>
-
-  <!-- ── STORY CARD 2 ── -->
-  <rect x="525" y="175" width="415" height="240" rx="12" fill="url(#cover-card2grad)"
-        stroke="#a855f733" stroke-width="1.5"/>
-  <rect x="525" y="175" width="4" height="240" rx="2" fill="#a855f7"/>
-  <text x="547" y="203" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="700"
-        fill="#a855f7" letter-spacing="2">02 · ENTERPRISE AI</text>
-  <text x="547" y="234" font-family="Georgia,serif" font-size="20" font-weight="700"
-        fill="#ffffff"><tspan x="547" dy="0">Salesforce Reinvents Itself as AI Agent</tspan><tspan x="547" dy="26">Infrastructure With Headless 360</tspan></text>
-  <text x="547" y="305" font-family="Inter,Arial,sans-serif" font-size="12" fill="#ffffff88">
-    <tspan x="547" dy="0">60+ new MCP tools · 27-yr overhaul</tspan>
-    <tspan x="547" dy="18">150K+ enterprise customers on platform</tspan>
-    <tspan x="547" dy="18">1–2 years ahead of competitors</tspan>
-  </text>
-  <text x="547" y="395" font-family="Inter,Arial,sans-serif" font-size="10" fill="#a855f788">
-    The Register
-  </text>
-
-  <!-- ── KEY STAT BAR ── -->
-  <rect x="60" y="435" width="880" height="90" rx="10" fill="#ffffff06" stroke="#ffffff10" stroke-width="1"/>
-  <text x="500" y="460" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff44"
-        text-anchor="middle" letter-spacing="2">TODAY'S NUMBERS</text>
-  <!-- Stat 1 -->
-  <text x="160" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
-        fill="#00c8ff" text-anchor="middle">$25B</text>
-  <text x="160" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
-        text-anchor="middle">Cerebras IPO target</text>
-  <!-- Divider -->
-  <line x1="280" y1="450" x2="280" y2="515" stroke="#ffffff15" stroke-width="1"/>
-  <!-- Stat 2 -->
-  <text x="370" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
-        fill="#00c8ff" text-anchor="middle">76%</text>
-  <text x="370" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
-        text-anchor="middle">Revenue growth YoY</text>
-  <!-- Divider -->
-  <line x1="460" y1="450" x2="460" y2="515" stroke="#ffffff15" stroke-width="1"/>
-  <!-- Stat 3 -->
-  <text x="550" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
-        fill="#a855f7" text-anchor="middle">60+</text>
-  <text x="550" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
-        text-anchor="middle">Salesforce MCP tools</text>
-  <!-- Divider -->
-  <line x1="640" y1="450" x2="640" y2="515" stroke="#ffffff15" stroke-width="1"/>
-  <!-- Stat 4 -->
-  <text x="730" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
-        fill="#a855f7" text-anchor="middle">150K+</text>
-  <text x="730" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
-        text-anchor="middle">Enterprise customers</text>
-  <!-- Divider -->
-  <line x1="820" y1="450" x2="820" y2="515" stroke="#ffffff15" stroke-width="1"/>
-  <!-- Stat 5 -->
-  <text x="890" y="496" font-family="Georgia,serif" font-size="28" font-weight="700"
-        fill="#e11d48" text-anchor="middle">7</text>
-  <text x="890" y="514" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff55"
-        text-anchor="middle">Total stories</text>
-
-  <!-- ── FOOTER ── -->
-  <rect x="0" y="644" width="1000" height="76" fill="#ffffff05"/>
-  <line x1="0" y1="644" x2="1000" y2="644" stroke="#ffffff12" stroke-width="1"/>
-  <text x="500" y="674" font-family="Georgia,serif" font-size="22" font-weight="700"
-        fill="#ffffff" text-anchor="middle">Ken's AI Daily</text>
-  <text x="500" y="696" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff44"
-        text-anchor="middle" letter-spacing="1">kenchankh97.github.io/ai-daily · EN + 繁中 · Updated Daily</text>
-  <text x="500" y="712" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff22"
-        text-anchor="middle">© 2026 Ken Chan · All rights reserved</text>
-</svg>
+      <svg class="cover-poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
+        <defs>
+          <linearGradient id="paperGrad-20260419" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0c0c14"/>
+            <stop offset="100%" stop-color="#13131e"/>
+          </linearGradient>
+          <linearGradient id="accentGrad-20260419" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#818cf8"/>
+            <stop offset="100%" stop-color="#4f46e5"/>
+          </linearGradient>
+          <linearGradient id="accentShade-20260419" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0"/>
+            <stop offset="60%" stop-color="#6366f1" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="boneFade-20260419" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ededea" stop-opacity="0.92"/>
+            <stop offset="100%" stop-color="#ededea" stop-opacity="0.4"/>
+          </linearGradient>
+          <radialGradient id="centerGlow-20260419" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+          </radialGradient>
+          <pattern id="microgrid-20260419" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M30 0 L0 0 0 30" fill="none" stroke="#ededea" stroke-width="0.5" opacity="0.04"/>
+          </pattern>
+          <filter id="glow-20260419">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <style>
+            .cover-poster text { font-family: 'Source Serif 4', 'Noto Serif TC', Georgia, serif; }
+            .cp-sans { font-family: 'Inter', system-ui, sans-serif; }
+            .cp-it   { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+            .cp-tc   { font-family: 'Noto Serif TC', serif; }
+            .cp-rot-20260419 { transform-origin: 500px 360px; animation: cpR-20260419 60s linear infinite; }
+            .cp-rot-rev-20260419 { transform-origin: 500px 360px; animation: cpR-20260419 90s linear infinite reverse; }
+            @keyframes cpR-20260419 { to { transform: rotate(360deg); } }
+            .cp-pul-20260419 { animation: cpP-20260419 2.6s ease-in-out infinite; }
+            @keyframes cpP-20260419 { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+            .cp-orb-20260419 { transform-origin: 500px 360px; animation: cpO-20260419 14s linear infinite; }
+            .cp-orb2-20260419 { transform-origin: 500px 360px; animation: cpO-20260419 22s linear infinite reverse; }
+            @keyframes cpO-20260419 { to { transform: rotate(360deg); } }
+            .cp-fi-20260419 { animation: cpFI-20260419 1.2s ease-out both; }
+            .cp-fi2-20260419 { animation: cpFI-20260419 1.2s ease-out 0.25s both; }
+            .cp-fi3-20260419 { animation: cpFI-20260419 1.2s ease-out 0.5s both; }
+            @keyframes cpFI-20260419 { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+            .cp-rise-20260419 { animation: cpRs-20260419 1.4s cubic-bezier(.2,.7,.2,1) both; }
+            @keyframes cpRs-20260419 { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+            .cp-bf-20260419 { transform-origin: left center; animation: cpBF-20260419 2s cubic-bezier(.2,.7,.2,1) 0.6s both; }
+            @keyframes cpBF-20260419 { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+            .cp-sk-20260419 line { stroke-dasharray: 200; stroke-dashoffset: 200; animation: cpSK-20260419 3s ease-out 0.8s forwards; }
+            @keyframes cpSK-20260419 { to { stroke-dashoffset: 0; } }
+            .cp-sh-20260419 rect { animation: cpSH-20260419 4s ease-in-out infinite; }
+            @keyframes cpSH-20260419 { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+          </style>
+        </defs>
+        <rect width="1000" height="720" fill="url(#paperGrad-20260419)"/>
+        <rect width="1000" height="720" fill="url(#microgrid-20260419)"/>
+        <rect width="1000" height="720" fill="url(#centerGlow-20260419)"/>
+        <rect x="0" y="0" width="1000" height="720" fill="url(#accentShade-20260419)" opacity="0.5"/>
+        <g class="cp-fi-20260419">
+          <line x1="40" y1="48" x2="960" y2="48" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          <text x="40" y="38" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">VOL. I &#8201;&#183;&#8201; ISSUE N&#186; 043 &#8201;&#183;&#8201; SUN 19 APR 2026</text>
+          <text x="960" y="38" class="cp-sans" font-size="10" letter-spacing="3" fill="#818cf8" font-weight="700" text-anchor="end">THE COVER STORY<tspan fill="#ededea" opacity="0.6"> &#8201;&#183;&#8201; HKT 06:00</tspan></text>
+        </g>
+        <g class="cp-rot-20260419">
+          <circle cx="500" cy="360" r="240" fill="none" stroke="#ededea" stroke-width="0.6" opacity="0.18" stroke-dasharray="2 8"/>
+        </g>
+        <g class="cp-rot-rev-20260419">
+          <circle cx="500" cy="360" r="285" fill="none" stroke="#ededea" stroke-width="0.5" opacity="0.10" stroke-dasharray="1 14"/>
+        </g>
+        <circle cx="500" cy="360" r="200" fill="none" stroke="#6366f1" stroke-width="1" opacity="0.45"/>
+        <g class="cp-orb-20260419">
+          <circle cx="700" cy="360" r="6" fill="#818cf8"/>
+          <circle cx="700" cy="360" r="14" fill="none" stroke="#818cf8" stroke-width="0.6" opacity="0.5"/>
+        </g>
+        <g class="cp-orb2-20260419">
+          <circle cx="500" cy="160" r="4" fill="#ededea" opacity="0.85"/>
+        </g>
+        <g class="cp-rise-20260419">
+          <text x="500" y="395" text-anchor="middle" font-size="280" font-weight="900" fill="url(#boneFade-20260419)" letter-spacing="-12">A<tspan dx="0" fill="#818cf8" font-style="italic" font-weight="400" font-size="280" dy="0">&#183;</tspan>I</text>
+          <text x="500" y="455" text-anchor="middle" class="cp-tc" font-size="34" letter-spacing="14" fill="#ededea" opacity="0.7" font-weight="500">&#27599; &#26085; &#26234; &#33021;</text>
+        </g>
+        <g class="cp-fi2-20260419">
+          <text x="60" y="220" class="cp-sans" font-size="10" letter-spacing="3" fill="#818cf8" font-weight="700">FIG. 01 &#183; CHINA AI GAP</text>
+          <text x="60" y="308" font-size="90" font-weight="900" fill="#ededea" letter-spacing="-2">&#8776;<tspan font-size="52" font-style="italic" font-weight="400" fill="#818cf8">0</tspan></text>
+          <line x1="60" y1="330" x2="240" y2="330" stroke="#ededea" stroke-width="0.5" opacity="0.25"/>
+          <text x="60" y="350" class="cp-sans" font-size="11" fill="#ededea" opacity="0.7">gap on AI benchmarks</text>
+          <text x="60" y="366" class="cp-sans" font-size="11" fill="#ededea" opacity="0.7">US vs China &#183; <tspan fill="#818cf8" font-weight="700">2026</tspan></text>
+          <text x="60" y="406" class="cp-sans" font-size="9" letter-spacing="2" fill="#ededea" opacity="0.5" font-weight="700">Q1 VC INFLOW TO AI</text>
+          <rect x="60" y="418" width="180" height="6" fill="#ededea" opacity="0.18"/>
+          <rect x="60" y="418" width="180" height="6" fill="url(#accentGrad-20260419)" class="cp-bf-20260419"/>
+          <text x="60" y="442" class="cp-sans" font-size="9" fill="#818cf8">$242B of $300B = 80% to AI</text>
+        </g>
+        <g class="cp-fi3-20260419">
+          <text x="940" y="220" class="cp-sans" font-size="10" letter-spacing="3" fill="#818cf8" font-weight="700" text-anchor="end">FIG. 02 &#183; BENCHMARK</text>
+          <text x="940" y="290" font-size="64" font-weight="900" fill="#ededea" letter-spacing="-3" text-anchor="end">93.9<tspan font-style="italic" font-size="36" fill="#818cf8" font-weight="400">%</tspan></text>
+          <text x="940" y="310" class="cp-sans" font-size="10" fill="#ededea" opacity="0.55" font-weight="500" text-anchor="end" letter-spacing="1">CLAUDE MYTHOS &#183; SWE-BENCH</text>
+          <line x1="760" y1="330" x2="940" y2="330" stroke="#ededea" stroke-width="0.5" opacity="0.2"/>
+          <text x="940" y="378" font-size="48" font-weight="900" fill="#ededea" letter-spacing="-2" text-anchor="end">53<tspan font-style="italic" font-size="28" fill="#818cf8" font-weight="400">%</tspan></text>
+          <text x="940" y="398" class="cp-sans" font-size="10" fill="#ededea" opacity="0.55" font-weight="500" text-anchor="end" letter-spacing="1">GLOBAL GENAI ADOPTION</text>
+          <line x1="760" y1="418" x2="940" y2="418" stroke="#ededea" stroke-width="0.5" opacity="0.2"/>
+          <g class="cp-sk-20260419" transform="translate(760 440)">
+            <text x="0" y="0" class="cp-sans" font-size="9" letter-spacing="2" fill="#ededea" opacity="0.5" font-weight="700">AI INVESTMENT TRAJECTORY</text>
+            <line x1="0" y1="38" x2="180" y2="10" stroke="#818cf8" stroke-width="1.5" fill="none"/>
+            <circle cx="180" cy="10" r="3" fill="#818cf8" class="cp-pul-20260419"/>
+            <line x1="0" y1="48" x2="180" y2="48" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          </g>
+        </g>
+        <g class="cp-fi3-20260419">
+          <line x1="40" y1="562" x2="960" y2="562" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          <text x="500" y="608" text-anchor="middle" font-style="italic" font-size="28" fill="#ededea">
+            <tspan fill="#818cf8">&#8220;</tspan> China has nearly erased the U.S. AI lead. <tspan fill="#818cf8">&#8221;</tspan>
+          </text>
+          <text x="500" y="638" text-anchor="middle" class="cp-sans" font-size="10" letter-spacing="4" fill="#ededea" opacity="0.5" font-weight="700">STANFORD AI INDEX 2026 &#8201;&#183;&#8201; APRIL 19</text>
+          <line x1="40" y1="678" x2="960" y2="678" stroke="#ededea" stroke-width="0.5" opacity="0.18"/>
+          <text x="40" y="700" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">KEN<tspan fill="#818cf8">'</tspan>S AI DAILY &#8201;&#183;&#8201; HONG KONG</text>
+          <text x="500" y="700" text-anchor="middle" font-style="italic" font-size="14" fill="#ededea" opacity="0.6">Bilingual reporting, every morning.</text>
+          <text x="960" y="700" text-anchor="end" class="cp-sans" font-size="10" letter-spacing="3" fill="#ededea" opacity="0.55" font-weight="700">EN <tspan fill="#818cf8">/</tspan> &#32321;&#20013; &#8201;&#183;&#8201; ALWAYS FREE</text>
+        </g>
+        <g class="cp-sh-20260419">
+          <rect x="320" y="92" width="4" height="4" fill="#818cf8"/>
+          <rect x="676" y="116" width="4" height="4" fill="#ededea"/>
+          <rect x="296" y="540" width="4" height="4" fill="#ededea"/>
+          <rect x="704" y="528" width="4" height="4" fill="#818cf8"/>
+        </g>
+      </svg>
     </div>
   </div>
 </section>
@@ -1121,542 +1122,177 @@
 
       <div class="feed-section-head">
         <h2>The <em>Brief</em></h2>
-        <span class="count">7 stories · April 19, 2026</span>
-      </div>
-
+        <span class="count">10 stories · April 19, 2026</span>
       
 
-  <!-- ═══ POST: Cerebras IPO ═══ -->
-  <div class="post-card" id="post-cerebras-ipo">
+
+  <!-- === POST: Stanford AI Index 2026: China Has Nearly Clos === -->
+  <div class="post-card" id="post-stanford-2026">
     <div class="post-meta">
+      <span class="post-source">Stanford HAI / IEEE Spectrum</span>
       <span class="post-date">APR 19, 2026</span>
-      <span class="post-cat">AI Hardware</span>
     </div>
-    <h2>
-      <div class="post-headline-en">Cerebras Files for $25B IPO — The NVIDIA Rival Built on Wafer-Scale AI Chips</div>
-      <div class="post-headline-zh">Cerebras 申請 IPO：挑戰 NVIDIA 的超大晶片公司估值達 250 億美元</div>
-    </h2>
-    <div class="post-header">
-      <div class="lang-toggle">
-        <button onclick="switchLang(this,'en','p20260419a')" class="lang-btn active">EN</button>
-        <button onclick="switchLang(this,'zh','p20260419a')" class="lang-btn">中</button>
-      </div>
+    <h2 class="post-title"><a href="https://spectrum.ieee.org/state-of-ai-index-2026" target="_blank" rel="noopener">Stanford AI Index 2026: China Has Nearly Closed the U.S. AI Lead</a></h2>
+    <h3 class="post-title-zh" style="font-family:var(--tc-serif);font-size:1.05em;font-weight:600;color:var(--bone-2);margin:6px 0 16px;line-height:1.5;">史丹福 2026 AI 指數：中國幾乎追平美國 AI 領先優勢</h3>
+    <div style="display:inline-block;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.28);padding:4px 13px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#818cf8;margin-bottom:22px;">Benchmark Report · SUN 19 APR 2026</div>
+    <div class="lang-toggle" role="tablist">
+      <button class="lang-btn active" onclick="switchLang(this,'p20260419a-en','p20260419a-zh')">EN</button>
+      <button class="lang-btn" onclick="switchLang(this,'p20260419a-zh','p20260419a-en')">&#32371;&#20013;</button>
     </div>
-    <div class="post-body" id="p20260419a-en">Cerebras Systems filed for a US IPO on April 17, targeting a Nasdaq listing under ticker &quot;CBRS&quot; at a valuation of $22–25 billion. The company plans to raise approximately $2 billion, with Morgan Stanley as lead underwriter and a mid-May listing window. It marks Cerebras&#x27;s second attempt after pulling a previous IPO due to national security review concerns.&#10;&#10;The filing revealed strong financials: $510 million in revenue for 2025, up 76% year-over-year, and a swing to $87.9 million in net income from a $485 million net loss in 2024. The turnaround was driven by two landmark deals — a $20 billion agreement to supply OpenAI with computing power through 2028, and a $270 million partnership with Amazon for cloud integration on Cerebras hardware.&#10;&#10;At the heart of Cerebras&#x27;s pitch is the Wafer Scale Engine 3 (WSE-3), a chip physically 58 times larger than NVIDIA&#x27;s flagship B200 GPU and delivering 2,625 times more memory bandwidth. That architecture allows Cerebras clusters to run certain large language model inference workloads at speeds and costs that rival GPU farms, without the inter-chip communication bottlenecks that plague traditional GPU setups.&#10;&#10;The IPO comes as AI chip demand hits historic highs and investors seek alternatives to NVIDIA&#x27;s near-monopoly position. Analysts caution that customer concentration remains a risk — OpenAI accounts for the majority of Cerebras revenue — but the company&#x27;s technical moat and blue-chip partnerships make it one of the most anticipated AI listings of 2026.&#10;&#10;Source: TechCrunch → https://techcrunch.com/2026/04/18/ai-chip-startup-cerebras-files-for-ipo/</div>
-    <div class="post-body hidden" id="p20260419a-zh">AI 晶片新創公司 Cerebras Systems 於 4 月 17 日向美國監管機構遞交 IPO 申請，計劃以「CBRS」為股票代號登陸納斯達克，目標估值 220 至 250 億美元，預計融資約 20 億美元，由摩根士丹利主承銷，並於 5 月中旬掛牌。這是 Cerebras 繼此前因國家安全審查撤回申請後的第二次衝刺。&#10;&#10;招股書披露的財務數據相當亮眼：2025 年營收達 5.1 億美元，按年增長 76%；淨利潤從 2024 年的 4.85 億美元虧損大幅轉正，錄得 8,790 萬美元盈利。業績逆轉主要來自兩項重磅合約——與 OpenAI 達成的 200 億美元算力供應協議（有效期至 2028 年），以及與亞馬遜簽訂的 2.7 億美元雲端整合合作。&#10;&#10;Cerebras 的核心技術是晶圓級引擎 WSE-3（Wafer Scale Engine 3），其物理尺寸是 NVIDIA B200 GPU 的 58 倍，記憶體帶寬更高出 2,625 倍。這種架構令 Cerebras 集群在特定大型語言模型 (LLM) 推論任務上，能以媲美 GPU 農場的成本實現更高速度，同時避免傳統 GPU 互連的通訊瓶頸。&#10;&#10;此次 IPO 恰逢 AI 晶片需求創歷史新高、投資者尋求 NVIDIA 近乎壟斷地位替代方案之際。分析師提醒，客戶集中度仍是風險所在——OpenAI 佔 Cerebras 大部分收入——但其技術護城河與頂級合作夥伴關係，使其成為 2026 年最受矚目的 AI 上市案之一。&#10;&#10;來源：TechCrunch → https://techcrunch.com/2026/04/18/ai-chip-startup-cerebras-files-for-ipo/</div>
-    <div class="post-infographic">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;">
-  <defs>
-    <linearGradient id="cerebras-ipo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a1020"/>
-      <stop offset="100%" style="stop-color:#0d1a30"/>
-    </linearGradient>
-    <linearGradient id="cerebras-ipo-accent-bar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00c8ff"/>
-      <stop offset="100%" style="stop-color:#00c8ff88"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="500" fill="url(#cerebras-ipo-bg)"/>
-  <rect x="0" y="0" width="800" height="5" fill="url(#cerebras-ipo-accent-bar)"/>
-  <line x1="0" y1="260" x2="800" y2="260" stroke="#ffffff08" stroke-width="1"/>
-  <!-- Category tag -->
-  <rect x="30" y="28" width="120" height="24" rx="4" fill="#00c8ff22" stroke="#00c8ff55" stroke-width="1"/>
-  <text x="90" y="44" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600"
-        fill="#00c8ff" text-anchor="middle" letter-spacing="1">AI HARDWARE</text>
-  <!-- Date -->
-  <text x="770" y="44" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff55"
-        text-anchor="end">April 19, 2026</text>
-  <!-- Headline -->
-  <text x="400" y="120" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700"
-        fill="#ffffff" text-anchor="middle">
-    <tspan x="400" dy="0">Cerebras Files for $25B IPO — The NVIDIA Rival Built</tspan><tspan x="400" dy="34">on Wafer-Scale AI Chips</tspan>
-  </text>
-  <!-- Stats -->
-  
-        <rect x="50" y="300" width="160" height="130" rx="10"
-              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="130" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">$22–25B</text>
-        <text x="130" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="130" dy="0">Target</tspan><tspan x="130" dy="16">Valuation</tspan></text>
-        
-        <rect x="230" y="300" width="160" height="130" rx="10"
-              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="310" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">$510M</text>
-        <text x="310" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="310" dy="0">2025 Revenue</tspan><tspan x="310" dy="16">(+76%)</tspan></text>
-        
-        <rect x="410" y="300" width="160" height="130" rx="10"
-              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="490" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">58×</text>
-        <text x="490" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="490" dy="0">Larger than</tspan><tspan x="490" dy="16">NVIDIA B200</tspan></text>
-        
-        <rect x="590" y="300" width="160" height="130" rx="10"
-              fill="#00c8ff18" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="670" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#00c8ff" text-anchor="middle">$20B</text>
-        <text x="670" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="670" dy="0">OpenAI Supply</tspan><tspan x="670" dy="16">Deal</tspan></text>
-        
-  <!-- Watermark -->
-  <text x="400" y="470" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff33"
-        text-anchor="middle" letter-spacing="1">kenchankh97.github.io/ai-daily</text>
-  <!-- Source -->
-  <text x="400" y="490" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff22"
-        text-anchor="middle">Source: TechCrunch</text>
-</svg>
+    <div id="p20260419a-en" class="post-body">Stanford's Artificial Intelligence Index Report 2026 landed this week with a striking finding: China has nearly erased the United States' lead in artificial intelligence. The country now outpaces the U.S. in AI patents, academic publications, and the deployment of industrial robots. Measured by model performance benchmarks, the gap has narrowed to a matter of percentage points.
+
+The report also found that 53% of the global population is now using generative AI — a milestone the internet took over a decade to reach. AI capabilities in natural sciences, drug discovery, and code generation continue to advance faster than human baselines, raising both excitement and concern across research communities worldwide.</div>
+    <div id="p20260419a-zh" class="post-body zh-body hidden">史丹福大學人工智能指數 2026 年報告揭示一個令人矚目的結論：中國已幾乎消除美國在人工智能領域的領先優勢。在 AI 專利申請、學術論文發表及工業機器人部署上，中國均已超越美國。在模型性能基準測試方面，兩國差距已縮窄至百分點之差。
+
+報告亦指出，全球 53% 人口目前正在使用生成式 AI (Generative AI)——這個里程碑互聯網花了十多年才達到。AI 在自然科學、新藥研發及代碼生成等領域的能力持續超越人類基準水平，引發全球研究界的廣泛關注。</div>
+    <div class="post-footer">
+      <a class="source-link" href="https://spectrum.ieee.org/state-of-ai-index-2026" target="_blank" rel="noopener">Stanford HAI / IEEE Spectrum &#8599;</a>
+      <button class="copy-btn" onclick="copyPost(this,'p20260419a-en','p20260419a-zh')">Copy</button>
     </div>
   </div>
 
-<!-- ═══ POST: Salesforce Headless 360 ═══ -->
-  <div class="post-card" id="post-salesforce-headless360">
+  <!-- === POST: Meta Unveils Muse Spark — First Model From It === -->
+  <div class="post-card" id="post-meta-muse">
     <div class="post-meta">
+      <span class="post-source">CNBC / The New York Times</span>
       <span class="post-date">APR 19, 2026</span>
-      <span class="post-cat">Enterprise AI</span>
     </div>
-    <h2>
-      <div class="post-headline-en">Salesforce Reinvents Itself as AI Agent Infrastructure With Headless 360</div>
-      <div class="post-headline-zh">Salesforce 推出 Headless 360：全平台 API 化，迎接 AI 代理時代</div>
-    </h2>
-    <div class="post-header">
-      <div class="lang-toggle">
-        <button onclick="switchLang(this,'en','p20260419b')" class="lang-btn active">EN</button>
-        <button onclick="switchLang(this,'zh','p20260419b')" class="lang-btn">中</button>
-      </div>
+    <h2 class="post-title"><a href="https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html" target="_blank" rel="noopener">Meta Unveils Muse Spark — First Model From Its New Superintelligence Lab</a></h2>
+    <h3 class="post-title-zh" style="font-family:var(--tc-serif);font-size:1.05em;font-weight:600;color:var(--bone-2);margin:6px 0 16px;line-height:1.5;">Meta 推出 Muse Spark——超級智能實驗室首款旗艦模型</h3>
+    <div style="display:inline-block;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.28);padding:4px 13px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#818cf8;margin-bottom:22px;">Model Release · SUN 19 APR 2026</div>
+    <div class="lang-toggle" role="tablist">
+      <button class="lang-btn active" onclick="switchLang(this,'p20260419b-en','p20260419b-zh')">EN</button>
+      <button class="lang-btn" onclick="switchLang(this,'p20260419b-zh','p20260419b-en')">&#32371;&#20013;</button>
     </div>
-    <div class="post-body" id="p20260419b-en">Salesforce launched &quot;Headless 360&quot; this week — described internally as its most ambitious architectural overhaul in 27 years — opening every capability of its CRM platform to AI agents via APIs, MCP tools, and CLI commands. The move signals a decisive pivot from selling software to becoming infrastructure for the agentic enterprise.&#10;&#10;The initiative ships with over 60 new MCP (Model Context Protocol) tools and 30-plus preconfigured coding skills, giving external AI coding agents — including Claude Code, Cursor, Codex, and Windsurf — direct live access to a customer&#x27;s entire Salesforce org. A new Agentforce Experience Layer decouples what an agent does from how it appears, enabling rich interactive components to render natively across Slack, Microsoft Teams, ChatGPT, Claude, Gemini, and any MCP-compatible client.&#10;&#10;Alongside Headless 360, Salesforce announced an expansion of Agent Fabric — a trusted multi-vendor AI control plane. Agent Broker, which enables deterministic orchestration across AI agents from different vendors, enters beta this month with general availability targeted for June 2026. Agent Script, the company&#x27;s workflow scripting layer, is now generally available and has been open-sourced.&#10;&#10;Industry analysts are paying attention: Constellation Research placed Salesforce one to two years ahead of its enterprise software peers in agentic AI readiness. With 150,000+ enterprise customers already on the platform, the scale of potential AI agent deployment is enormous. CEO Marc Benioff framed the announcement simply: APIs are the new UI.&#10;&#10;Source: The Register → https://www.theregister.com/2026/04/15/salesforce_headless_360/</div>
-    <div class="post-body hidden" id="p20260419b-zh">Salesforce 本週推出「Headless 360」——公司內部將其定性為 27 年來最大膽的架構革新——透過 API、MCP 工具及 CLI 指令，將旗下 CRM 平台的所有功能開放予 AI 代理 (AI agents) 存取。此舉標誌著 Salesforce 從「銷售軟體」向「為代理型企業提供基礎設施」的決定性轉型。&#10;&#10;此次發布附帶超過 60 個全新 MCP（模型上下文協議）工具及 30 餘個預配置編程技能，使 Claude Code、Cursor、Codex、Windsurf 等外部 AI 編程代理能即時存取客戶的整個 Salesforce 組織。全新 Agentforce 體驗層將代理的功能與其呈現形式解耦，令豐富的互動組件可在 Slack、Microsoft Teams、ChatGPT、Claude、Gemini 及任何支持 MCP 的客戶端上原生渲染。&#10;&#10;與此同時，Salesforce 宣布擴展 Agent Fabric——一個支持多廠商 AI 的可信控制平面。Agent Broker（實現跨廠商 AI 代理的確定性編排）本月進入測試版，目標於 2026 年 6 月全面上線。代理工作流腳本層 Agent Script 現已全面上線並已開源。&#10;&#10;業界分析機構 Constellation Research 評估，Salesforce 在代理型 AI 準備程度上領先企業軟體同行一至兩年。Salesforce 現有逾 15 萬家企業客戶，AI 代理部署的潛在規模極為巨大。CEO Marc Benioff 的一句話道出了這場變革的本質：API 就是新的用戶界面。&#10;&#10;來源：The Register → https://www.theregister.com/2026/04/15/salesforce_headless_360/</div>
-    <div class="post-infographic">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;">
-  <defs>
-    <linearGradient id="salesforce-headless360-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f0a1a"/>
-      <stop offset="100%" style="stop-color:#1a0d2e"/>
-    </linearGradient>
-    <linearGradient id="salesforce-headless360-accent-bar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#a855f7"/>
-      <stop offset="100%" style="stop-color:#a855f788"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="500" fill="url(#salesforce-headless360-bg)"/>
-  <rect x="0" y="0" width="800" height="5" fill="url(#salesforce-headless360-accent-bar)"/>
-  <line x1="0" y1="260" x2="800" y2="260" stroke="#ffffff08" stroke-width="1"/>
-  <!-- Category tag -->
-  <rect x="30" y="28" width="120" height="24" rx="4" fill="#a855f722" stroke="#a855f755" stroke-width="1"/>
-  <text x="90" y="44" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600"
-        fill="#a855f7" text-anchor="middle" letter-spacing="1">ENTERPRISE AI</text>
-  <!-- Date -->
-  <text x="770" y="44" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff55"
-        text-anchor="end">April 19, 2026</text>
-  <!-- Headline -->
-  <text x="400" y="120" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700"
-        fill="#ffffff" text-anchor="middle">
-    <tspan x="400" dy="0">Salesforce Reinvents Itself as AI Agent</tspan><tspan x="400" dy="34">Infrastructure With Headless 360</tspan>
-  </text>
-  <!-- Stats -->
-  
-        <rect x="50" y="300" width="160" height="130" rx="10"
-              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
-        <text x="130" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">60+</text>
-        <text x="130" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="130" dy="0">New MCP Tools</tspan></text>
-        
-        <rect x="230" y="300" width="160" height="130" rx="10"
-              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
-        <text x="310" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">150K+</text>
-        <text x="310" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="310" dy="0">Enterprise</tspan><tspan x="310" dy="16">Customers</tspan></text>
-        
-        <rect x="410" y="300" width="160" height="130" rx="10"
-              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
-        <text x="490" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">1–2 Yrs</text>
-        <text x="490" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="490" dy="0">Ahead of</tspan><tspan x="490" dy="16">Competitors</tspan></text>
-        
-        <rect x="590" y="300" width="160" height="130" rx="10"
-              fill="#a855f718" stroke="#a855f7" stroke-width="1.5"/>
-        <text x="670" y="352" font-family="Inter,Arial,sans-serif"
-              font-size="30" font-weight="800" fill="#a855f7" text-anchor="middle">27 Yrs</text>
-        <text x="670" y="378" font-family="Inter,Arial,sans-serif"
-              font-size="11" fill="#ffffff99" text-anchor="middle"><tspan x="670" dy="0">Biggest</tspan><tspan x="670" dy="16">Overhaul</tspan></text>
-        
-  <!-- Watermark -->
-  <text x="400" y="470" font-family="Inter,Arial,sans-serif" font-size="11" fill="#ffffff33"
-        text-anchor="middle" letter-spacing="1">kenchankh97.github.io/ai-daily</text>
-  <!-- Source -->
-  <text x="400" y="490" font-family="Inter,Arial,sans-serif" font-size="10" fill="#ffffff22"
-        text-anchor="middle">Source: The Register</text>
-</svg>
-    </div>
-  </div>
+    <div id="p20260419b-en" class="post-body">Meta has unveiled Muse Spark, its first flagship AI model produced by the newly-formed Meta Superintelligence Labs — the division Mark Zuckerberg built around Scale AI founder Alexandr Wang, who joined Meta as part of a $14.3 billion deal. On writing and reasoning benchmarks, Muse Spark significantly outperforms all previous Meta models and comes close to the top results from Google, OpenAI, and Anthropic.
 
-<!-- ═══ POST: NVIDIA Isaac GR00T Robotics ═══ -->
-  <div class="post-card" id="post-gr00t">
-    <div class="post-meta">
-      <span class="post-date">APR 18, 2026</span>
-      <span class="post-cat">AI Robotics</span>
-    </div>
-    <h2>
-      <div class="post-headline-en">You Can Now Just Talk to Robots — NVIDIA Just Made That Real</div>
-      <div class="post-headline-zh">現在你可以直接「跟機器人說話」了</div>
-    </h2>
+The launch marks Meta's most serious attempt yet to close the gap with frontier AI labs. Muse Spark is available to users across Meta's apps, with enterprise API access rolling out this quarter. Zuckerberg framed it as the first step in building AGI and bringing it to everyone.</div>
+    <div id="p20260419b-zh" class="post-body zh-body hidden">Meta 正式推出 Muse Spark，這是其全新成立的 Meta 超級智能實驗室 (Meta Superintelligence Labs) 首款旗艦 AI 模型。該實驗室由 Scale AI 創辦人 Alexandr Wang 領導——Meta 以高達 143 億美元的交易將其引入。在寫作與推理基準測試上，Muse Spark 大幅超越 Meta 所有前代模型，並接近 Google、OpenAI 及 Anthropic 的頂尖水平。
 
-    <div class="post-infographic">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;">
-        <defs>
-          <linearGradient id="gr00t-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#0a0e1a"/>
-            <stop offset="100%" style="stop-color:#0d1b2e"/>
-          </linearGradient>
-          <linearGradient id="gr00t-accent" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#76b900"/>
-            <stop offset="50%" style="stop-color:#00c8ff"/>
-            <stop offset="100%" style="stop-color:#7c4dff"/>
-          </linearGradient>
-          <linearGradient id="gr00t-stat1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#76b90020"/>
-            <stop offset="100%" style="stop-color:#76b90005"/>
-          </linearGradient>
-          <linearGradient id="gr00t-stat2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#00c8ff20"/>
-            <stop offset="100%" style="stop-color:#00c8ff05"/>
-          </linearGradient>
-          <linearGradient id="gr00t-stat3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#7c4dff20"/>
-            <stop offset="100%" style="stop-color:#7c4dff05"/>
-          </linearGradient>
-          <linearGradient id="gr00t-stat4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffd60020"/>
-            <stop offset="100%" style="stop-color:#ffd60005"/>
-          </linearGradient>
-        </defs>
-        <!-- Background -->
-        <rect width="800" height="500" fill="url(#gr00t-bg)"/>
-        <!-- Accent bar -->
-        <rect x="0" y="0" width="800" height="5" fill="url(#gr00t-accent)"/>
-        <!-- Grid lines subtle -->
-        <line x1="0" y1="100" x2="800" y2="100" stroke="#ffffff08" stroke-width="1"/>
-        <line x1="0" y1="300" x2="800" y2="300" stroke="#ffffff08" stroke-width="1"/>
-        <!-- Title -->
-        <text x="400" y="55" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">NVIDIA Isaac GR00T: Robots That Understand Language</text>
-        <text x="400" y="82" font-family="Inter, Arial, sans-serif" font-size="13" fill="#76b900" text-anchor="middle" letter-spacing="2">NATIONAL ROBOTICS WEEK 2026 · OPEN MODEL RELEASE</text>
-
-        <!-- Stat box 1 -->
-        <rect x="30" y="110" width="170" height="155" rx="10" fill="url(#gr00t-stat1)" stroke="#76b900" stroke-width="1.5"/>
-        <text x="115" y="145" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="800" fill="#76b900" text-anchor="middle">50M+</text>
-        <text x="115" y="168" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffff99" text-anchor="middle">Global Labor</text>
-        <text x="115" y="183" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffff99" text-anchor="middle">Shortage</text>
-        <text x="115" y="208" font-family="Inter, Arial, sans-serif" font-size="10" fill="#76b90099" text-anchor="middle">Jobs robots could fill</text>
-        <text x="115" y="224" font-family="Inter, Arial, sans-serif" font-size="10" fill="#76b90099" text-anchor="middle">that humans won't/can't</text>
-        <text x="115" y="252" font-family="Inter, Arial, sans-serif" font-size="9" fill="#ffffff55" text-anchor="middle">NVIDIA estimate</text>
-
-        <!-- Stat box 2 -->
-        <rect x="220" y="110" width="170" height="155" rx="10" fill="url(#gr00t-stat2)" stroke="#00c8ff" stroke-width="1.5"/>
-        <text x="305" y="138" font-family="Inter, Arial, sans-serif" font-size="11" fill="#00c8ff" text-anchor="middle" letter-spacing="1">NEW CAPABILITY</text>
-        <text x="305" y="163" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">Natural</text>
-        <text x="305" y="183" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">Language</text>
-        <text x="305" y="203" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#00c8ff" text-anchor="middle">Control</text>
-        <text x="305" y="228" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">Just talk to the robot —</text>
-        <text x="305" y="243" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">no code required</text>
-        <text x="305" y="258" font-family="Inter, Arial, sans-serif" font-size="9" fill="#ffffff55" text-anchor="middle">Vision Language Action Reasoning</text>
-
-        <!-- Stat box 3 -->
-        <rect x="410" y="110" width="170" height="155" rx="10" fill="url(#gr00t-stat3)" stroke="#7c4dff" stroke-width="1.5"/>
-        <text x="495" y="138" font-family="Inter, Arial, sans-serif" font-size="11" fill="#7c4dff" text-anchor="middle" letter-spacing="1">NEWTON 1.0</text>
-        <text x="495" y="165" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#7c4dff" text-anchor="middle">Open</text>
-        <text x="495" y="190" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff" text-anchor="middle">Source</text>
-        <text x="495" y="215" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">Physics engine built w/</text>
-        <text x="495" y="230" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">Google DeepMind</text>
-        <text x="495" y="245" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">&amp; Disney Research</text>
-        <text x="495" y="260" font-family="Inter, Arial, sans-serif" font-size="9" fill="#ffffff55" text-anchor="middle">Now generally available</text>
-
-        <!-- Stat box 4 -->
-        <rect x="600" y="110" width="170" height="155" rx="10" fill="url(#gr00t-stat4)" stroke="#ffd600" stroke-width="1.5"/>
-        <text x="685" y="138" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffd600" text-anchor="middle" letter-spacing="1">APPLICATIONS</text>
-        <text x="685" y="165" font-family="Inter, Arial, sans-serif" font-size="12" fill="#ffffffcc" text-anchor="middle">🏥 Surgical robots</text>
-        <text x="685" y="185" font-family="Inter, Arial, sans-serif" font-size="12" fill="#ffffffcc" text-anchor="middle">🌾 Agriculture</text>
-        <text x="685" y="205" font-family="Inter, Arial, sans-serif" font-size="12" fill="#ffffffcc" text-anchor="middle">☀️ Solar installation</text>
-        <text x="685" y="225" font-family="Inter, Arial, sans-serif" font-size="12" fill="#ffffffcc" text-anchor="middle">🤖 Humanoids</text>
-        <text x="685" y="250" font-family="Inter, Arial, sans-serif" font-size="9" fill="#ffffff55" text-anchor="middle">Live deployments today</text>
-
-        <!-- Summary bar -->
-        <rect x="30" y="290" width="740" height="80" rx="10" fill="#ffffff08" stroke="#ffffff15" stroke-width="1"/>
-        <text x="50" y="320" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start">What changed:</text>
-        <text x="50" y="340" font-family="Inter, Arial, sans-serif" font-size="12" fill="#ffffffbb" text-anchor="start">Before: Engineer programs every single robot movement line by line</text>
-        <text x="50" y="358" font-family="Inter, Arial, sans-serif" font-size="12" fill="#76b900" text-anchor="start">Now: "Pick up the red cup" → robot figures out how to do it</text>
-
-        <!-- Isaac Sim note -->
-        <rect x="30" y="385" width="360" height="75" rx="10" fill="#00c8ff08" stroke="#00c8ff25" stroke-width="1"/>
-        <text x="50" y="410" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#00c8ff" text-anchor="start">Isaac Sim 6.0 + Isaac Lab 3.0</text>
-        <text x="50" y="428" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffaa" text-anchor="start">Test robot behaviors in simulation first —</text>
-        <text x="50" y="444" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffaa" text-anchor="start">virtual crashes over real ones</text>
-
-        <!-- GR00T note -->
-        <rect x="410" y="385" width="360" height="75" rx="10" fill="#7c4dff08" stroke="#7c4dff25" stroke-width="1"/>
-        <text x="430" y="410" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#7c4dff" text-anchor="start">GR00T Open Model Family</text>
-        <text x="430" y="428" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffaa" text-anchor="start">First in a series of pretrained, fully</text>
-        <text x="430" y="444" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffaa" text-anchor="start">customizable robot foundation models</text>
-
-        <!-- Footer -->
-        <text x="400" y="492" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff44" text-anchor="middle">Source: NVIDIA Newsroom · blogs.nvidia.com · Ken's AI Daily · APR 18, 2026</text>
-      </svg>
-    </div>
-
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="switchLang(this,'en','p20260418a')">🇬🇧 English</button>
-      <button class="lang-btn" onclick="switchLang(this,'zh','p20260418a')">🇹🇼 繁中</button>
-    </div>
-
-    <div id="p20260418a-en" class="post-body">There's something that always bugged me about robots: they were only as smart as the programmer behind them. You had to painstakingly code every single movement, every edge case, every "what if the box is slightly tilted" scenario. That changes now.
-
-      This week, during National Robotics Week, NVIDIA dropped something I genuinely think is a landmark moment: the <strong>Isaac GR00T open model suite</strong>. The headline capability? You talk to the robot, and it figures out how to move.
-
-      Using what NVIDIA calls <em>vision language action reasoning</em>, these new GR00T models let robots receive natural language instructions — like "pick up the red cup from the table" — and translate that into actual physical movement. No line-by-line programming. No rigid scripts. Just plain language.
-
-      → <strong>Newton 1.0</strong> is now publicly available — an open-source physics engine (built with Google DeepMind and Disney Research!) that gives robots a realistic sense of how objects behave in the real world. Accurate collision detection, dexterous manipulation — the foundations robots need to handle the messy reality around them.
-
-      → <strong>Isaac Sim 6.0 &amp; Isaac Lab 3.0</strong> let developers test robot behaviors in simulated environments before sending them into the real world. Virtual crashes over real ones.
-
-      → <strong>Real-world applications are already live.</strong> Companies are using this for surgical robotics, agricultural harvesting, solar panel installation, and humanoid systems.
-
-      Here's why this matters to all of us: there's a global labor shortage estimated at over <strong>50 million people</strong>. Roles that are dangerous, repetitive, or simply unfillable. Language-driven robots that can be instructed like a coworker — rather than programmed like a machine — could be a genuine answer to that.
-
-      Will they replace human workers? Some, yes — particularly in physical, repetitive jobs. But the bigger picture NVIDIA is painting is one where robots work <em>alongside</em> us, handling tasks humans can't or won't do.
-
-      I don't think we're ready for the speed at which this is moving. But I'm watching it very closely.
-
-      🔗 Source: <a href="https://blogs.nvidia.com/blog/national-robotics-week-2026/" target="_blank">NVIDIA Blog — National Robotics Week 2026</a>
-
-      #AI #Robotics #NVIDIA #GR00T #PhysicalAI #Automation #FutureOfWork #Technology</div>
-
-    <div id="p20260418a-zh" class="post-body zh-body hidden">你有沒有想過，有一天你可以對機器人說：「幫我把那個紅色杯子從桌上拿過來」，然後它就直接去做了？
-
-      這不再是科幻電影的情節了。
-
-      上週在全國機器人週（National Robotics Week）期間，NVIDIA發布了一套叫做 <strong>Isaac GR00T</strong> 的開放模型，讓機器人終於能「聽懂人話」，並轉化成實際的物理動作。
-
-      過去，要讓機器人做一件事，工程師必須寫出每一個細節的程式碼——每個動作、每個邊界情況、每一種「盒子稍微傾斜時怎麼辦」的場景。而現在，透過NVIDIA所說的「視覺語言動作推理（Vision Language Action Reasoning）」，你只需要告訴機器人你想要什麼。
-
-      幾個關鍵發布：
-
-      → <strong>Newton 1.0</strong> 正式開源——這是一個物理引擎（Physics Engine），由NVIDIA與Google DeepMind、Disney Research合作開發，讓機器人能真正理解現實世界中物體的物理行為，包括精確的碰撞偵測與靈巧操作能力。
-
-      → <strong>Isaac Sim 6.0 與 Isaac Lab 3.0</strong> 讓開發者可以先在虛擬環境中測試機器人的行為，再讓它進入真實世界——在虛擬世界摔壞，總比在現實中好。
-
-      → <strong>已有多個真實應用落地</strong>，包括手術機器人、農業採收、太陽能板安裝，以及人形機器人（Humanoid Robot）系統。
-
-      為什麼這件事對我們每個人都有意義？全球勞動力短缺超過<strong>五千萬個職缺</strong>，很多是危險、重複性高、或根本找不到人做的工作。能用自然語言（Natural Language）指令操控的機器人，就像在指導一位同事，而不是操作一台機器——這可能是真正的解答。
-
-      這個領域的發展速度，老實說讓我有點跟不上。但我會繼續密切關注。
-
-      🔗 資料來源：<a href="https://blogs.nvidia.com/blog/national-robotics-week-2026/" target="_blank">NVIDIA Blog — National Robotics Week 2026</a>
-
-      #AI #機器人 #NVIDIA #GR00T #PhysicalAI #自動化 #未來工作 #科技</div>
-
+此次發布標誌著 Meta 迄今最認真的一次追趕前沿 AI 實驗室的嘗試。Muse Spark 現已在 Meta 旗下各應用中推出，企業 API 存取將於本季開放。祖克伯將其定位為構建 AGI 並讓所有人受益的第一步。</div>
     <div class="post-footer">
-      <a class="source-link" href="https://blogs.nvidia.com/blog/national-robotics-week-2026/" target="_blank">🔗 NVIDIA Blog</a>
-      <button class="copy-btn" onclick="copyPost('p20260418a')">Copy post text</button>
+      <a class="source-link" href="https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html" target="_blank" rel="noopener">CNBC / The New York Times &#8599;</a>
+      <button class="copy-btn" onclick="copyPost(this,'p20260419b-en','p20260419b-zh')">Copy</button>
     </div>
   </div>
 
-  <!-- ═══ POST: Stanford AI Index 2026 Jagged Frontier ═══ -->
-  <div class="post-card" id="post-jagged-frontier">
+  <!-- === POST: Q1 2026 Shatters All VC Records: $300B Raised === -->
+  <div class="post-card" id="post-vc-q1-2026">
     <div class="post-meta">
-      <span class="post-date">APR 18, 2026</span>
-      <span class="post-cat">AI Research</span>
+      <span class="post-source">Crunchbase News</span>
+      <span class="post-date">APR 19, 2026</span>
     </div>
-    <h2>
-      <div class="post-headline-en">AI Won the Math Olympics But Can't Read a Clock 50% of the Time</div>
-      <div class="post-headline-zh">AI贏了數學奧林匹克，卻有一半時間看不懂時鐘</div>
-    </h2>
-
-    <div class="post-infographic">
-      <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;">
-        <defs>
-          <linearGradient id="sf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#0d0a1a"/>
-            <stop offset="100%" style="stop-color:#1a0e2e"/>
-          </linearGradient>
-          <linearGradient id="sf-accent" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#e91e63"/>
-            <stop offset="40%" style="stop-color:#9c27b0"/>
-            <stop offset="100%" style="stop-color:#3f51b5"/>
-          </linearGradient>
-          <linearGradient id="sf-bar-good" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#4caf50"/>
-            <stop offset="100%" style="stop-color:#81c784"/>
-          </linearGradient>
-          <linearGradient id="sf-bar-bad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#e91e63"/>
-            <stop offset="100%" style="stop-color:#f48fb1"/>
-          </linearGradient>
-          <linearGradient id="sf-bar-warn" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#ff9800"/>
-            <stop offset="100%" style="stop-color:#ffcc02"/>
-          </linearGradient>
-        </defs>
-        <!-- Background -->
-        <rect width="800" height="500" fill="url(#sf-bg)"/>
-        <!-- Accent bar -->
-        <rect x="0" y="0" width="800" height="5" fill="url(#sf-accent)"/>
-
-        <!-- Title -->
-        <text x="400" y="50" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">Stanford 2026 AI Index: The Jagged Frontier</text>
-        <text x="400" y="73" font-family="Inter, Arial, sans-serif" font-size="12" fill="#e91e63" text-anchor="middle" letter-spacing="2">WHERE AI EXCELS VS. WHERE IT STUMBLES</text>
-
-        <!-- Left panel: What AI can do -->
-        <rect x="30" y="90" width="350" height="190" rx="10" fill="#4caf5010" stroke="#4caf50" stroke-width="1.5"/>
-        <text x="205" y="115" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#4caf50" text-anchor="middle">✅ What AI Crushes</text>
-
-        <!-- SWE bench bar -->
-        <text x="50" y="140" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Coding (SWE-bench)</text>
-        <rect x="50" y="148" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="50" y="148" width="291" height="14" rx="3" fill="url(#sf-bar-good)"/>
-        <text x="355" y="160" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4caf50" text-anchor="end">~97%</text>
-
-        <!-- PhD Science bar -->
-        <text x="50" y="178" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">PhD-Level Science</text>
-        <rect x="50" y="186" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="50" y="186" width="264" height="14" rx="3" fill="url(#sf-bar-good)"/>
-        <text x="355" y="198" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4caf50" text-anchor="end">88%</text>
-
-        <!-- Math Olympiad bar -->
-        <text x="50" y="216" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Competition Mathematics</text>
-        <rect x="50" y="224" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="50" y="224" width="252" height="14" rx="3" fill="url(#sf-bar-good)"/>
-        <text x="355" y="236" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4caf50" text-anchor="end">84%</text>
-
-        <!-- Humanity Last Exam bar -->
-        <text x="50" y="254" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Humanity's Last Exam</text>
-        <rect x="50" y="262" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="50" y="262" width="153" height="14" rx="3" fill="url(#sf-bar-good)"/>
-        <text x="355" y="274" font-family="Inter, Arial, sans-serif" font-size="10" fill="#4caf50" text-anchor="end">&gt;50%</text>
-
-        <!-- Right panel: Where AI fails -->
-        <rect x="420" y="90" width="350" height="190" rx="10" fill="#e91e6310" stroke="#e91e63" stroke-width="1.5"/>
-        <text x="595" y="115" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#e91e63" text-anchor="middle">❌ Where AI Stumbles</text>
-
-        <!-- Clock reading bar -->
-        <text x="440" y="140" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Reading an Analog Clock</text>
-        <rect x="440" y="148" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="440" y="148" width="153" height="14" rx="3" fill="url(#sf-bar-bad)"/>
-        <text x="745" y="160" font-family="Inter, Arial, sans-serif" font-size="10" fill="#e91e63" text-anchor="end">50.1% ≈ coin flip</text>
-
-        <!-- Folding clothes bar -->
-        <text x="440" y="178" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Robot Folding Clothes</text>
-        <rect x="440" y="186" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="440" y="186" width="36" height="14" rx="3" fill="url(#sf-bar-bad)"/>
-        <text x="745" y="198" font-family="Inter, Arial, sans-serif" font-size="10" fill="#e91e63" text-anchor="end">12%</text>
-
-        <!-- Transparency bar -->
-        <text x="440" y="216" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Model Transparency Index</text>
-        <rect x="440" y="224" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="440" y="224" width="120" height="14" rx="3" fill="url(#sf-bar-bad)"/>
-        <text x="745" y="236" font-family="Inter, Arial, sans-serif" font-size="10" fill="#e91e63" text-anchor="end">40/100 (was 58)</text>
-
-        <!-- Young devs employment -->
-        <text x="440" y="254" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffbb" text-anchor="start">Young Dev Employment (22–25)</text>
-        <rect x="440" y="262" width="300" height="14" rx="3" fill="#ffffff15"/>
-        <rect x="440" y="262" width="60" height="14" rx="3" fill="url(#sf-bar-bad)"/>
-        <text x="745" y="274" font-family="Inter, Arial, sans-serif" font-size="10" fill="#e91e63" text-anchor="end">−20% since 2024</text>
-
-        <!-- Bottom warning boxes -->
-        <rect x="30" y="300" width="230" height="80" rx="10" fill="#ff980015" stroke="#ff980060" stroke-width="1"/>
-        <text x="145" y="325" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#ff9800" text-anchor="middle">US–China AI Gap</text>
-        <text x="145" y="348" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#ff9800" text-anchor="middle">2.7%</text>
-        <text x="145" y="370" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">US lead over China (Mar 2026)</text>
-
-        <rect x="285" y="300" width="230" height="80" rx="10" fill="#9c27b015" stroke="#9c27b060" stroke-width="1"/>
-        <text x="400" y="325" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#ce93d8" text-anchor="middle">Researcher Brain Drain</text>
-        <text x="400" y="348" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#ce93d8" text-anchor="middle">−89%</text>
-        <text x="400" y="370" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">AI researchers flowing to US since 2017</text>
-
-        <rect x="540" y="300" width="230" height="80" rx="10" fill="#3f51b515" stroke="#3f51b560" stroke-width="1"/>
-        <text x="655" y="325" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#7986cb" text-anchor="middle">Expert vs. Public View on Jobs</text>
-        <text x="655" y="345" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#7986cb" text-anchor="middle">73% vs 23%</text>
-        <text x="655" y="363" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">Experts vs. public who view</text>
-        <text x="655" y="376" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff80" text-anchor="middle">AI's job impact positively</text>
-
-        <!-- Key insight banner -->
-        <rect x="30" y="398" width="740" height="60" rx="10" fill="#ffffff08" stroke="#ffffff15" stroke-width="1"/>
-        <text x="400" y="422" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">The Jagged Frontier: AI wins at Math Olympiad, fails at reading clocks.</text>
-        <text x="400" y="444" font-family="Inter, Arial, sans-serif" font-size="11" fill="#ffffffaa" text-anchor="middle">Deploying AI faster than we understand it — while companies disclose less, not more.</text>
-
-        <!-- Footer -->
-        <text x="400" y="492" font-family="Inter, Arial, sans-serif" font-size="10" fill="#ffffff44" text-anchor="middle">Source: Stanford HAI · Unite.AI · Ken's AI Daily · APR 18, 2026</text>
-      </svg>
+    <h2 class="post-title"><a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank" rel="noopener">Q1 2026 Shatters All VC Records: $300B Raised, 80% Flowing Into AI</a></h2>
+    <h3 class="post-title-zh" style="font-family:var(--tc-serif);font-size:1.05em;font-weight:600;color:var(--bone-2);margin:6px 0 16px;line-height:1.5;">2026 年第一季打破所有創投紀錄：$3,000 億融資，八成流入 AI</h3>
+    <div style="display:inline-block;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.28);padding:4px 13px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#818cf8;margin-bottom:22px;">Venture Capital · SUN 19 APR 2026</div>
+    <div class="lang-toggle" role="tablist">
+      <button class="lang-btn active" onclick="switchLang(this,'p20260419c-en','p20260419c-zh')">EN</button>
+      <button class="lang-btn" onclick="switchLang(this,'p20260419c-zh','p20260419c-en')">&#32371;&#20013;</button>
     </div>
+    <div id="p20260419c-en" class="post-body">The first quarter of 2026 set an all-time record for global venture capital activity. Investors poured $300 billion into roughly 6,000 startups worldwide — a figure that surpasses any previous quarter in venture history. Of that total, $242 billion (80%) went directly to AI companies, cementing artificial intelligence as the defining capital magnet of this era.
 
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="switchLang(this,'en','p20260418c')">🇬🇧 English</button>
-      <button class="lang-btn" onclick="switchLang(this,'zh','p20260418c')">🇹🇼 繁中</button>
-    </div>
+The quarter included four of the largest venture rounds ever recorded: OpenAI closed $122 billion at an $852 billion post-money valuation; xAI raised $20 billion; Waymo secured $16 billion; and Anthropic completed a $30 billion Series G in February. Eclipse VC raised $1.3 billion specifically for AI infrastructure and robotics in April, reflecting growing investor appetite beyond pure software.</div>
+    <div id="p20260419c-zh" class="post-body zh-body hidden">2026 年第一季創下全球創業投資有史以來的最高紀錄。投資者向全球約 6,000 家初創公司投入 3,000 億美元，超越歷史上任何一個季度的風險投資金額。其中，2,420 億美元（佔 80%）直接流向 AI 公司，鞏固了人工智能作為這個時代最強資本磁鐵的地位。
 
-    <div id="p20260418c-en" class="post-body">Stanford just released its 2026 AI Index Report, and I've been sitting with one stat ever since I read it: the best AI models in the world solve PhD-level physics questions and win at competition math — and correctly read an analog clock only <strong>50.1% of the time</strong>.
-
-      That's basically a coin flip.
-
-      This is what researchers are calling the <strong>"Jagged Frontier"</strong> — and I think it's the most important concept in AI right now. We keep measuring AI by what it can do at its absolute best. We give it coding benchmarks, math exams, science tests — and it's acing all of them. SWE-bench coding scores jumped from 60% to nearly 100% in a single year. The best models now clear 50% on Humanity's Last Exam, a notoriously brutal test spanning every academic field.
-
-      But that same AI? Give it a photo of an old-fashioned analog clock and ask what time it is. Fifty-fifty chance it gets it wrong.
-
-      → <strong>Household robots fare even worse.</strong> Success at folding clothes: just 12%. These are physical, real-world tasks — not abstract reasoning puzzles.
-
-      → <strong>AI transparency is actually going backwards.</strong> The Foundation Model Transparency Index score dropped from 58 to 40. The most capable companies are now revealing <em>less</em> about how their models work, what they're trained on, and what the risks are.
-
-      → <strong>The job market is already shifting.</strong> US software developers aged 22 to 25 have seen employment drop nearly 20% since 2024. Entry-level work is being hit first.
-
-      → <strong>The US-China AI gap has nearly vanished.</strong> As of March 2026, US models lead Chinese counterparts by just 2.7 percentage points. And the flow of AI researchers coming into the US has dropped 89% since 2017.
-
-      There's also a striking <strong>50-point divide</strong> between AI experts (73% positive about AI's job impact) and the general US public (just 23% positive). That gap should concern us.
-
-      What I take from all this: AI is genuinely remarkable — and genuinely incomplete. We're deploying it faster than we understand it, with companies disclosing less just as the stakes get higher. The jagged frontier isn't a bug we'll patch soon. It's a fundamental feature of how this technology works right now. Knowing <em>where</em> it's jagged matters enormously.
-
-      🔗 Source: <a href="https://www.unite.ai/stanford-ai-index-2026-reveals-a-field-racing-ahead-of-its-guardrails/" target="_blank">Unite.AI — Stanford AI Index 2026</a>
-
-      #AI #StanfordAI #AIIndex2026 #ArtificialIntelligence #FutureOfWork #TechPolicy #MachineLearning #JaggedFrontier</div>
-
-    <div id="p20260418c-zh" class="post-body zh-body hidden">史丹佛大學（Stanford）剛剛發布了2026年AI指數報告（AI Index Report），其中有一個數據讓我看了半天：世界上最先進的AI模型，能解答博士級物理題、在競賽數學中勝出——但正確讀出一個傳統時鐘的時間，正確率只有<strong>50.1%</strong>。
-
-      基本上就是靠骰子決定。
-
-      研究人員把這個現象叫做「鋸齒形前沿（Jagged Frontier）」——我覺得這是目前AI領域最重要的概念之一。我們總是用AI最好的表現來評估它：程式設計基準測試（SWE-bench）、數學考試、科學測試——它都在快速進步。程式生成能力一年內從60%跳到接近100%。最強的模型在「人類最後的考試（Humanity's Last Exam）」這個涵蓋所有學術領域的超難測試中，正確率超過50%。
-
-      但是，給它看一張老式時鐘的照片，問它幾點？五五波。
-
-      幾個讓我印象深刻的數字：
-
-      → <strong>家用機器人的表現更糟。</strong> 折衣服的成功率只有12%。這些是現實世界中的動作任務，不是抽象的推理問題。
-
-      → <strong>AI透明度正在下降。</strong> 基礎模型透明度指數（Foundation Model Transparency Index）從58分降到40分。最強大的公司，反而對自己的模型揭露越來越少——訓練資料、風險評估、能力說明，全都越來越不透明。
-
-      → <strong>就業市場已在改變。</strong> 22至25歲的美國軟體開發工程師，自2024年以來就業率下降了近20%。入門級職缺首當其衝。
-
-      → <strong>美中AI差距幾乎消失。</strong> 截至2026年3月，美國AI模型領先中國的差距只剩2.7個百分點。而且自2017年以來，流入美國的AI研究人員減少了89%——這是個結構性的隱憂。
-
-      還有一個令人擔憂的<strong>50點落差</strong>：73%的AI專家認為AI對就業市場的影響是正面的，但只有23%的一般美國民眾這樣認為。這個落差值得我們深思。
-
-      我對這份報告的感受是：AI的能力確實令人驚嘆——但它同時也是真實地不完整。我們部署它的速度，比我們理解它的速度還快。公司披露的資訊越來越少，偏偏這個時候風險反而越來越高。
-
-      「鋸齒形前沿」不是一個短期能修補的缺陷，而是這項技術在當下運作方式的根本特質。知道它在哪裡「鋸齒」，至關重要。
-
-      🔗 資料來源：<a href="https://www.unite.ai/stanford-ai-index-2026-reveals-a-field-racing-ahead-of-its-guardrails/" target="_blank">Unite.AI — Stanford AI Index 2026</a>
-
-      #AI #Stanford #AIIndex2026 #人工智慧 #未來工作 #科技政策 #機器學習 #鋸齒前沿</div>
-
+本季錄得史上規模最大的四輪融資：OpenAI 完成 1,220 億美元融資，估值達 8,520 億美元；xAI 籌得 200 億美元；Waymo 獲得 160 億美元；Anthropic 於二月完成 300 億美元 G 輪融資。Eclipse VC 亦於四月為 AI 基礎設施及機器人領域籌得 13 億美元，反映投資者對純軟件以外領域的濃厚興趣。</div>
     <div class="post-footer">
-      <a class="source-link" href="https://www.unite.ai/stanford-ai-index-2026-reveals-a-field-racing-ahead-of-its-guardrails/" target="_blank">🔗 Unite.AI</a>
-      <button class="copy-btn" onclick="copyPost('p20260418c')">Copy post text</button>
+      <a class="source-link" href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/" target="_blank" rel="noopener">Crunchbase News &#8599;</a>
+      <button class="copy-btn" onclick="copyPost(this,'p20260419c-en','p20260419c-zh')">Copy</button>
     </div>
   </div>
 
+  <!-- === POST: Anthropic Releases Claude Opus 4.7; Mythos Pr === -->
+  <div class="post-card" id="post-anthropic-april">
+    <div class="post-meta">
+      <span class="post-source">WhatLLM / Anthropic</span>
+      <span class="post-date">APR 19, 2026</span>
+    </div>
+    <h2 class="post-title"><a href="https://whatllm.org/blog/new-ai-models-april-2026" target="_blank" rel="noopener">Anthropic Releases Claude Opus 4.7; Mythos Preview Scores 93.9% on SWE-bench</a></h2>
+    <h3 class="post-title-zh" style="font-family:var(--tc-serif);font-size:1.05em;font-weight:600;color:var(--bone-2);margin:6px 0 16px;line-height:1.5;">Anthropic 正式推出 Claude Opus 4.7；Mythos 預覽版在 SWE-bench 取得 93.9% 高分</h3>
+    <div style="display:inline-block;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.28);padding:4px 13px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#818cf8;margin-bottom:22px;">Model Release · SUN 19 APR 2026</div>
+    <div class="lang-toggle" role="tablist">
+      <button class="lang-btn active" onclick="switchLang(this,'p20260419d-en','p20260419d-zh')">EN</button>
+      <button class="lang-btn" onclick="switchLang(this,'p20260419d-zh','p20260419d-en')">&#32371;&#20013;</button>
+    </div>
+    <div id="p20260419d-en" class="post-body">Anthropic made two major announcements this week. First, Claude Opus 4.7 is now generally available, positioned as Anthropic's strongest model across coding, agentic tasks, vision, and complex multi-step reasoning. It extends the Opus 4 architecture with improved instruction-following and faster inference.
 
+Second — and more striking — Anthropic quietly moved Claude Mythos Preview into controlled early access under Project Glasswing, limiting it to 50 enterprise partners. Mythos Preview scores 93.9% on SWE-bench Verified and 94.6% on GPQA Diamond, the highest published scores on both benchmarks. According to internal testing, the model also autonomously identified thousands of zero-day vulnerabilities across major operating systems and browsers, raising significant questions about responsible AI deployment at this capability level.</div>
+    <div id="p20260419d-zh" class="post-body zh-body hidden">Anthropic 本週發布兩項重大公告。首先，Claude Opus 4.7 正式全面推出，定位為 Anthropic 在編碼、代理任務 (agentic tasks)、視覺及複雜多步推理方面最強大的模型，並在 Opus 4 架構基礎上提升了指令遵從能力與推理速度。
+
+更引人注目的是，Anthropic 悄然在 Project Glasswing 框架下將 Claude Mythos 預覽版進入受控早期訪問階段，目前僅開放給 50 家企業合作夥伴。Mythos 預覽版在 SWE-bench Verified 取得 93.9% 高分，GPQA Diamond 達 94.6%，均為目前公開發布的最高成績。內部測試顯示，該模型能自主發現主要操作系統及瀏覽器中的數千個零日漏洞 (zero-day vulnerabilities)，引發業界對如何在此能力水平下負責任部署 AI 的深入討論。</div>
+    <div class="post-footer">
+      <a class="source-link" href="https://whatllm.org/blog/new-ai-models-april-2026" target="_blank" rel="noopener">WhatLLM / Anthropic &#8599;</a>
+      <button class="copy-btn" onclick="copyPost(this,'p20260419d-en','p20260419d-zh')">Copy</button>
+    </div>
+  </div>
+
+  <!-- === POST: PwC Study: Top 20% of Companies Capture 75% o === -->
+  <div class="post-card" id="post-pwc-ai-gap">
+    <div class="post-meta">
+      <span class="post-source">PwC</span>
+      <span class="post-date">APR 19, 2026</span>
+    </div>
+    <h2 class="post-title"><a href="https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html" target="_blank" rel="noopener">PwC Study: Top 20% of Companies Capture 75% of AI's Economic Gains</a></h2>
+    <h3 class="post-title-zh" style="font-family:var(--tc-serif);font-size:1.05em;font-weight:600;color:var(--bone-2);margin:6px 0 16px;line-height:1.5;">PwC 研究：頂尖兩成企業獨攬 AI 帶來的七成五經濟效益</h3>
+    <div style="display:inline-block;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.28);padding:4px 13px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#818cf8;margin-bottom:22px;">Industry Research · SUN 19 APR 2026</div>
+    <div class="lang-toggle" role="tablist">
+      <button class="lang-btn active" onclick="switchLang(this,'p20260419e-en','p20260419e-zh')">EN</button>
+      <button class="lang-btn" onclick="switchLang(this,'p20260419e-zh','p20260419e-en')">&#32371;&#20013;</button>
+    </div>
+    <div id="p20260419e-en" class="post-body">PwC's 2026 AI Performance Study reveals a stark divide in who is benefiting from the AI boom. Three-quarters of artificial intelligence's economic gains are being captured by just 20% of companies — those leading firms that are focused on growth rather than mere productivity improvements. The remaining 80% of businesses adopting AI see only marginal operational benefits.
+
+The study surveyed over 5,000 organisations across 25 countries. Leading companies share three common traits: they embed AI deeply across business functions rather than in isolated pilots; they treat AI as a growth driver, not a cost-cutter; and they invest heavily in talent and governance alongside technology. PwC warns that without deliberate strategy, AI adoption risks widening the competitive gap between industry leaders and followers to an unprecedented degree.</div>
+    <div id="p20260419e-zh" class="post-body zh-body hidden">PwC 2026 年 AI 績效研究揭示出一個觸目驚心的現實：AI 經濟效益的四分之三，正被僅佔兩成的頂尖企業所獨攬。這些領先企業的重點不是純粹的生產力提升，而是以 AI 驅動業務增長。而採用 AI 的其餘八成企業，所見到的僅是有限的運營改善。
+
+這項研究調查了橫跨 25 個國家的 5,000 多個組織。領先企業有三個共同特徵：深度將 AI 嵌入各業務部門而非停留於孤立試點；將 AI 視為增長引擎而非削減成本的工具；以及在技術投資之外大力投入人才培養與管治建設。PwC 警告，若缺乏刻意為之的策略，AI 的普及可能會以前所未有的程度拉大行業領先者與跟隨者之間的競爭差距。</div>
+    <div class="post-footer">
+      <a class="source-link" href="https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html" target="_blank" rel="noopener">PwC &#8599;</a>
+      <button class="copy-btn" onclick="copyPost(this,'p20260419e-en','p20260419e-zh')">Copy</button>
+    </div>
+  </div>
+</div>
+
+      
+  <!-- === INFOGRAPHIC: April 19, 2026 === -->
+  <div class="post-card" id="post-infographic-20260419" style="padding:0;border:0;background:transparent;">
+    <svg xmlns="http://www.w3.org/2000/svg" id="infographic-20260419" viewBox="0 0 800 500" style="max-width:100%;display:block;margin:24px 0;">
+      <defs>
+        <linearGradient id="igBg-20260419" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#0d1117"/>
+          <stop offset="100%" stop-color="#161622"/>
+        </linearGradient>
+        <linearGradient id="igAcc-20260419" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="100%" stop-color="#818cf8"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="500" fill="url(#igBg-20260419)" rx="6"/>
+      <rect x="0" y="0" width="800" height="4" fill="url(#igAcc-20260419)"/>
+      <text x="400" y="42" text-anchor="middle" font-family="'Source Serif 4','Noto Serif TC',Georgia,serif" font-size="20" font-weight="700" fill="#ededea">Ken AI Daily &#183; April 19, 2026</text>
+      <text x="400" y="65" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="16" fill="#a5b4fc">&#32993;&#24681; AI &#26085;&#22577; &#183; &#36050;&#26085;</text>
+      <line x1="32" y1="84" x2="768" y2="84" stroke="#6366f1" stroke-width="0.6" opacity="0.5"/>
+      <text x="48" y="114" font-family="'Inter',sans-serif" font-size="10" font-weight="700" letter-spacing="3" fill="#818cf8">TODAY'S TOP STORIES &#183; &#20170;&#26085;&#37325;&#40670;</text>
+
+        <rect x="32" y="134" width="736" height="46" fill="rgba(99,102,241,0.06)" rx="2"/>
+        <text x="48" y="148" font-size="12" font-weight="600" fill="#ededea">1. Stanford AI Index 2026: China Has Nearly Closed the U.S. AI Lead</text>
+        <text x="68" y="165" font-size="11" fill="#a5b4fc" font-family="'Noto Serif TC', serif">史丹福 2026 AI 指數：中國幾乎追平美國 AI 領先優勢</text>
+        <rect x="32" y="192" width="736" height="46" fill="rgba(99,102,241,0.06)" rx="2"/>
+        <text x="48" y="206" font-size="12" font-weight="600" fill="#ededea">2. Meta Unveils Muse Spark — First Model From Its New Superintelligence L...</text>
+        <text x="68" y="223" font-size="11" fill="#a5b4fc" font-family="'Noto Serif TC', serif">Meta 推出 Muse Spark——超級智能實驗室首款旗艦模型</text>
+        <rect x="32" y="250" width="736" height="46" fill="rgba(99,102,241,0.06)" rx="2"/>
+        <text x="48" y="264" font-size="12" font-weight="600" fill="#ededea">3. Q1 2026 Shatters All VC Records: $300B Raised, 80% Flowing Into AI</text>
+        <text x="68" y="281" font-size="11" fill="#a5b4fc" font-family="'Noto Serif TC', serif">2026 年第一季打破所有創投紀錄：$3,000 億融資，八成流入 ...</text>
+        <rect x="32" y="308" width="736" height="46" fill="rgba(99,102,241,0.06)" rx="2"/>
+        <text x="48" y="322" font-size="12" font-weight="600" fill="#ededea">4. Anthropic Releases Claude Opus 4.7; Mythos Preview Scores 93.9% on SWE...</text>
+        <text x="68" y="339" font-size="11" fill="#a5b4fc" font-family="'Noto Serif TC', serif">Anthropic 正式推出 Claude Opus 4.7；Myt...</text>
+        <rect x="32" y="366" width="736" height="46" fill="rgba(99,102,241,0.06)" rx="2"/>
+        <text x="48" y="380" font-size="12" font-weight="600" fill="#ededea">5. PwC Study: Top 20% of Companies Capture 75% of AI's Economic Gains</text>
+        <text x="68" y="397" font-size="11" fill="#a5b4fc" font-family="'Noto Serif TC', serif">PwC 研究：頂尖兩成企業獨攬 AI 帶來的七成五經濟效益</text>
+      <line x1="32" y1="455" x2="768" y2="455" stroke="#6366f1" stroke-width="0.6" opacity="0.4"/>
+      <text x="48" y="476" font-family="'Inter',sans-serif" font-size="10" fill="#6b7280">Sources: Stanford HAI &#183; IEEE Spectrum &#183; Crunchbase &#183; CNBC &#183; PwC &#183; WhatLLM &#183; Anthropic</text>
+      <text x="752" y="476" text-anchor="end" font-family="'Inter',sans-serif" font-size="10" fill="#818cf8">kenchankh97.github.io/ai-daily</text>
+    </svg>
+  </div>
   <!-- ═══ POST: Anthropic MCP 97M ═══ -->
   <div class="post-card" id="post-mcp">
     <div class="post-meta">
@@ -2119,7 +1755,7 @@ And the plot twist that nobody in Silicon Valley likes to talk about? <strong>Th
 
 The revolution is already here. The only question is whether you're riding it or watching it.
 
-🔗 Full report: https://www.digitalinformationworld.com/2026/04/stanford-ai-index-2026-report-details.html
+🔗 Full report: https://hai.stanford.edu/ai-index/2026-ai-index-report
 
 #AI #ArtificialIntelligence #StanfordAI #FutureOfWork #TechTrends #AIAdoption #GenerativeAI #Innovation</div>
 
@@ -2138,12 +1774,12 @@ The revolution is already here. The only question is whether you're riding it or
 
 革命已經到來。唯一的問題是：你是在浪頭上，還是在岸邊看？
 
-🔗 完整報告：https://www.digitalinformationworld.com/2026/04/stanford-ai-index-2026-report-details.html
+🔗 完整報告：https://hai.stanford.edu/ai-index/2026-ai-index-report
 
 #AI #人工智能 #StanfordAI #科技趨勢 #GenerativeAI #未來工作 #AIAdoption #創新</div>
 
     <div class="post-footer">
-      <a class="source-link" href="https://www.digitalinformationworld.com/2026/04/stanford-ai-index-2026-report-details.html" target="_blank">🔗 Stanford AI Index 2026 — Full Coverage</a>
+      <a class="source-link" href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">🔗 Stanford HAI AI Index 2026</a>
       <button class="copy-btn" onclick="copyPost('p1')">Copy post text</button>
     </div>
   </div>
@@ -2291,17 +1927,8 @@ Google 可能剛剛改變了這個方程式。
 
       <div class="side-block">
         <div class="side-eyebrow">Colophon</div>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-          <img src="avatar.jpg" alt="Ken Chan"
-               style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center top;
-                      border:1.5px solid var(--hairline-strong);opacity:0.92;flex-shrink:0;">
-          <div style="line-height:1.3;">
-            <div style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--bone);letter-spacing:0.02em;">Ken Chan</div>
-            <div style="font-family:var(--sans);font-size:11px;color:var(--bone-3);opacity:0.7;">Hong Kong</div>
-          </div>
-        </div>
         <p class="side-desc" style="margin-bottom:0;">
-          Drafts by Claude. Every story is human-reviewed and source-linked. <em style="font-family:var(--instrument);font-style:italic;color:var(--mark);">Always free.</em>
+          Edited &amp; written by <strong style="color:var(--bone);">Ken Chan</strong> in Hong Kong. Drafts assisted by Claude. Every story is human-reviewed and source-linked. <em style="font-family:var(--instrument);font-style:italic;color:var(--mark);">Always free.</em>
         </p>
       </div>
 
