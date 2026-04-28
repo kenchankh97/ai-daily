@@ -19,7 +19,7 @@ Each run should:
 9. Publish the LinkedIn post with:
 
    ```powershell
-   python scripts\linkedin_post.py --text-file linkedin-post.txt --image ai-daily-YYYYMMDD.png --title "Ken AI Daily YYYY-MM-DD"
+   python scripts\linkedin_post_ugc.py --text-file linkedin-post.txt --image ai-daily-YYYYMMDD.png --title "Ken AI Daily YYYY-MM-DD"
    ```
 
 ## Local Secrets
