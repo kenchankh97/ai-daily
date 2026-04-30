@@ -27,10 +27,18 @@ Do not use `scripts\linkedin_post.py` for the newsletter image post. The `/rest/
 ## Visual Quality Requirements
 
 - Generate the LinkedIn/site PNG at `2400x1350` with large type, high contrast, and readable Traditional Chinese. Avoid `1200x675` as the source image because LinkedIn compression can make it look soft.
+- The daily summary image under `The Brief` must render at its natural 16:9 ratio. Keep or add the CSS guard for `.post-visual img`: `display:block`, `width:100%`, `height:auto !important`, `aspect-ratio:16/9`, and `object-fit:contain`. Do not rely only on the image `width` and `height` attributes.
 - Use a known CJK font such as `C:/Windows/Fonts/msjh.ttc` or `C:/Windows/Fonts/msyh.ttc` when rendering with Pillow.
 - Guard against Windows console encoding damage. If a generation script is sent through PowerShell, use UTF-8 files or Unicode escapes for Chinese and emoji, then validate that the PNG and HTML do not contain replacement artifacts where Chinese or emoji should appear.
 - The six inline SVG infographic sections should not all reuse the same bar-card template. Vary the visual metaphor by story type, for example: agent stack, connector grid, policy matrix, cyber alert, workflow map, impact ladder, market map, compute pipeline, regulation timeline, or robotics flow.
 - Validate the PNG visually before publishing and verify `index.html` uses `width="2400" height="1350"` for today's image.
+- Before commit and especially before LinkedIn publishing, verify the live/site image slot is not vertically stretched: the displayed Brief image ratio should be close to `1.7778` (`16 / 9`). If browser tooling is unavailable, at minimum verify the `.post-visual img` CSS guard is present and the PNG dimensions are exactly `2400x1350`.
+
+## Recurring Failure Lessons
+
+- Do not stop after generating files. The run is incomplete until the commit is pushed and the LinkedIn UGC helper returns a share URN, or a clear blocker is reported.
+- If `git add` fails with `Unable to create .git/index.lock: Permission denied`, check for `.git/index.lock`, verify `git status --short`, and retry after the runtime permissions are available. Do not run LinkedIn publishing until the site commit is pushed.
+- A successful LinkedIn API response is not enough if the site is visually broken. Check the generated image, the Brief image presentation in `index.html`, and the LinkedIn post shape before declaring success.
 
 ## Local Secrets
 
@@ -92,6 +100,7 @@ Before publishing:
 - There are no replacement artifacts such as question marks where Chinese or emoji should appear.
 - Today's PNG exists, is `2400x1350`, has meaningful file size, and renders readable Chinese text.
 - Today's `index.html` block contains six story cards and references today's PNG.
+- Today's Brief summary image has the `.post-visual img` aspect-ratio guard and cannot stretch vertically.
 - Today's `index.html` block contains six visually varied inline SVG infographic sections.
 - All six story source links return 200 or have a clearly justified accessible replacement source.
 
