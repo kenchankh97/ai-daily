@@ -56,23 +56,25 @@ LINKEDIN_API_VERSION=202604
 
 ## LinkedIn Copy Style
 
-Use this structure, including one blank line between each numbered story pair:
+Use this SEO-enhanced LinkedIn structure, including one blank line between each numbered story pair:
 
 ```text
-Ken AI Daily — Tuesday, April 28, 2026 🤖
-Ken AI 日報 | 每日雙語 AI 精選
+AI News Daily Brief — Tuesday, April 28, 2026 🤖
+Ken AI Daily | AI新聞日報 | 每日雙語 AI 精選
+
+Ken AI Daily — bilingual AI news briefing covering AI models, AI agents, AI chips, AI infrastructure, AI funding, AI research, and AI regulation.
 
 AI is no longer just a model race — it is becoming a race for chips, energy, distribution, and regulation.
 
 今日焦點 / Today’s focus:
 One sharp editorial sentence summarizing the theme connecting today's six stories.
 
-Today's top stories:
+Today's top AI stories:
 
-1️⃣ 🤖 [Models] English headline
+1️⃣ 🤖 [AI Models] English headline
    Traditional Chinese headline
 
-2️⃣ 💰 [Funding] English headline
+2️⃣ 💰 [AI Funding] English headline
    Traditional Chinese headline
 
 ...
@@ -86,9 +88,11 @@ One forward-looking takeaway about what to monitor next.
 Question for the week:
 One short engagement question that invites comments without sounding clickbait.
 
+Topics: AI models, AI agents, AI chips, AI infrastructure, AI regulation, AI funding, AI research, enterprise AI
+
 Full digest 👉 https://kenchankh97.github.io/ai-daily/
 
-#AINews #KenAIDaily #ArtificialIntelligence #AI #科技新聞 #AI日報
+#AINews #ArtificialIntelligence #AI #AIAgents #AIInfrastructure #科技新聞 #AI日報
 ```
 
 ## Validation Checklist
