@@ -11,22 +11,24 @@ Each run should:
 1. Find the top 6 AI stories published or materially updated in the last 24 hours.
 2. Prefer official sources, primary research, regulator/policy sources, and major reputable media.
 3. Update `index.html` in the existing editorial style, with English first and Traditional Chinese second.
-4. Generate a daily infographic PNG named `ai-daily-YYYYMMDD.png`.
-5. Keep the visual style consistent with existing `ai-daily-*.png` images, but generate the source PNG at `2400x1350` so LinkedIn compression remains sharp. Reference the same dimensions in `index.html`.
-6. Create `linkedin-post.txt` with the bilingual LinkedIn post copy in the exact style below.
-7. Validate the site locally enough to catch broken HTML, missing images, missing bilingual fields, malformed Unicode, missing LinkedIn story lines, soft image output, and repetitive infographics.
-8. Commit and push changes to `main`.
-9. Publish the LinkedIn post with the UGC helper:
+4. Generate the site daily summary PNG named `ai-daily-YYYYMMDD.png`.
+5. Generate a separate LinkedIn attachment PNG named `ai-daily-YYYYMMDD-top-news.png` based on the #1 ranked story's infographic, not the daily summary image.
+6. Keep both PNGs at `2400x1350` so site display and LinkedIn compression remain sharp. Reference `ai-daily-YYYYMMDD.png` with the same dimensions in `index.html`.
+7. Create `linkedin-post.txt` with the bilingual LinkedIn post copy in the exact style below.
+8. Validate the site locally enough to catch broken HTML, missing images, missing bilingual fields, malformed Unicode, missing LinkedIn story lines, soft image output, wrong LinkedIn attachment, and repetitive infographics.
+9. Commit and push changes to `main`.
+10. Publish the LinkedIn post with the UGC helper using the top-news PNG:
 
    ```powershell
-   python scripts\linkedin_post_ugc.py --text-file linkedin-post.txt --image ai-daily-YYYYMMDD.png --title "Ken AI Daily YYYY-MM-DD"
+   python scripts\linkedin_post_ugc.py --text-file linkedin-post.txt --image ai-daily-YYYYMMDD-top-news.png --title "Ken AI Daily YYYY-MM-DD"
    ```
 
 Do not use `scripts\linkedin_post.py` for the newsletter image post. The `/rest/posts` flow returned `201 Created` but rendered only the first visible commentary lines in LinkedIn. Use `scripts\linkedin_post_ugc.py`, which publishes through `shareCommentary.text`.
 
 ## Visual Quality Requirements
 
-- Generate the LinkedIn/site PNG at `2400x1350` with large type, high contrast, and readable Traditional Chinese. Avoid `1200x675` as the source image because LinkedIn compression can make it look soft.
+- Generate the site summary PNG at `2400x1350` with large type, high contrast, and readable Traditional Chinese. Avoid `1200x675` as the source image because LinkedIn compression can make it look soft.
+- Generate the LinkedIn attachment as a separate `ai-daily-YYYYMMDD-top-news.png` image at `2400x1350`. It should feature the #1 ranked story's headline, Traditional Chinese headline, source, category, and the same visual metaphor as that story's inline infographic. Do not attach the daily summary image to LinkedIn.
 - The daily summary image under `The Brief` must render at its natural 16:9 ratio. Keep or add the CSS guard for `.post-visual img`: `display:block`, `width:100%`, `height:auto !important`, `aspect-ratio:16/9`, and `object-fit:contain`. Do not rely only on the image `width` and `height` attributes.
 - Use a known CJK font such as `C:/Windows/Fonts/msjh.ttc` or `C:/Windows/Fonts/msyh.ttc` when rendering with Pillow.
 - Guard against Windows console encoding damage. If a generation script is sent through PowerShell, use UTF-8 files or Unicode escapes for Chinese and emoji, then validate that the PNG and HTML do not contain replacement artifacts where Chinese or emoji should appear.
@@ -38,7 +40,7 @@ Do not use `scripts\linkedin_post.py` for the newsletter image post. The `/rest/
 
 - Do not stop after generating files. The run is incomplete until the commit is pushed and the LinkedIn UGC helper returns a share URN, or a clear blocker is reported.
 - If `git add` fails with `Unable to create .git/index.lock: Permission denied`, check for `.git/index.lock`, verify `git status --short`, and retry after the runtime permissions are available. Do not run LinkedIn publishing until the site commit is pushed.
-- A successful LinkedIn API response is not enough if the site is visually broken. Check the generated image, the Brief image presentation in `index.html`, and the LinkedIn post shape before declaring success.
+- A successful LinkedIn API response is not enough if the site is visually broken or the wrong image was attached. Check the site summary image, the Brief image presentation in `index.html`, the top-news LinkedIn attachment, and the LinkedIn post shape before declaring success.
 
 ## Local Secrets
 
@@ -98,7 +100,8 @@ Before publishing:
 - The post includes `今日焦點 / Today’s focus:` and `Why it matters:` sections.
 - There is one blank line between each numbered story pair.
 - There are no replacement artifacts such as question marks where Chinese or emoji should appear.
-- Today's PNG exists, is `2400x1350`, has meaningful file size, and renders readable Chinese text.
+- Today's site summary PNG exists, is `2400x1350`, has meaningful file size, and renders readable Chinese text.
+- Today's LinkedIn top-news PNG exists as `ai-daily-YYYYMMDD-top-news.png`, is `2400x1350`, has meaningful file size, renders readable Chinese text, and is visually focused on story #1 rather than the six-story summary.
 - Today's `index.html` block contains six story cards and references today's PNG.
 - Today's Brief summary image has the `.post-visual img` aspect-ratio guard and cannot stretch vertically.
 - Today's `index.html` block contains six visually varied inline SVG infographic sections.
