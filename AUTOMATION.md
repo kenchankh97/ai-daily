@@ -16,14 +16,25 @@ Each run should:
 6. Keep both PNGs at `2400x1350` so site display and LinkedIn compression remain sharp. Reference `ai-daily-YYYYMMDD.png` with the same dimensions in `index.html`.
 7. Create `linkedin-post.txt` with the bilingual LinkedIn post copy in the exact style below.
 8. Validate the site locally enough to catch broken HTML, missing images, missing bilingual fields, malformed Unicode, missing LinkedIn story lines, soft image output, wrong LinkedIn attachment, and repetitive infographics.
-9. Commit and push changes to `main`.
-10. Publish the LinkedIn post with the UGC helper using the top-news PNG:
+9. Run the Git preflight, then commit and push changes to `main`.
+10. Verify the live GitHub Pages site contains today's `post-visual-YYYYMMDD` marker and `ai-daily-YYYYMMDD.png` reference.
+11. Publish the LinkedIn post with the UGC helper using the top-news PNG:
 
    ```powershell
    python scripts\linkedin_post_ugc.py --text-file linkedin-post.txt --image ai-daily-YYYYMMDD-top-news.png --title "Ken AI Daily YYYY-MM-DD"
    ```
 
 Do not use `scripts\linkedin_post.py` for the newsletter image post. The `/rest/posts` flow returned `201 Created` but rendered only the first visible commentary lines in LinkedIn. Use `scripts\linkedin_post_ugc.py`, which publishes through `shareCommentary.text`.
+
+## Publishing Gates
+
+This automation must finish the publishing pipeline in order. Do not publish LinkedIn until GitHub is actually pushed and GitHub Pages is visibly updated.
+
+1. Local validation gate: today's block has six stories, six source links, bilingual text, today's PNG reference, both PNGs exist at `2400x1350`, the `.post-visual img` CSS guard is present, and `linkedin-post.txt` has the required SEO sections and all six numbered story pairs.
+2. Git preflight gate: run `Test-Path .git\index.lock`, verify `.git` is writable with a harmless temporary file, and inspect `git status --short --untracked-files=all`.
+3. GitHub gate: run `git add`, `git commit -m "Daily AI brief - YYYY-MM-DD"`, and `git push origin main`. If `git add` fails with `.git/index.lock: Permission denied`, check whether the lock exists, test `.git` writability, wait briefly, retry once, and report a blocker if `.git` still cannot be written. Never call the run complete at this point.
+4. Pages gate: poll `https://kenchankh97.github.io/ai-daily/` until it contains today's issue marker and `ai-daily-YYYYMMDD.png`. If Pages remains stale, report Pages propagation as the blocker and do not publish LinkedIn yet.
+5. LinkedIn gate: publish only with `scripts\linkedin_post_ugc.py` and `--image ai-daily-YYYYMMDD-top-news.png`. A REST/API success response is not enough; validate the rendered post shape when possible and report any validation caveat.
 
 ## Visual Quality Requirements
 
