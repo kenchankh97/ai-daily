@@ -51,6 +51,7 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 
 - Do not stop after generating files. The run is incomplete until the commit is pushed and the LinkedIn UGC helper returns a share URN, or a clear blocker is reported.
 - If `git add` fails with `Unable to create .git/index.lock: Permission denied`, check for `.git/index.lock`, verify `git status --short`, and retry after the runtime permissions are available. Do not run LinkedIn publishing until the site commit is pushed.
+- If `.git/index.lock` is absent but a harmless `.git` write test fails with `Access denied`, diagnose this as a Windows ACL/runtime-token issue rather than a stale lock. Run `whoami` and `icacls .git`; explicit `DENY` entries for sandbox-related SIDs can override later allow rules even when `KENCHAN\chank` has full control. Wait briefly and retry once. If the write test later succeeds, continue from Git preflight without regenerating the issue; if it still fails, stop at the Git gate and report the ACL/runtime-token blocker.
 - A successful LinkedIn API response is not enough if the site is visually broken or the wrong image was attached. Check the site summary image, the Brief image presentation in `index.html`, the top-news LinkedIn attachment, and the LinkedIn post shape before declaring success.
 
 ## Local Secrets
