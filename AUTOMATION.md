@@ -6,6 +6,8 @@ This repo is published by GitHub Pages at https://kenchankh97.github.io/ai-daily
 
 The scheduled Codex job runs every day at 08:00 Hong Kong time.
 
+The active scheduled prompt should stay compact. This file and the local `ken-ai-daily-publisher` skill are the canonical detailed runbook; the scheduled job should reference them rather than duplicating the full LinkedIn template, validation checklist, and recurring lessons inline.
+
 Each run should:
 
 1. Find the top 6 AI stories published or materially updated in the last 24 hours.
@@ -35,6 +37,13 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 3. GitHub gate: run `git add`, `git commit -m "Daily AI brief - YYYY-MM-DD"`, and `git push origin main`. If `git add` fails with `.git/index.lock: Permission denied`, check whether the lock exists, test `.git` writability, wait briefly, retry once, and report a blocker if `.git` still cannot be written. Never call the run complete at this point.
 4. Pages gate: poll `https://kenchankh97.github.io/ai-daily/` until it contains today's issue marker and `ai-daily-YYYYMMDD.png`. If Pages remains stale, report Pages propagation as the blocker and do not publish LinkedIn yet.
 5. LinkedIn gate: publish only with `scripts\linkedin_post_ugc.py` and `--image ai-daily-YYYYMMDD-top-news.png`. A REST/API success response is not enough; validate the rendered post shape when possible and report any validation caveat.
+
+## Token Budget Rules
+
+- Read automation memory first, but keep only current blocker-relevant lessons in working context.
+- Use targeted `rg`, `Select-String`, and line reads instead of repeatedly loading all of `index.html`, `automation.toml`, or long memory history.
+- Treat repeated checks as named gates in progress updates and summaries. Expand the full checklist only when a gate fails.
+- Keep recurring failure lessons concise. Prefer stable labels such as `GIT_ACL_DENY_NO_LOCK` for: `.git/index.lock` absent, harmless `.git` write denied, and `icacls .git` showing explicit deny entries.
 
 ## Visual Quality Requirements
 
