@@ -43,7 +43,7 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 - Read automation memory first, but keep only current blocker-relevant lessons in working context.
 - Use targeted `rg`, `Select-String`, and line reads instead of repeatedly loading all of `index.html`, `automation.toml`, or long memory history.
 - Treat repeated checks as named gates in progress updates and summaries. Expand the full checklist only when a gate fails.
-- Keep recurring failure lessons concise. Prefer stable labels such as `GIT_ACL_DENY_NO_LOCK` for: `.git/index.lock` absent, harmless `.git` write denied, and `icacls .git` showing explicit deny entries.
+- Keep recurring failure lessons concise. Prefer stable labels such as `GIT_ACL_DENY_NO_LOCK` for: `.git/index.lock` absent, harmless `.git` write denied, `whoami` showing `kenchan\codexsandboxoffline`, and `icacls .git` showing explicit sandbox SID deny entries.
 
 ## Visual Quality Requirements
 
@@ -61,6 +61,7 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 - Do not stop after generating files. The run is incomplete until the commit is pushed and the LinkedIn UGC helper returns a share URN, or a clear blocker is reported.
 - If `git add` fails with `Unable to create .git/index.lock: Permission denied`, check for `.git/index.lock`, verify `git status --short`, and retry after the runtime permissions are available. Do not run LinkedIn publishing until the site commit is pushed.
 - If `.git/index.lock` is absent but a harmless `.git` write test fails with `Access denied`, diagnose this as a Windows ACL/runtime-token issue rather than a stale lock. Run `whoami` and `icacls .git`; explicit `DENY` entries for sandbox-related SIDs can override later allow rules even when `KENCHAN\chank` has full control. Wait briefly and retry once. If the write test later succeeds, continue from Git preflight without regenerating the issue; if it still fails, stop at the Git gate and report the ACL/runtime-token blocker.
+- If a later retry runs as `kenchan\chank`, continue from the prepared files instead of regenerating content. Re-run Git preflight, commit and push, then poll GitHub Pages with a cache-busting query until today's marker and PNG reference are live before starting LinkedIn.
 - A successful LinkedIn API response is not enough if the site is visually broken or the wrong image was attached. Check the site summary image, the Brief image presentation in `index.html`, the top-news LinkedIn attachment, and the LinkedIn post shape before declaring success.
 
 ## Local Secrets
