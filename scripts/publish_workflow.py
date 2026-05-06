@@ -107,6 +107,11 @@ def issue_files(date_id: str) -> IssueFiles:
 
 def validate_local(files: IssueFiles) -> dict[str, Any]:
     errors: list[str] = []
+    if not INDEX_PATH.exists():
+        return {"ok": False, "errors": ["missing index.html"]}
+    if not LINKEDIN_PATH.exists():
+        return {"ok": False, "errors": [f"missing {LINKEDIN_PATH.name}"]}
+
     content = INDEX_PATH.read_text(encoding="utf-8")
     linkedin = LINKEDIN_PATH.read_text(encoding="utf-8")
 
