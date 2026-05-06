@@ -2,6 +2,8 @@
 
 This repo is published by GitHub Pages at https://kenchankh97.github.io/ai-daily/.
 
+The scheduled automations should run from a dedicated non-OneDrive local clone, not the working copy under `OneDrive`. Use a stable automation clone such as `C:\Users\chank\.codex\workspaces\ai-daily-publisher`.
+
 ## Daily Job Contract
 
 The scheduled Codex job runs every day at 08:00 Hong Kong time.
@@ -18,9 +20,15 @@ Each run should:
 6. Keep both PNGs at `2400x1350` so site display and LinkedIn compression remain sharp. Reference `ai-daily-YYYYMMDD.png` with the same dimensions in `index.html`.
 7. Create `linkedin-post.txt` with the bilingual LinkedIn post copy in the exact style below.
 8. Validate the site locally enough to catch broken HTML, missing images, missing bilingual fields, malformed Unicode, missing LinkedIn story lines, soft image output, wrong LinkedIn attachment, and repetitive infographics.
-9. Run the Git preflight, then commit and push changes to `main`.
-10. Verify the live GitHub Pages site contains today's `post-visual-YYYYMMDD` marker and `ai-daily-YYYYMMDD.png` reference.
-11. Publish the LinkedIn post with the UGC helper using the top-news PNG:
+9. Run the durable publish/resume helper from the repo root so Git preflight, commit/push, Pages verification, LinkedIn publishing, and checkpoint state all happen through one path:
+
+   ```powershell
+   python scripts\publish_workflow.py --date YYYYMMDD --title "Ken AI Daily YYYY-MM-DD"
+   ```
+
+10. The helper writes `.publish-state.json` locally. If the Git or Pages gate fails, keep the prepared files and the state file intact so a later automation can resume from the publish gate instead of regenerating the issue.
+11. Verify the live GitHub Pages site contains today's `post-visual-YYYYMMDD` marker and `ai-daily-YYYYMMDD.png` reference.
+12. Publish the LinkedIn post with the UGC helper using the top-news PNG:
 
    ```powershell
    python scripts\linkedin_post_ugc.py --text-file linkedin-post.txt --image ai-daily-YYYYMMDD-top-news.png --title "Ken AI Daily YYYY-MM-DD"
@@ -37,6 +45,13 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 3. GitHub gate: run `git add`, `git commit -m "Daily AI brief - YYYY-MM-DD"`, and `git push origin main`. If `git add` fails with `.git/index.lock: Permission denied`, check whether the lock exists, test `.git` writability, wait briefly, retry once, and report a blocker if `.git` still cannot be written. Never call the run complete at this point.
 4. Pages gate: poll `https://kenchankh97.github.io/ai-daily/` until it contains today's issue marker and `ai-daily-YYYYMMDD.png`. If Pages remains stale, report Pages propagation as the blocker and do not publish LinkedIn yet.
 5. LinkedIn gate: publish only with `scripts\linkedin_post_ugc.py` and `--image ai-daily-YYYYMMDD-top-news.png`. A REST/API success response is not enough; validate the rendered post shape when possible and report any validation caveat.
+
+## Durable Recovery
+
+- The automation clone must be task-exclusive so `git add -A` inside `scripts\publish_workflow.py` only captures Ken AI Daily changes.
+- `.publish-state.json` is an ignored local checkpoint file. Keep it across retries and let later scheduled runs reuse it.
+- Add a second scheduled automation after the main 08:00 job that only resumes publish from the same durable clone. It should not regenerate content if today's issue files already exist and `.publish-state.json` shows incomplete publish state.
+- If the first run fails with `GIT_ACL_DENY_NO_LOCK`, the later resume automation should rerun `python scripts\publish_workflow.py --date YYYYMMDD --title "Ken AI Daily YYYY-MM-DD"` from the prepared clone once the runtime identity returns to `kenchan\chank`.
 
 ## Token Budget Rules
 
