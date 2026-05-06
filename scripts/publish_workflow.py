@@ -274,16 +274,15 @@ def validate_linkedin(share_urn: str, dry_run: bool) -> dict[str, Any]:
 
 def bootstrap_state(files: IssueFiles, title: str) -> dict[str, Any]:
     state = load_state()
-    state.setdefault("issue_date", files.date_id)
-    state.setdefault("title", title)
-    state.setdefault(
-        "artifacts",
-        {
-            "summary_png": files.summary_png.name,
-            "top_news_png": files.top_news_png.name,
-            "linkedin_text": LINKEDIN_PATH.name,
-        },
-    )
+    if state.get("issue_date") != files.date_id:
+        state = {}
+    state["issue_date"] = files.date_id
+    state["title"] = title
+    state["artifacts"] = {
+        "summary_png": files.summary_png.name,
+        "top_news_png": files.top_news_png.name,
+        "linkedin_text": LINKEDIN_PATH.name,
+    }
     state.setdefault("status", "created")
     return state
 
@@ -312,6 +311,8 @@ def run_workflow(date_id: str, title: str, dry_run: bool) -> dict[str, Any]:
         }
         state["pages"] = verify_pages(files, dry_run)
         share_urn = state.get("linkedin", {}).get("share_urn")
+        if share_urn == "dry-run":
+            share_urn = ""
         if not share_urn:
             linkedin = publish_linkedin(files, title, dry_run)
             state["linkedin"] = linkedin
