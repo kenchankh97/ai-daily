@@ -14,136 +14,152 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = ROOT / "index.html"
 LINKEDIN_PATH = ROOT / "linkedin-post.txt"
-SUMMARY_PNG = ROOT / "ai-daily-20260505.png"
-TOP_NEWS_PNG = ROOT / "ai-daily-20260505-top-news.png"
+SUMMARY_PNG = ROOT / "ai-daily-20260506.png"
+TOP_NEWS_PNG = ROOT / "ai-daily-20260506-top-news.png"
 
-DATE_ID = "20260505"
-DISPLAY_DATE = "May 5, 2026"
-DAY_NAME = "Tuesday"
+DATE_ID = "20260506"
+DISPLAY_DATE = "May 6, 2026"
+DAY_NAME = "Wednesday"
 
 FONT_CJK = Path("C:/Windows/Fonts/msjh.ttc")
 FONT_LATIN_BOLD = Path("C:/Windows/Fonts/segoeuib.ttf")
 FONT_LATIN = Path("C:/Windows/Fonts/segoeui.ttf")
+
 
 STORIES = [
     {
         "rank": 1,
         "category": "AI Regulation",
         "color": "#f59e0b",
-        "emoji": "🏛️",
-        "source": "Reuters / NYT",
-        "source_label": "Reuters / Investing ↗",
-        "source_url": "https://www.investing.com/news/stock-market-news/white-house-considers-vetting-ai-models-before-they-are-released-nyt-reports-4657192",
-        "headline_en": "White House Weighs Pre-Release Vetting for New AI Models",
-        "headline_zh": "白宮考慮要求新 AI 模型在發布前接受審查",
-        "body_en": "Reuters reported that the White House is considering government oversight for new AI models, including an executive-order working group that would bring together tech executives and officials to examine oversight procedures. Even before any rule is finalized, the signal is clear: frontier-model policy may move upstream from harms to pre-release controls.",
-        "body_zh": "路透引述《紐約時報》報道，白宮正考慮對新 AI 模型引入政府監督，並可能透過行政命令成立工作小組，集合科技公司高層與官員研究審查程序。即使政策尚未定案，訊號已很清楚：前沿模型監管可能從事後追責，轉向發布前把關。",
-        "svg_title": "White House Weighs Pre-Release Vetting for New AI Models",
-        "svg_source": "Reuters / NYT",
+        "emoji": "\U0001f6e1\ufe0f",
+        "source": "NIST / CAISI",
+        "source_label": "NIST \u2192",
+        "source_url": "https://www.nist.gov/news-events/news/2026/05/caisi-signs-agreements-regarding-frontier-ai-national-security-testing",
+        "headline_en": "U.S. CAISI Expands Frontier AI Pre-Deployment Testing With Google, Microsoft and xAI",
+        "headline_zh": "\u7f8e\u570b CAISI \u64f4\u5927\u524d\u6cbf AI \u767c\u5e03\u524d\u6e2c\u8a66\uff0c\u6db5\u84cb Google\u3001Microsoft \u8207 xAI",
+        "body_en": "NIST said CAISI signed new agreements with Google DeepMind, Microsoft and xAI to run pre-deployment evaluations, targeted research and classified-environment testing on frontier models. The move pushes AI oversight earlier in the product cycle and makes government stress testing part of the release path for top labs.",
+        "body_zh": "NIST \u8868\u793a\uff0cCAISI \u5df2\u8207 Google DeepMind\u3001Microsoft \u53ca xAI \u7c3d\u7f72\u65b0\u5354\u8b70\uff0c\u5c07\u5c0d\u524d\u6cbf\u6a21\u578b\u9032\u884c\u767c\u5e03\u524d\u8a55\u4f30\u3001\u91dd\u5c0d\u6027\u7814\u7a76\u8207\u53ef\u65bc\u6a5f\u5bc6\u74b0\u5883\u57f7\u884c\u7684\u6e2c\u8a66\u3002\u9019\u4ee3\u8868 AI \u76e3\u7ba1\u6b63\u5f80\u66f4\u524d\u7aef\u79fb\u52d5\uff0c\u653f\u5e9c\u58d3\u529b\u6e2c\u8a66\u6b63\u6210\u70ba\u9802\u5c16 AI \u5be6\u9a57\u5ba4\u7684\u767c\u5e03\u6d41\u7a0b\u4e00\u90e8\u5206\u3002",
+        "svg_title": "CAISI Expands Frontier AI Pre-Deployment Testing",
+        "svg_source": "NIST / CAISI",
         "variant": "policy_gate",
+        "top_label": "Top News \u00b7 #1 \u00b7 AI Regulation",
+        "top_source": "Source: NIST / CAISI \u00b7 May 5, 2026",
+        "top_bullets": [
+            "New agreements cover Google DeepMind, Microsoft and xAI.",
+            "CAISI says it has already completed more than 40 model evaluations.",
+            "Testing can happen before release, after deployment and in classified settings.",
+        ],
+        "top_nodes": [
+            ("Labs", "frontier models"),
+            ("CAISI", "40+ evals"),
+            ("Deploy", "security checks"),
+        ],
     },
     {
         "rank": 2,
-        "category": "Enterprise AI",
-        "color": "#14b8a6",
-        "emoji": "🤝",
-        "source": "Anthropic",
-        "source_label": "Anthropic ↗",
-        "source_url": "https://www.anthropic.com/news/enterprise-ai-services-company",
-        "headline_en": "Anthropic Launches Enterprise AI Services Company With Wall Street Backers",
-        "headline_zh": "Anthropic 聯手華爾街資本成立企業 AI 服務公司",
-        "body_en": "Anthropic, Blackstone, Hellman & Friedman, and Goldman Sachs announced a new AI services company that will bring Claude into the core operations of mid-sized businesses, with Anthropic engineers embedded alongside the delivery team. The move shows frontier labs are pushing beyond APIs into service-heavy enterprise rollouts.",
-        "body_zh": "Anthropic 與 Blackstone、Hellman & Friedman 及 Goldman Sachs 宣布成立新的 AI 服務公司，協助中型企業把 Claude 部署到核心營運流程，並由 Anthropic 工程師深度參與交付。這代表前沿 AI 公司正從單純賣模型，走向高接觸度的企業導入服務。",
-        "svg_title": "Anthropic Launches Enterprise AI Services Company With Wall Street Backers",
-        "svg_source": "Anthropic",
-        "variant": "enterprise_chain",
+        "category": "AI Models",
+        "color": "#ef4444",
+        "emoji": "\U0001f916",
+        "source": "OpenAI",
+        "source_label": "OpenAI \u2192",
+        "source_url": "https://openai.com/index/gpt-5-5-instant/",
+        "headline_en": "OpenAI Makes GPT-5.5 Instant the New Default ChatGPT Model",
+        "headline_zh": "OpenAI \u5c07 GPT-5.5 Instant \u5347\u7d1a\u70ba ChatGPT \u65b0\u9810\u8a2d\u6a21\u578b",
+        "body_en": "OpenAI said GPT-5.5 Instant is now the default ChatGPT model for everyone, with clearer responses, stronger image and STEM performance, and better web-search judgment. The company said the model produced 52.5% fewer hallucinated claims than GPT-5.3 Instant on high-stakes prompts.",
+        "body_zh": "OpenAI \u8868\u793a GPT-5.5 Instant \u5df2\u6210\u70ba\u6240\u6709\u4eba\u7684 ChatGPT \u9810\u8a2d\u6a21\u578b\uff0c\u5f37\u8abf\u5176\u56de\u7b54\u66f4\u6e05\u6670\uff0c\u5728\u5716\u50cf\u8207 STEM \u4efb\u52d9\u7684\u8868\u73fe\u66f4\u5f37\uff0c\u4e14\u66f4\u64c5\u65bc\u5224\u65b7\u4f55\u6642\u555f\u7528\u7db2\u8def\u641c\u5c0b\u3002\u516c\u53f8\u4e26\u6307\u51fa\uff0c\u5c0d\u65bc\u9ad8\u98a8\u96aa\u63d0\u793a\uff0c\u5b83\u6bd4 GPT-5.3 Instant \u6e1b\u5c11 52.5% \u7684\u5e7b\u89ba\u5f0f\u932f\u8aa4\u6558\u8ff0\u3002",
+        "svg_title": "GPT-5.5 Instant Becomes the New Default ChatGPT Model",
+        "svg_source": "OpenAI",
+        "variant": "model_upgrade",
     },
     {
         "rank": 3,
-        "category": "AI Funding",
-        "color": "#22c55e",
-        "emoji": "💼",
-        "source": "Bloomberg / Investing.com",
-        "source_label": "Bloomberg / Investing ↗",
-        "source_url": "https://m.za.investing.com/news/stock-market-news/openai-secures-4-billion-for-new-joint-venture-with-pe-giants-bloomberg-reports-4250177?ampMode=1",
-        "headline_en": "OpenAI Reportedly Secures More Than $4B for The Deployment Company",
-        "headline_zh": "OpenAI 據報為 The Deployment Company 籌得逾 40 億美元",
-        "body_en": "According to Bloomberg, OpenAI has secured more than $4 billion for a new venture called The Deployment Company, valuing the entity at $10 billion while OpenAI keeps majority ownership and control. The financing suggests the next AI capital wave is flowing into rollout capacity, not just frontier research.",
-        "body_zh": "據 Bloomberg 報道，OpenAI 已為名為 The Deployment Company 的新合資平台籌得逾 40 億美元，該實體估值約 100 億美元，且 OpenAI 仍保有多數股權與控制權。這顯示下一波 AI 資本正流向企業部署能力，而不只是前沿研究本身。",
-        "svg_title": "OpenAI Reportedly Secures More Than $4B for The Deployment Company",
-        "svg_source": "Bloomberg / Investing.com",
-        "variant": "funding_stack",
+        "category": "AI Infrastructure",
+        "color": "#8b5cf6",
+        "emoji": "\u2699\ufe0f",
+        "source": "Reuters / The Information",
+        "source_label": "Reuters / Investing \u2192",
+        "source_url": "https://m.investing.com/news/stock-market-news/anthropic-commits-to-spending-200-billion-on-googles-cloud-and-chips-the-information-reports-4661029?ampMode=1",
+        "headline_en": "Anthropic Reportedly Commits $200B to Google Cloud and TPU Capacity",
+        "headline_zh": "Anthropic \u64da\u5831\u627f\u8afe\u5411 Google Cloud \u8207 TPU \u7b97\u529b\u6295\u5165 2,000 \u5104\u7f8e\u5143",
+        "body_en": "Reuters reported that Anthropic committed to spend $200 billion with Google Cloud over five years, building on a separate April deal for multiple gigawatts of TPU capacity starting in 2027. The report shows how AI competition is hardening around long-duration compute contracts, not just better models.",
+        "body_zh": "\u8def\u900f\u5831\u9053\uff0cAnthropic \u5df2\u627f\u8afe\u5728\u4e94\u5e74\u5167\u5411 Google Cloud \u652f\u51fa 2,000 \u5104\u7f8e\u5143\uff0c\u4e26\u5728\u6b64\u524d\u56db\u6708\u9054\u6210\u53e6\u4e00\u9805\u591a\u500b GW TPU \u7b97\u529b\u5354\u8b70\uff0c\u9810\u8a08 2027 \u5e74\u8d77\u4e0a\u7dda\u3002\u9019\u51f8\u986f AI \u7af6\u722d\u6b63\u5728\u5f9e\u55ae\u7d14\u62fc\u6a21\u578b\uff0c\u8f49\u5411\u62fc\u9577\u671f\u7b97\u529b\u5408\u7d04\u8207\u4f9b\u61c9\u9396\u638c\u63a7\u529b\u3002",
+        "svg_title": "Anthropic Reportedly Commits $200B to Google Cloud",
+        "svg_source": "Reuters / The Information",
+        "variant": "compute_pipeline",
     },
     {
         "rank": 4,
-        "category": "AI Chips",
-        "color": "#6366f1",
-        "emoji": "🧠",
-        "source": "Cerebras",
-        "source_label": "Cerebras ↗",
-        "source_url": "https://www.cerebras.ai/press-release/cerebras-systems-announces-launch-of-initial-public-offering",
-        "headline_en": "Cerebras Starts IPO Roadshow as AI Inference Demand Lifts Chip Ambitions",
-        "headline_zh": "Cerebras 啟動 IPO 路演，AI 推理需求推高晶片雄心",
-        "body_en": "Cerebras said it plans to offer 28 million shares at $115 to $125 each, with an additional 4.2 million share option for underwriters. That puts one of AI's most visible inference-chip challengers in front of public-market investors just as compute demand shifts from training toward serving models at scale.",
-        "body_zh": "Cerebras 表示計劃以每股 115 至 125 美元發售 2,800 萬股，另設 420 萬股超額配售選擇權。這讓這家最受矚目的 AI 推理晶片挑戰者，在市場需求由訓練轉向大規模推理服務之際，正式接受公開市場定價。",
-        "svg_title": "Cerebras Starts IPO Roadshow as AI Inference Demand Lifts Chip Ambitions",
-        "svg_source": "Cerebras",
-        "variant": "chip_market",
+        "category": "AI Developer Tools",
+        "color": "#22c55e",
+        "emoji": "\U0001f50e",
+        "source": "Google DeepMind",
+        "source_label": "Google \u2192",
+        "source_url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/",
+        "headline_en": "Google Makes Gemini File Search Multimodal With Metadata Filters and Page Citations",
+        "headline_zh": "Google \u70ba Gemini File Search \u52a0\u5165\u591a\u6a21\u614b\u3001\u5f8c\u8a2d\u8cc7\u6599\u7be9\u9078\u8207\u9801\u9762\u5f15\u7528",
+        "body_en": "Google said Gemini API File Search now supports multimodal retrieval, custom metadata filtering and page-level citations for verifiable RAG. That matters because developers are no longer just querying text chunks; they are building grounded agent systems across mixed image and document corpora.",
+        "body_zh": "Google \u8868\u793a\uff0cGemini API File Search \u73fe\u5df2\u652f\u63f4\u591a\u6a21\u614b\u6aa2\u7d22\u3001\u81ea\u8a02\u5f8c\u8a2d\u8cc7\u6599\u7be9\u9078\uff0c\u4ee5\u53ca\u9801\u9762\u7d1a\u5f15\u7528\uff0c\u4ee5\u5efa\u7acb\u53ef\u9a57\u8b49\u7684 RAG \u7cfb\u7d71\u3002\u9019\u4ee3\u8868\u958b\u767c\u8005\u5df2\u4e0d\u53ea\u662f\u67e5\u8a62\u6587\u5b57\u7247\u6bb5\uff0c\u800c\u662f\u5728\u5716\u50cf\u8207\u6587\u4ef6\u6df7\u5408\u8a9e\u6599\u4e0a\u5efa\u7acb\u6709\u4f9d\u64da\u7684 agent \u7cfb\u7d71\u3002",
+        "svg_title": "Gemini File Search Goes Multimodal for Verifiable RAG",
+        "svg_source": "Google DeepMind",
+        "variant": "retrieval_grid",
     },
     {
         "rank": 5,
-        "category": "AI Infrastructure",
-        "color": "#a855f7",
-        "emoji": "🔌",
-        "source": "Reuters",
-        "source_label": "Reuters / Investing ↗",
-        "source_url": "https://www.investing.com/news/stock-market-news/lattice-semiconductor-to-buy-software-firm-ami-in-165-billion-deal-4657413",
-        "headline_en": "Lattice to Buy AMI for $1.65 Billion in AI Platform Management Push",
-        "headline_zh": "Lattice 擬以 16.5 億美元收購 AMI，強化 AI 平台管理布局",
-        "body_en": "Reuters reported that Lattice Semiconductor will acquire AI cloud and platform management firm AMI for $1.65 billion. The deal matters because chip and infrastructure companies are increasingly buying the software control layer that sits between silicon, servers and enterprise AI operations.",
-        "body_zh": "路透報道指出，Lattice Semiconductor 將以 16.5 億美元收購 AI 雲端與平台管理公司 AMI。這筆交易的重要性在於，晶片與基礎設施公司正愈來愈積極補上位於矽晶片、伺服器與企業 AI 營運之間的軟件控制層。",
-        "svg_title": "Lattice to Buy AMI for $1.65 Billion in AI Platform Management Push",
-        "svg_source": "Reuters",
-        "variant": "infra_grid",
+        "category": "AI Agents",
+        "color": "#14b8a6",
+        "emoji": "\U0001f9ed",
+        "source": "NVIDIA / ServiceNow",
+        "source_label": "NVIDIA \u2192",
+        "source_url": "https://blogs.nvidia.com/blog/servicenow-autonomous-ai-agents-enterprises/",
+        "headline_en": "NVIDIA and ServiceNow Unveil Governed Autonomous Agents for Enterprise Workflows",
+        "headline_zh": "NVIDIA \u8207 ServiceNow \u63a8\u51fa\u53ef\u6cbb\u7406\u7684\u81ea\u4e3b AI \u4ee3\u7406\uff0c\u76f4\u63a5\u5207\u5165\u4f01\u696d\u5de5\u4f5c\u6d41",
+        "body_en": "NVIDIA and ServiceNow said they are expanding their partnership around governed autonomous agents, including Project Arc and the OpenShell secure runtime. The story matters because the enterprise agent race is shifting from demos toward controlled execution, sandboxing and policy-aware runtime layers.",
+        "body_zh": "NVIDIA \u8207 ServiceNow \u8868\u793a\uff0c\u5c07\u570d\u7e5e\u53ef\u6cbb\u7406\u7684\u81ea\u4e3b AI \u4ee3\u7406\u64f4\u5927\u5408\u4f5c\uff0c\u5305\u62ec Project Arc \u8207 OpenShell \u5b89\u5168\u57f7\u884c\u74b0\u5883\u3002\u9019\u986f\u793a\u4f01\u696d agent \u7af6\u722d\u5df2\u5f9e demo \u9636\u6bb5\uff0c\u8f49\u5411\u53ef\u63a7\u57f7\u884c\u3001sandbox \u8207\u7b26\u5408\u653f\u7b56\u7684 runtime \u5c64\u3002",
+        "svg_title": "NVIDIA and ServiceNow Push Governed Autonomous Agents",
+        "svg_source": "NVIDIA / ServiceNow",
+        "variant": "agent_runtime",
     },
     {
         "rank": 6,
-        "category": "AI Models",
-        "color": "#ef4444",
-        "emoji": "🛠️",
-        "source": "AWS",
-        "source_label": "AWS ↗",
-        "source_url": "https://aws.amazon.com/about-aws/whats-new/2026/05/amazon-sagemaker-ai-ai/",
-        "headline_en": "AWS Adds an Agentic SageMaker Flow for Model Customization",
-        "headline_zh": "AWS 為 SageMaker 加入代理式模型客製化流程",
-        "body_en": "AWS launched a SageMaker AI agent experience that turns model customization into a guided workflow spanning use-case framing, data transformation, evaluation, and deployment to Bedrock or SageMaker endpoints. The launch shows the major clouds are productizing the entire tuning pipeline, not just the model endpoint.",
-        "body_zh": "AWS 推出 SageMaker AI 代理式體驗，把模型客製化變成一條可引導的工作流，涵蓋需求定義、資料轉換、評估，以及部署到 Bedrock 或 SageMaker 端點。這代表大型雲平台正把整條模型調校管線產品化，而不只是提供推理端點。",
-        "svg_title": "AWS Adds an Agentic SageMaker Flow for Model Customization",
-        "svg_source": "AWS",
-        "variant": "workflow_map",
+        "category": "Enterprise AI",
+        "color": "#f97316",
+        "emoji": "\U0001f4bc",
+        "source": "Reuters / Anthropic event",
+        "source_label": "Reuters / Investing \u2192",
+        "source_url": "https://www.investing.com/news/stock-market-news/anthropic-deepens-finance-push-with-10-new-ai-agents-for-banks-insurers-4659783",
+        "headline_en": "Anthropic Launches 10 Finance Agents and New Data Feeds for Banks and Insurers",
+        "headline_zh": "Anthropic \u63a8\u51fa 10 \u6b3e\u91d1\u878d\u4ee3\u7406\u8207\u65b0\u8cc7\u6599\u4f86\u6e90\uff0c\u9396\u5b9a\u9280\u884c\u8207\u4fdd\u96aa\u696d",
+        "body_en": "Reuters reported that Anthropic launched 10 finance-focused agents for tasks such as pitchbooks, audits and credit memos, while adding new data sources for Claude. Anthropic also said financial institutions now account for 40% of its top 50 customers, showing how fast vertical AI is becoming product, workflow and distribution strategy at once.",
+        "body_zh": "\u8def\u900f\u5831\u9053\uff0cAnthropic \u63a8\u51fa 10 \u6b3e\u91dd\u5c0d\u91d1\u878d\u5de5\u4f5c\u7684 AI \u4ee3\u7406\uff0c\u53ef\u8655\u7406 pitchbook\u3001\u5be9\u8a08\u8207\u6388\u4fe1\u5099\u5fd8\u9304\u7b49\u4efb\u52d9\uff0c\u4e26\u70ba Claude \u65b0\u589e\u8cc7\u6599\u4f86\u6e90\u3002Anthropic \u4ea6\u8868\u793a\uff0c\u91d1\u878d\u6a5f\u69cb\u5df2\u4f54\u5176\u524d 50 \u5927\u5ba2\u6236\u7684 40%\uff0c\u986f\u793a vertical AI \u6b63\u5feb\u901f\u6210\u70ba\u7522\u54c1\u5316\u3001\u5de5\u4f5c\u6d41\u8207\u5206\u767c\u7b56\u7565\u7684\u7d9c\u5408\u6230\u5834\u3002",
+        "svg_title": "Anthropic Launches 10 Finance Agents for Banks and Insurers",
+        "svg_source": "Reuters / Anthropic event",
+        "variant": "finance_flow",
     },
 ]
 
 
 LEAD = {
-    "kicker": "The Cover Story · May 5",
-    "headline_html": "AI is shifting from <em>model launches to deployment control.</em>",
-    "deck_en": "White House oversight talk, Anthropic and OpenAI deployment vehicles, a Cerebras IPO, Lattice's AMI deal and AWS's new SageMaker agent workflow all point to the same change: the next AI race is about regulation, rollout and operating leverage.",
-    "deck_zh": "白宮監管訊號、Anthropic 與 OpenAI 的部署平台、Cerebras IPO、Lattice 收購 AMI，以及 AWS 新的 SageMaker 代理式工作流，都指向同一件事：下一場 AI 競賽重點不再只是模型發布，而是監管、部署與營運槓桿。",
+    "kicker": "The Cover Story \u00b7 May 6",
+    "headline_html": "AI is hardening into an <em>operating layer of rules, runtimes and compute contracts.</em>",
+    "deck_en": "From U.S. pre-release testing to OpenAI's new default model, Anthropic's compute land-grab, Google's verifiable RAG tooling, NVIDIA-ServiceNow agent runtimes and Anthropic's finance push, today's AI market is moving beyond demos into governed deployment systems.",
+    "deck_zh": "\u5f9e\u7f8e\u570b\u7684\u767c\u5e03\u524d\u6e2c\u8a66\uff0c\u5230 OpenAI \u65b0\u9810\u8a2d\u6a21\u578b\u3001Anthropic \u7684\u7b97\u529b\u5708\u5730\u3001Google \u7684\u53ef\u9a57\u8b49 RAG \u5de5\u5177\uff0c\u4ee5\u53ca NVIDIA-ServiceNow \u7684 agent runtime \u8207 Anthropic \u91d1\u878d\u5e03\u5c40\uff0cAI \u5e02\u5834\u6b63\u5f9e demo \u6b65\u5165\u53ef\u6cbb\u7406\u7684\u90e8\u7f72\u7cfb\u7d71\u6642\u4ee3\u3002",
 }
 
 TICKER = [
-    ("White House AI", "EO?<span class=\"small\">working group</span>"),
-    ("Anthropic services", "$1.5B<span class=\"small\">new vehicle</span>"),
-    ("OpenAI deployment", "$4B+<span class=\"small\">reported</span>"),
-    ("Cerebras IPO", "$3.5B<span class=\"small\">roadshow</span>"),
+    ("CAISI testing", "40+<span class=\"small\">model evals</span>"),
+    ("GPT-5.5 Instant", "52.5%<span class=\"small\">fewer hallucinations</span>"),
+    ("Anthropic + Google", "$200B<span class=\"small\">reported cloud commit</span>"),
+    ("Finance agents", "10<span class=\"small\">Anthropic launches</span>"),
 ]
 
-LINKEDIN_HOOK = "AI is entering its control-layer era: regulators, private equity, chip markets and cloud platforms are all racing to decide how frontier systems get deployed at scale."
-LINKEDIN_FOCUS = "The biggest AI shift today is not a new benchmark. It is the buildout of the systems that approve, finance, tune, package and distribute AI into real-world operations."
-LINKEDIN_WHY = "For executives, builders and investors, the new moat is no longer just raw model quality. It is who can move AI safely from research into audited workflows, funded rollouts, and production infrastructure."
-LINKEDIN_SIGNAL = "Watch for 'deployment infrastructure' to become its own AI category: services firms, oversight processes, tuning agents, and platform-management software are now attracting policy attention and multibillion-dollar capital."
-LINKEDIN_QUESTION = "Which layer becomes more valuable over the next 12 months: the frontier model itself, or the operating system around deployment?"
+LINKEDIN_HOOK = "AI is no longer just racing on benchmarks. The new contest is over who controls release gates, runtime safety, retrieval quality and compute supply."
+LINKEDIN_FOCUS = "Today's six stories show AI becoming an operating system for institutions: governments want pre-release access, labs are rewriting default user experiences, and enterprises are demanding governed agents plus guaranteed infrastructure."
+LINKEDIN_WHY = "For leaders, the moat is shifting from model novelty to deployability. The companies that win the next phase will be the ones that can secure compute, ground outputs, survive regulation and ship agents into audited production workflows."
+LINKEDIN_SIGNAL = "Watch for the control layer to thicken further: more pre-deployment testing deals, more enterprise runtimes, and more multiyear compute contracts that look closer to energy or telecom infrastructure than software subscriptions."
+LINKEDIN_QUESTION = "Which will prove harder to build over the next year: a stronger model, or the trusted operating layer around it?"
+
+SUMMARY_THEME_EN = "The AI control layer is becoming the new battleground."
+SUMMARY_THEME_ZH = "\u76e3\u7ba1\u3001runtime \u8207\u7b97\u529b\u5408\u7d04\uff0c\u6b63\u6210\u70ba AI \u65b0\u4e3b\u6230\u5834\u3002"
 
 
 def font(path: Path, size: int) -> ImageFont.FreeTypeFont:
@@ -199,90 +215,96 @@ def draw_lines(
 
 
 def svg_variant(story: dict) -> str:
-    title = html.escape(story["svg_title"])
+    title_line = html.escape(textwrap.shorten(story["svg_title"], width=62, placeholder="..."))
+    color = story["color"]
     category = html.escape(story["category"].upper())
     source = html.escape(story["svg_source"])
-    color = story["color"]
     rank = story["rank"]
-    if story["variant"] == "policy_gate":
-        center = """
-<rect x="86" y="92" width="128" height="92" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
-<rect x="226" y="78" width="128" height="120" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
-<rect x="366" y="92" width="128" height="92" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
-<path d="M214 138 H226 M354 138 H366" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
-<text x="150" y="145" font-size="18" fill="#f8fafc" text-anchor="middle">Labs</text>
-<text x="290" y="132" font-size="18" fill="#f8fafc" text-anchor="middle">Review</text>
-<text x="290" y="157" font-size="12" fill="#cbd5e1" text-anchor="middle">working group</text>
-<text x="430" y="145" font-size="18" fill="#f8fafc" text-anchor="middle">Release</text>
-""".format(color=color)
-    elif story["variant"] == "enterprise_chain":
-        center = """
-<circle cx="122" cy="140" r="40" fill="#111827" stroke="{color}" stroke-width="4"/><text x="122" y="146" font-size="15" fill="#f8fafc" text-anchor="middle">Claude</text>
-<rect x="214" y="100" width="152" height="80" rx="14" fill="#111827" stroke="{color}" stroke-width="4"/>
-<text x="290" y="132" font-size="17" fill="#f8fafc" text-anchor="middle">Applied AI</text><text x="290" y="156" font-size="12" fill="#cbd5e1" text-anchor="middle">embedded delivery</text>
-<rect x="414" y="86" width="92" height="36" rx="10" fill="#111827" stroke="{color}" stroke-width="3"/><text x="460" y="109" font-size="11" fill="#f8fafc" text-anchor="middle">PE firms</text>
-<rect x="414" y="130" width="92" height="36" rx="10" fill="#111827" stroke="{color}" stroke-width="3"/><text x="460" y="153" font-size="11" fill="#f8fafc" text-anchor="middle">Ops teams</text>
-<rect x="414" y="174" width="92" height="36" rx="10" fill="#111827" stroke="{color}" stroke-width="3"/><text x="460" y="197" font-size="11" fill="#f8fafc" text-anchor="middle">Mid-market</text>
-<path d="M162 140 H214 M366 140 H414" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
-""".format(color=color)
-    elif story["variant"] == "funding_stack":
-        center = """
-<rect x="120" y="170" width="340" height="28" rx="8" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="150" y="134" width="280" height="28" rx="8" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="180" y="98" width="220" height="28" rx="8" fill="#111827" stroke="{color}" stroke-width="3"/>
-<text x="290" y="117" font-size="13" fill="#f8fafc" text-anchor="middle">OpenAI control</text>
-<text x="290" y="153" font-size="13" fill="#f8fafc" text-anchor="middle">$4B+ investor capital</text>
-<text x="290" y="189" font-size="13" fill="#f8fafc" text-anchor="middle">$10B deployment vehicle</text>
-<path d="M290 78 V98" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
-<circle cx="290" cy="68" r="10" fill="{color}"/>
-""".format(color=color)
-    elif story["variant"] == "chip_market":
-        center = """
-<rect x="110" y="86" width="170" height="118" rx="18" fill="#111827" stroke="{color}" stroke-width="4"/>
-<rect x="300" y="86" width="170" height="118" rx="18" fill="#111827" stroke="{color}" stroke-width="4"/>
-<text x="195" y="132" font-size="24" fill="#f8fafc" font-weight="900" text-anchor="middle">CBRS</text>
-<text x="195" y="160" font-size="13" fill="#cbd5e1" text-anchor="middle">IPO roadshow</text>
-<polyline points="320,176 352,148 382,156 414,118 446,132" fill="none" stroke="{color}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="446" cy="132" r="10" fill="{color}"/>
-<text x="385" y="104" font-size="12" fill="#cbd5e1" text-anchor="middle">$115-$125</text>
-""".format(color=color)
-    elif story["variant"] == "infra_grid":
-        center = """
-<rect x="94" y="92" width="114" height="54" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="236" y="92" width="114" height="54" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="378" y="92" width="114" height="54" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="165" y="164" width="114" height="54" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="307" y="164" width="114" height="54" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
-<path d="M208 119 H236 M350 119 H378 M222 164 L236 146 M358 164 L350 146 M279 191 H307" stroke="{color}" stroke-width="5" stroke-linecap="round"/>
-<text x="151" y="124" font-size="12" fill="#f8fafc" text-anchor="middle">Silicon</text>
-<text x="293" y="124" font-size="12" fill="#f8fafc" text-anchor="middle">Firmware</text>
-<text x="435" y="124" font-size="12" fill="#f8fafc" text-anchor="middle">Cloud</text>
-<text x="222" y="196" font-size="12" fill="#f8fafc" text-anchor="middle">Mgmt</text>
-<text x="364" y="196" font-size="12" fill="#f8fafc" text-anchor="middle">Ops</text>
-""".format(color=color)
-    else:
-        center = """
-<rect x="82" y="98" width="116" height="72" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="232" y="98" width="116" height="72" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
-<rect x="382" y="98" width="116" height="72" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
-<text x="140" y="141" font-size="13" fill="#f8fafc" text-anchor="middle">Prompt</text>
-<text x="290" y="141" font-size="13" fill="#f8fafc" text-anchor="middle">Tune</text>
-<text x="440" y="141" font-size="13" fill="#f8fafc" text-anchor="middle">Deploy</text>
-<path d="M198 134 H232 M348 134 H382" stroke="{color}" stroke-width="5" stroke-linecap="round"/>
-<rect x="202" y="192" width="176" height="26" rx="8" fill="#111827" stroke="{color}" stroke-width="3"/>
-<text x="290" y="210" font-size="11" fill="#cbd5e1" text-anchor="middle">agents + evaluation + endpoints</text>
-""".format(color=color)
 
-    title_line = html.escape(textwrap.shorten(story["svg_title"], width=62, placeholder="…"))
+    if story["variant"] == "policy_gate":
+        center = f"""
+<rect x="82" y="94" width="124" height="88" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="228" y="78" width="124" height="120" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="374" y="94" width="124" height="88" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
+<path d="M206 138 H228 M352 138 H374" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
+<text x="144" y="144" font-size="17" fill="#f8fafc" text-anchor="middle">Labs</text>
+<text x="290" y="132" font-size="17" fill="#f8fafc" text-anchor="middle">CAISI</text>
+<text x="290" y="156" font-size="12" fill="#cbd5e1" text-anchor="middle">pre-release evals</text>
+<text x="436" y="144" font-size="17" fill="#f8fafc" text-anchor="middle">Deploy</text>
+"""
+    elif story["variant"] == "model_upgrade":
+        center = f"""
+<rect x="88" y="92" width="166" height="104" rx="18" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="322" y="92" width="166" height="104" rx="18" fill="#111827" stroke="{color}" stroke-width="4"/>
+<text x="171" y="132" font-size="18" fill="#f8fafc" text-anchor="middle">GPT-5.3</text>
+<text x="171" y="158" font-size="12" fill="#cbd5e1" text-anchor="middle">older default</text>
+<text x="405" y="132" font-size="18" fill="#f8fafc" text-anchor="middle">GPT-5.5</text>
+<text x="405" y="158" font-size="12" fill="#cbd5e1" text-anchor="middle">new default</text>
+<path d="M254 144 H322" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
+<text x="290" y="124" font-size="11" fill="#cbd5e1" text-anchor="middle">52.5% fewer hallucinations</text>
+"""
+    elif story["variant"] == "compute_pipeline":
+        center = f"""
+<rect x="84" y="104" width="122" height="70" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="228" y="86" width="122" height="106" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="372" y="104" width="122" height="70" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<path d="M206 139 H228 M350 139 H372" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
+<text x="145" y="136" font-size="15" fill="#f8fafc" text-anchor="middle">Capital</text>
+<text x="289" y="128" font-size="15" fill="#f8fafc" text-anchor="middle">Cloud + TPU</text>
+<text x="289" y="151" font-size="11" fill="#cbd5e1" text-anchor="middle">5-year commitment</text>
+<text x="433" y="136" font-size="15" fill="#f8fafc" text-anchor="middle">Capacity</text>
+"""
+    elif story["variant"] == "retrieval_grid":
+        center = f"""
+<rect x="96" y="88" width="120" height="72" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="232" y="88" width="120" height="72" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="368" y="88" width="120" height="72" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="164" y="184" width="120" height="50" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="300" y="184" width="120" height="50" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
+<path d="M216 124 H232 M352 124 H368 M224 184 L232 160 M360 184 L352 160 M284 209 H300" stroke="{color}" stroke-width="5" stroke-linecap="round"/>
+<text x="156" y="131" font-size="12" fill="#f8fafc" text-anchor="middle">Images</text>
+<text x="292" y="131" font-size="12" fill="#f8fafc" text-anchor="middle">Metadata</text>
+<text x="428" y="131" font-size="12" fill="#f8fafc" text-anchor="middle">Pages</text>
+<text x="224" y="214" font-size="11" fill="#f8fafc" text-anchor="middle">grounding</text>
+<text x="360" y="214" font-size="11" fill="#f8fafc" text-anchor="middle">citations</text>
+"""
+    elif story["variant"] == "agent_runtime":
+        center = f"""
+<circle cx="126" cy="138" r="40" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="220" y="96" width="146" height="82" rx="14" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="410" y="84" width="92" height="36" rx="10" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="410" y="128" width="92" height="36" rx="10" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="410" y="172" width="92" height="36" rx="10" fill="#111827" stroke="{color}" stroke-width="3"/>
+<path d="M166 138 H220 M366 138 H410" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
+<text x="126" y="145" font-size="15" fill="#f8fafc" text-anchor="middle">Arc</text>
+<text x="293" y="128" font-size="16" fill="#f8fafc" text-anchor="middle">OpenShell</text>
+<text x="293" y="151" font-size="12" fill="#cbd5e1" text-anchor="middle">secure runtime</text>
+<text x="456" y="107" font-size="11" fill="#f8fafc" text-anchor="middle">sandbox</text>
+<text x="456" y="151" font-size="11" fill="#f8fafc" text-anchor="middle">policy</text>
+<text x="456" y="195" font-size="11" fill="#f8fafc" text-anchor="middle">audit</text>
+"""
+    else:
+        center = f"""
+<rect x="96" y="90" width="118" height="64" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="232" y="90" width="118" height="64" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="368" y="90" width="118" height="64" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
+<rect x="164" y="182" width="254" height="44" rx="12" fill="#111827" stroke="{color}" stroke-width="3"/>
+<path d="M214 122 H232 M350 122 H368" stroke="{color}" stroke-width="5" stroke-linecap="round"/>
+<text x="155" y="128" font-size="12" fill="#f8fafc" text-anchor="middle">Pitchbook</text>
+<text x="291" y="128" font-size="12" fill="#f8fafc" text-anchor="middle">Audit</text>
+<text x="427" y="128" font-size="12" fill="#f8fafc" text-anchor="middle">Credit memo</text>
+<text x="291" y="210" font-size="12" fill="#cbd5e1" text-anchor="middle">10 finance agents + new data feeds</text>
+"""
+
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 320" style="background:#0f172a;border-radius:10px;width:100%;max-width:580px">
   <defs><linearGradient id="g{DATE_ID}{rank}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient></defs>
   <rect width="580" height="320" rx="10" fill="url(#g{DATE_ID}{rank})"/>
-  <text x="22" y="26" font-size="12" fill="#94a3b8" letter-spacing="1.4">{category} · {html.escape(source)}</text>
+  <text x="22" y="26" font-size="12" fill="#94a3b8" letter-spacing="1.4">{category} \u00b7 {source}</text>
   <text x="22" y="54" font-size="17" fill="#f8fafc" font-weight="800">{title_line}</text>
   {center}
   <rect x="24" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="24" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="38" y="259" font-size="15" fill="#f8fafc" font-weight="800">#{rank}</text><text x="38" y="276" font-size="10" fill="#94a3b8">ranking</text>
   <rect x="204" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="204" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="218" y="259" font-size="15" fill="#f8fafc" font-weight="800">{html.escape(story["category"])}</text><text x="218" y="276" font-size="10" fill="#94a3b8">category</text>
-  <rect x="384" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="384" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="398" y="259" font-size="15" fill="#f8fafc" font-weight="800">May 5</text><text x="398" y="276" font-size="10" fill="#94a3b8">HKT issue</text>
+  <rect x="384" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="384" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="398" y="259" font-size="15" fill="#f8fafc" font-weight="800">May 6</text><text x="398" y="276" font-size="10" fill="#94a3b8">HKT issue</text>
   <text x="22" y="306" font-size="10" fill="#64748b">Source: {source}</text><text x="558" y="306" font-size="10" fill="#64748b" text-anchor="end">Ken AI Daily</text>
 </svg>"""
 
@@ -292,7 +314,7 @@ def render_story_html(story: dict) -> str:
   <div class="post-meta">
     <span class="post-cat" style="background:{story["color"]}">{html.escape(story["category"])}</span>
     <span class="post-source">{html.escape(story["source"])}</span>
-    <span class="post-date">{DAY_NAME} · May 5</span>
+    <span class="post-date">{DAY_NAME} \u00b7 May 6</span>
   </div>
   <h2 class="post-title">{html.escape(story["headline_en"])}</h2>
   <p class="post-title-zh">{html.escape(story["headline_zh"])}</p>
@@ -308,7 +330,7 @@ def render_today_block() -> str:
         f"""<div class="post-card post-visual" id="post-visual-{DATE_ID}">
   <div class="post-meta">
     <span class="post-cat" style="background:#f59e0b">Daily Summary</span>
-    <span class="post-date">{DAY_NAME} · May 5</span>
+    <span class="post-date">{DAY_NAME} \u00b7 May 6</span>
   </div>
   <img src="{SUMMARY_PNG.name}" loading="eager" width="2400" height="1350" alt="Ken AI Daily {DISPLAY_DATE}" style="width:100%;border-radius:8px;margin-top:12px"/>
 </div>"""
@@ -336,9 +358,9 @@ def render_lead_section() -> str:
         <span class="sep"></span>
         <span>5 min read</span>
         <span class="sep"></span>
-        <span>EN · 繁中</span>
+        <span>EN \u00b7 \u7e41\u4e2d</span>
         <span class="sep"></span>
-        <span style="color: var(--mark);">↓ Read below</span>
+        <span style="color: var(--mark);">\u2193 Read below</span>
       </div>
     </div>
     <div class="lead-art">
@@ -363,32 +385,29 @@ def render_ticker_section() -> str:
 def render_feed_head() -> str:
     return """      <div class="feed-section-head">
         <h2>The <em>Brief</em></h2>
-        <span class="count">6 stories · May 5, 2026</span>
+        <span class="count">6 stories \u00b7 May 6, 2026</span>
       </div>"""
 
 
 def write_summary_png() -> None:
     img = Image.new("RGB", (2400, 1350), "#0b1220")
     draw = ImageDraw.Draw(img)
-    title_font = font(FONT_LATIN_BOLD, 108)
+    title_font = font(FONT_LATIN_BOLD, 106)
     subtitle_font = font(FONT_CJK, 44)
-    body_en_font = font(FONT_LATIN, 36)
+    body_en_font = font(FONT_LATIN, 34)
     body_zh_font = font(FONT_CJK, 30)
-    section_font = font(FONT_LATIN_BOLD, 26)
+    section_font = font(FONT_LATIN_BOLD, 24)
 
     draw.rounded_rectangle((60, 60, 2340, 1290), radius=42, fill="#101826", outline="#243347", width=3)
-    draw.rectangle((60, 60, 1100, 540), fill="#111827")
-    draw.polygon([(1700, 150), (2220, 300), (2030, 660), (1520, 520)], fill="#1d4ed8")
-    draw.polygon([(1440, 300), (1810, 470), (1700, 800), (1320, 650)], fill="#0f766e")
-    draw.rounded_rectangle((120, 120, 820, 184), radius=18, fill="#f59e0b")
-    draw.text((150, 130), "AI News Daily Brief · Tuesday, May 5, 2026", font=font(FONT_LATIN_BOLD, 30), fill="#0b1220")
+    draw.rectangle((60, 60, 1120, 540), fill="#111827")
+    draw.polygon([(1680, 150), (2230, 292), (2040, 674), (1490, 520)], fill="#1d4ed8")
+    draw.polygon([(1420, 304), (1790, 470), (1680, 824), (1280, 648)], fill="#0f766e")
+    draw.rounded_rectangle((120, 120, 860, 184), radius=18, fill="#f59e0b")
+    draw.text((150, 130), "AI News Daily Brief \u00b7 Wednesday, May 6, 2026", font=font(FONT_LATIN_BOLD, 30), fill="#0b1220")
     draw.text((120, 220), "Ken AI Daily", font=title_font, fill="#f8fafc")
-    draw.text((120, 340), "AI新聞日報 · 每日雙語 AI 精選", font=subtitle_font, fill="#cbd5e1")
-
-    theme = "Deployment control is becoming the new AI battleground."
-    theme_zh = "部署控制層，正成為新的 AI 主戰場。"
-    draw.text((120, 430), theme, font=font(FONT_LATIN_BOLD, 44), fill="#f8fafc")
-    draw.text((120, 490), theme_zh, font=subtitle_font, fill="#94a3b8")
+    draw.text((120, 340), "AI\u65b0\u805e\u65e5\u5831 \u00b7 \u6bcf\u65e5\u96d9\u8a9e AI \u7cbe\u9078", font=subtitle_font, fill="#cbd5e1")
+    draw.text((120, 430), SUMMARY_THEME_EN, font=font(FONT_LATIN_BOLD, 42), fill="#f8fafc")
+    draw.text((120, 490), SUMMARY_THEME_ZH, font=subtitle_font, fill="#94a3b8")
 
     start_y = 610
     row_gap = 102
@@ -400,8 +419,8 @@ def write_summary_png() -> None:
         zh_lines = wrap_cjk(draw, story["headline_zh"], body_zh_font, 1300)
         draw.text((210, y - 2), en_lines[0], font=body_en_font, fill="#f8fafc")
         draw.text((210, y + 40), zh_lines[0], font=body_zh_font, fill="#94a3b8")
-        draw.rounded_rectangle((1845, y, 2260, y + 50), radius=14, fill=story["color"])
-        draw.text((1870, y + 8), story["category"], font=section_font, fill="#0b1220")
+        draw.rounded_rectangle((1830, y, 2270, y + 50), radius=14, fill=story["color"])
+        draw.text((1854, y + 10), story["category"], font=section_font, fill="#0b1220")
 
     draw.text((120, 1235), "kenchankh97.github.io/ai-daily", font=font(FONT_LATIN_BOLD, 28), fill="#f59e0b")
     img.save(SUMMARY_PNG)
@@ -411,68 +430,74 @@ def write_top_news_png() -> None:
     top = STORIES[0]
     img = Image.new("RGB", (2400, 1350), "#0b1020")
     draw = ImageDraw.Draw(img)
-    title_font = font(FONT_LATIN_BOLD, 90)
-    sub_font = font(FONT_CJK, 46)
-    body_font = font(FONT_LATIN, 32)
-    body_zh_font = font(FONT_CJK, 32)
-    small_font = font(FONT_LATIN_BOLD, 28)
+    title_font = font(FONT_LATIN_BOLD, 82)
+    sub_font = font(FONT_CJK, 44)
+    body_font = font(FONT_LATIN, 31)
+    body_zh_font = font(FONT_CJK, 31)
+    pill_font = font(FONT_LATIN_BOLD, 30)
+    node_label_font = font(FONT_LATIN_BOLD, 28)
+    node_sub_font = font(FONT_LATIN, 22)
 
     draw.rounded_rectangle((50, 50, 2350, 1300), radius=44, fill="#0f172a", outline=top["color"], width=4)
-    draw.rounded_rectangle((100, 100, 640, 180), radius=16, fill=top["color"])
-    draw.text((130, 118), "Top News · #1 · AI Regulation", font=font(FONT_LATIN_BOLD, 34), fill="#0b1220")
-    draw.text((100, 240), "Ken AI Daily", font=font(FONT_LATIN_BOLD, 84), fill="#f8fafc")
-    draw.text((100, 340), "AI新聞日報 · 今日頭條", font=sub_font, fill="#cbd5e1")
+    draw.rounded_rectangle((100, 100, 770, 180), radius=16, fill=top["color"])
+    draw.text((130, 118), top["top_label"], font=pill_font, fill="#0b1220")
+    draw.text((100, 238), "Ken AI Daily", font=font(FONT_LATIN_BOLD, 82), fill="#f8fafc")
+    draw.text((100, 338), "AI\u65b0\u805e\u65e5\u5831 \u00b7 \u4eca\u65e5\u982d\u689d", font=sub_font, fill="#cbd5e1")
 
-    headline_lines = wrap_by_width(draw, top["headline_en"], title_font, 1280)
-    y = draw_lines(draw, headline_lines, (100, 470), title_font, "#f8fafc", 10)
-    y = draw_lines(draw, wrap_cjk(draw, top["headline_zh"], sub_font, 1180), (100, y + 12), sub_font, "#94a3b8", 10)
+    headline_lines = wrap_by_width(draw, top["headline_en"], title_font, 1240)
+    y = draw_lines(draw, headline_lines, (100, 450), title_font, "#f8fafc", 8)
+    y = draw_lines(draw, wrap_cjk(draw, top["headline_zh"], sub_font, 1180), (100, y + 10), sub_font, "#94a3b8", 8)
+    y += 24
 
-    bullets = [
-        "Pre-release checks are moving closer to the model launch gate",
-        "A proposed working group would pull tech executives into oversight design",
-        "Policy attention is shifting from usage harms to frontier deployment control",
-    ]
-    bullet_y = y + 36
-    for bullet in bullets:
-        draw.rounded_rectangle((118, bullet_y + 12, 138, bullet_y + 32), radius=4, fill=top["color"])
+    for bullet in top["top_bullets"]:
+        draw.rounded_rectangle((118, y + 8, 138, y + 28), radius=4, fill=top["color"])
         bullet_lines = wrap_by_width(draw, bullet, body_font, 980)
-        bullet_y = draw_lines(draw, bullet_lines, (165, bullet_y), body_font, "#e2e8f0", 4) + 16
+        y = draw_lines(draw, bullet_lines, (165, y), body_font, "#e2e8f0", 4) + 16
 
-    draw.text((100, 1220), "Source: Reuters / New York Times report · May 4, 2026", font=font(FONT_LATIN, 24), fill="#94a3b8")
+    draw.text((100, 1218), top["top_source"], font=font(FONT_LATIN, 24), fill="#94a3b8")
 
     draw.rounded_rectangle((1460, 170, 2240, 1130), radius=36, fill="#101826", outline="#334155", width=2)
-    draw.rounded_rectangle((1570, 270, 2300, 360), radius=24, fill="#111827", outline=top["color"], width=4)
-    draw.text((1920, 300), "Release gate", font=font(FONT_LATIN_BOLD, 34), fill="#f8fafc", anchor="mm")
-    draw.rounded_rectangle((1570, 460, 2300, 770), radius=28, fill="#111827", outline=top["color"], width=4)
-    draw.text((1935, 525), "Review", font=font(FONT_LATIN_BOLD, 46), fill="#f8fafc", anchor="mm")
-    draw.text((1935, 595), "officials + tech execs", font=font(FONT_LATIN, 28), fill="#cbd5e1", anchor="mm")
-    draw.text((1935, 650), "working group", font=font(FONT_LATIN_BOLD, 28), fill=top["color"], anchor="mm")
-    draw.rounded_rectangle((1570, 870, 2300, 960), radius=24, fill="#111827", outline=top["color"], width=4)
-    draw.text((1935, 900), "Models", font=font(FONT_LATIN_BOLD, 34), fill="#f8fafc", anchor="mm")
-    draw.line((1935, 360, 1935, 460), fill=top["color"], width=8)
-    draw.line((1935, 770, 1935, 870), fill=top["color"], width=8)
-    draw.text((1935, 1028), "Ken AI Daily", font=small_font, fill="#f59e0b", anchor="mm")
+    node_y = [270, 520, 770]
+    for idx, (title, subtitle) in enumerate(top["top_nodes"]):
+        x1, y1, x2, y2 = 1570, node_y[idx], 2140, node_y[idx] + 110
+        draw.rounded_rectangle((x1, y1, x2, y2), radius=26, fill="#111827", outline=top["color"], width=4)
+        draw.text((1855, y1 + 36), title, font=node_label_font, fill="#f8fafc", anchor="mm")
+        draw.text((1855, y1 + 72), subtitle, font=node_sub_font, fill="#cbd5e1", anchor="mm")
+
+    draw.line((1855, 380, 1855, 520), fill=top["color"], width=8)
+    draw.line((1855, 630, 1855, 770), fill=top["color"], width=8)
+    draw.rounded_rectangle((1640, 968, 2080, 1050), radius=24, fill="#111827", outline=top["color"], width=4)
+    draw.text((1860, 1009), "Pre-release AI gate", font=font(FONT_LATIN_BOLD, 30), fill="#f8fafc", anchor="mm")
+    draw.text((1855, 1100), "Ken AI Daily", font=font(FONT_LATIN_BOLD, 28), fill=top["color"], anchor="mm")
 
     img.save(TOP_NEWS_PNG)
 
 
 def write_linkedin_post() -> None:
+    keycaps = {
+        1: "1\ufe0f\u20e3",
+        2: "2\ufe0f\u20e3",
+        3: "3\ufe0f\u20e3",
+        4: "4\ufe0f\u20e3",
+        5: "5\ufe0f\u20e3",
+        6: "6\ufe0f\u20e3",
+    }
     lines = [
-        f"AI News Daily Brief — {DAY_NAME}, {DISPLAY_DATE} 🤖",
-        "Ken AI Daily | AI新聞日報 | 每日雙語 AI 精選",
+        f"AI News Daily Brief \u2014 {DAY_NAME}, {DISPLAY_DATE} \U0001f916",
+        "Ken AI Daily | AI\u65b0\u805e\u65e5\u5831 | \u6bcf\u65e5\u96d9\u8a9e AI \u7cbe\u9078",
         "",
-        "Ken AI Daily — bilingual AI news briefing covering AI models, AI agents, AI chips, AI infrastructure, AI funding, AI research, and AI regulation.",
+        "Ken AI Daily \u2014 bilingual AI news briefing covering AI models, AI agents, AI chips, AI infrastructure, AI funding, AI research, and AI regulation.",
         "",
         LINKEDIN_HOOK,
         "",
-        "今日焦點 / Today’s focus:",
+        "\u4eca\u65e5\u7126\u9ede / Today's focus:",
         LINKEDIN_FOCUS,
         "",
         "Today's top AI stories:",
         "",
     ]
     for story in STORIES:
-        lines.append(f"{story['rank']}️⃣ {story['emoji']} [{story['category']}] {story['headline_en']}")
+        lines.append(f"{keycaps[story['rank']]} {story['emoji']} [{story['category']}] {story['headline_en']}")
         lines.append(f"   {story['headline_zh']}")
         lines.append("")
     lines.extend(
@@ -488,9 +513,9 @@ def write_linkedin_post() -> None:
             "",
             "Topics: AI models, AI agents, AI chips, AI infrastructure, AI regulation, AI funding, AI research, enterprise AI",
             "",
-            "Full digest 👉 https://kenchankh97.github.io/ai-daily/",
+            "Full digest \U0001f449 https://kenchankh97.github.io/ai-daily/",
             "",
-            "#AINews #ArtificialIntelligence #AI #AIAgents #AIInfrastructure #科技新聞 #AI日報",
+            "#AINews #ArtificialIntelligence #AI #AIAgents #AIInfrastructure #\u79d1\u6280\u65b0\u805e #AI\u65e5\u5831",
         ]
     )
     LINKEDIN_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -501,7 +526,7 @@ def update_index() -> None:
     lead_pattern = re.compile(r"<section class=\"lead\">.*?</section>", re.S)
     ticker_pattern = re.compile(r"<section class=\"ticker\">.*?</section>", re.S)
     feed_head_pattern = re.compile(r"      <div class=\"feed-section-head\">.*?</div>", re.S)
-    current_marker = '<div class="post-card post-visual" id="post-visual-20260504">'
+    current_marker = '<div class="post-card post-visual" id="post-visual-20260505">'
     today_pattern = re.compile(
         rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?={re.escape(current_marker)})",
         re.S,
@@ -538,9 +563,26 @@ def validate() -> dict:
             errors.append(f'missing zh headline in html: {story["rank"]}')
         if story["source_url"] not in content:
             errors.append(f'missing source url in html: {story["rank"]}')
-    for marker in ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "Why it matters:", "Signal to watch:", "Question for the week:", "今日焦點 / Today’s focus:"]:
+
+    required_markers = [
+        "1\ufe0f\u20e3",
+        "2\ufe0f\u20e3",
+        "3\ufe0f\u20e3",
+        "4\ufe0f\u20e3",
+        "5\ufe0f\u20e3",
+        "6\ufe0f\u20e3",
+        "Why it matters:",
+        "Signal to watch:",
+        "Question for the week:",
+        "\u4eca\u65e5\u7126\u9ede / Today's focus:",
+    ]
+    for marker in required_markers:
         if marker not in linkedin:
             errors.append(f"missing linkedin marker: {marker}")
+
+    if "\ufffd" in linkedin or "\ufffd" in content:
+        errors.append("replacement character found")
+
     for image_path in [SUMMARY_PNG, TOP_NEWS_PNG]:
         if not image_path.exists():
             errors.append(f"missing image: {image_path.name}")
