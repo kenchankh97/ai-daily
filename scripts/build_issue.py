@@ -5,6 +5,7 @@ import html
 import json
 import re
 import textwrap
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterable
 
@@ -14,12 +15,14 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = ROOT / "index.html"
 LINKEDIN_PATH = ROOT / "linkedin-post.txt"
-SUMMARY_PNG = ROOT / "ai-daily-20260506.png"
-TOP_NEWS_PNG = ROOT / "ai-daily-20260506-top-news.png"
-
-DATE_ID = "20260506"
-DISPLAY_DATE = "May 6, 2026"
-DAY_NAME = "Wednesday"
+DATE_ID = "20260507"
+ISSUE_DATE = datetime.strptime(DATE_ID, "%Y%m%d").date()
+PREVIOUS_DATE_ID = (ISSUE_DATE - timedelta(days=1)).strftime("%Y%m%d")
+DISPLAY_DATE = f"{ISSUE_DATE.strftime('%B')} {ISSUE_DATE.day}, {ISSUE_DATE.year}"
+MONTH_DAY = f"{ISSUE_DATE.strftime('%B')} {ISSUE_DATE.day}"
+DAY_NAME = ISSUE_DATE.strftime("%A")
+SUMMARY_PNG = ROOT / f"ai-daily-{DATE_ID}.png"
+TOP_NEWS_PNG = ROOT / f"ai-daily-{DATE_ID}-top-news.png"
 
 FONT_CJK = Path("C:/Windows/Fonts/msjh.ttc")
 FONT_LATIN_BOLD = Path("C:/Windows/Fonts/segoeuib.ttf")
@@ -35,10 +38,10 @@ STORIES = [
         "source": "NIST / CAISI",
         "source_label": "NIST \u2192",
         "source_url": "https://www.nist.gov/news-events/news/2026/05/caisi-signs-agreements-regarding-frontier-ai-national-security-testing",
-        "headline_en": "U.S. CAISI Expands Frontier AI Pre-Deployment Testing With Google, Microsoft and xAI",
-        "headline_zh": "\u7f8e\u570b CAISI \u64f4\u5927\u524d\u6cbf AI \u767c\u5e03\u524d\u6e2c\u8a66\uff0c\u6db5\u84cb Google\u3001Microsoft \u8207 xAI",
-        "body_en": "NIST said CAISI signed new agreements with Google DeepMind, Microsoft and xAI to run pre-deployment evaluations, targeted research and classified-environment testing on frontier models. The move pushes AI oversight earlier in the product cycle and makes government stress testing part of the release path for top labs.",
-        "body_zh": "NIST \u8868\u793a\uff0cCAISI \u5df2\u8207 Google DeepMind\u3001Microsoft \u53ca xAI \u7c3d\u7f72\u65b0\u5354\u8b70\uff0c\u5c07\u5c0d\u524d\u6cbf\u6a21\u578b\u9032\u884c\u767c\u5e03\u524d\u8a55\u4f30\u3001\u91dd\u5c0d\u6027\u7814\u7a76\u8207\u53ef\u65bc\u6a5f\u5bc6\u74b0\u5883\u57f7\u884c\u7684\u6e2c\u8a66\u3002\u9019\u4ee3\u8868 AI \u76e3\u7ba1\u6b63\u5f80\u66f4\u524d\u7aef\u79fb\u52d5\uff0c\u653f\u5e9c\u58d3\u529b\u6e2c\u8a66\u6b63\u6210\u70ba\u9802\u5c16 AI \u5be6\u9a57\u5ba4\u7684\u767c\u5e03\u6d41\u7a0b\u4e00\u90e8\u5206\u3002",
+        "headline_en": "U.S. CAISI Expands Frontier AI Pre-Deployment Testing With Google DeepMind, Microsoft and xAI",
+        "headline_zh": "\u7f8e\u570b CAISI \u8207 Google DeepMind\u3001Microsoft\u3001xAI \u64f4\u5927\u524d\u6cbf AI \u767c\u5e03\u524d\u6e2c\u8a66",
+        "body_en": "NIST said CAISI signed new agreements with Google DeepMind, Microsoft and xAI to run pre-deployment evaluations, targeted research and classified-environment testing on frontier models. CAISI said it has already completed more than 40 such evaluations, showing how government stress testing is moving directly into the release path for top labs.",
+        "body_zh": "NIST \u8868\u793a\uff0cCAISI \u5df2\u8207 Google DeepMind\u3001Microsoft \u53ca xAI \u7c3d\u7f72\u65b0\u5354\u8b70\uff0c\u5c07\u5c0d\u524d\u6cbf\u6a21\u578b\u9032\u884c\u767c\u5e03\u524d\u8a55\u4f30\u3001\u91dd\u5c0d\u6027\u7814\u7a76\u8207\u6a5f\u5bc6\u74b0\u5883\u6e2c\u8a66\u3002CAISI \u4e26\u6307\u51fa\u81f3\u4eca\u5df2\u5b8c\u6210\u8d85\u904e 40 \u6b21\u6a21\u578b\u8a55\u4f30\uff0c\u986f\u793a\u653f\u5e9c\u58d3\u529b\u6e2c\u8a66\u6b63\u76f4\u63a5\u9032\u5165\u9802\u5c16 AI \u5be6\u9a57\u5ba4\u7684\u767c\u5e03\u6d41\u7a0b\u3002",
         "svg_title": "CAISI Expands Frontier AI Pre-Deployment Testing",
         "svg_source": "NIST / CAISI",
         "variant": "policy_gate",
@@ -47,16 +50,32 @@ STORIES = [
         "top_bullets": [
             "New agreements cover Google DeepMind, Microsoft and xAI.",
             "CAISI says it has already completed more than 40 model evaluations.",
-            "Testing can happen before release, after deployment and in classified settings.",
+            "Testing spans pre-release, post-deployment and classified settings.",
         ],
         "top_nodes": [
             ("Labs", "frontier models"),
             ("CAISI", "40+ evals"),
-            ("Deploy", "security checks"),
+            ("Deploy", "classified tests"),
         ],
     },
     {
         "rank": 2,
+        "category": "AI Business",
+        "color": "#06b6d4",
+        "emoji": "\U0001f4b0",
+        "source": "OpenAI",
+        "source_label": "OpenAI \u2192",
+        "source_url": "https://openai.com/index/new-ways-to-buy-chatgpt-ads/",
+        "headline_en": "OpenAI Expands ChatGPT Ads With Self-Serve Buying and CPC Bidding",
+        "headline_zh": "OpenAI \u64f4\u5927 ChatGPT \u5ee3\u544a\u5e73\u53f0\uff0c\u52a0\u5165\u81ea\u52a9\u6295\u653e\u8207 CPC \u7af6\u50f9",
+        "body_en": "OpenAI said advertisers can now buy ChatGPT ads through partners or a beta self-serve Ads Manager in the U.S., with new cost-per-click bidding and expanded measurement tools. The move pushes ChatGPT further from an experimental traffic surface toward a scaled AI discovery and monetization channel.",
+        "body_zh": "OpenAI \u8868\u793a\uff0c\u7f8e\u570b\u5ee3\u544a\u4e3b\u73fe\u53ef\u900f\u904e\u5408\u4f5c\u5925\u4f34\u6216\u6e2c\u8a66\u7248\u81ea\u52a9 Ads Manager \u76f4\u63a5\u8cfc\u8cb7 ChatGPT \u5ee3\u544a\uff0c\u4e26\u65b0\u589e\u6309\u9ede\u64ca\u4ed8\u8cbb\u8207\u66f4\u5b8c\u6574\u7684\u6210\u6548\u8861\u91cf\u5de5\u5177\u3002\u9019\u4ee3\u8868 ChatGPT \u6b63\u5f9e\u5be6\u9a57\u6027\u6d41\u91cf\u5165\u53e3\uff0c\u8f49\u5411\u53ef\u898f\u6a21\u5316\u7684 AI \u5206\u767c\u8207\u8b8a\u73fe\u6e20\u9053\u3002",
+        "svg_title": "ChatGPT Ads Add Self-Serve Buying and CPC Bidding",
+        "svg_source": "OpenAI",
+        "variant": "ads_market",
+    },
+    {
+        "rank": 3,
         "category": "AI Models",
         "color": "#ef4444",
         "emoji": "\U0001f916",
@@ -65,46 +84,46 @@ STORIES = [
         "source_url": "https://openai.com/index/gpt-5-5-instant/",
         "headline_en": "OpenAI Makes GPT-5.5 Instant the New Default ChatGPT Model",
         "headline_zh": "OpenAI \u5c07 GPT-5.5 Instant \u5347\u7d1a\u70ba ChatGPT \u65b0\u9810\u8a2d\u6a21\u578b",
-        "body_en": "OpenAI said GPT-5.5 Instant is now the default ChatGPT model for everyone, with clearer responses, stronger image and STEM performance, and better web-search judgment. The company said the model produced 52.5% fewer hallucinated claims than GPT-5.3 Instant on high-stakes prompts.",
-        "body_zh": "OpenAI \u8868\u793a GPT-5.5 Instant \u5df2\u6210\u70ba\u6240\u6709\u4eba\u7684 ChatGPT \u9810\u8a2d\u6a21\u578b\uff0c\u5f37\u8abf\u5176\u56de\u7b54\u66f4\u6e05\u6670\uff0c\u5728\u5716\u50cf\u8207 STEM \u4efb\u52d9\u7684\u8868\u73fe\u66f4\u5f37\uff0c\u4e14\u66f4\u64c5\u65bc\u5224\u65b7\u4f55\u6642\u555f\u7528\u7db2\u8def\u641c\u5c0b\u3002\u516c\u53f8\u4e26\u6307\u51fa\uff0c\u5c0d\u65bc\u9ad8\u98a8\u96aa\u63d0\u793a\uff0c\u5b83\u6bd4 GPT-5.3 Instant \u6e1b\u5c11 52.5% \u7684\u5e7b\u89ba\u5f0f\u932f\u8aa4\u6558\u8ff0\u3002",
+        "body_en": "OpenAI said GPT-5.5 Instant is now the default ChatGPT model for everyone, with clearer responses, stronger image and STEM performance, and better web-search judgment. In internal evaluations, it produced 52.5% fewer hallucinated claims than GPT-5.3 Instant on high-stakes prompts, turning a model update into a major distribution event.",
+        "body_zh": "OpenAI \u8868\u793a GPT-5.5 Instant \u5df2\u6210\u70ba ChatGPT \u65b0\u7684\u9810\u8a2d\u6a21\u578b\uff0c\u56de\u7b54\u66f4\u6e05\u6670\uff0c\u5728\u5716\u50cf\u3001STEM \u8207\u7db2\u8def\u641c\u5c0b\u5224\u65b7\u4e0a\u8868\u73fe\u66f4\u5f37\u3002\u516c\u53f8\u6307\u51fa\uff0c\u5b83\u5728\u9ad8\u98a8\u96aa\u63d0\u793a\u4e0a\u6bd4 GPT-5.3 Instant \u6e1b\u5c11 52.5% \u7684\u5e7b\u89ba\u5f0f\u932f\u8aa4\u6558\u8ff0\uff0c\u8b93\u4e00\u6b21\u6a21\u578b\u66f4\u65b0\u76f4\u63a5\u8b8a\u6210\u6d88\u8cbb\u7aef\u5206\u767c\u4e8b\u4ef6\u3002",
         "svg_title": "GPT-5.5 Instant Becomes the New Default ChatGPT Model",
         "svg_source": "OpenAI",
         "variant": "model_upgrade",
     },
     {
-        "rank": 3,
-        "category": "AI Infrastructure",
-        "color": "#8b5cf6",
-        "emoji": "\u2699\ufe0f",
-        "source": "Reuters / The Information",
-        "source_label": "Reuters / Investing \u2192",
-        "source_url": "https://m.investing.com/news/stock-market-news/anthropic-commits-to-spending-200-billion-on-googles-cloud-and-chips-the-information-reports-4661029?ampMode=1",
-        "headline_en": "Anthropic Reportedly Commits $200B to Google Cloud and TPU Capacity",
-        "headline_zh": "Anthropic \u64da\u5831\u627f\u8afe\u5411 Google Cloud \u8207 TPU \u7b97\u529b\u6295\u5165 2,000 \u5104\u7f8e\u5143",
-        "body_en": "Reuters reported that Anthropic committed to spend $200 billion with Google Cloud over five years, building on a separate April deal for multiple gigawatts of TPU capacity starting in 2027. The report shows how AI competition is hardening around long-duration compute contracts, not just better models.",
-        "body_zh": "\u8def\u900f\u5831\u9053\uff0cAnthropic \u5df2\u627f\u8afe\u5728\u4e94\u5e74\u5167\u5411 Google Cloud \u652f\u51fa 2,000 \u5104\u7f8e\u5143\uff0c\u4e26\u5728\u6b64\u524d\u56db\u6708\u9054\u6210\u53e6\u4e00\u9805\u591a\u500b GW TPU \u7b97\u529b\u5354\u8b70\uff0c\u9810\u8a08 2027 \u5e74\u8d77\u4e0a\u7dda\u3002\u9019\u51f8\u986f AI \u7af6\u722d\u6b63\u5728\u5f9e\u55ae\u7d14\u62fc\u6a21\u578b\uff0c\u8f49\u5411\u62fc\u9577\u671f\u7b97\u529b\u5408\u7d04\u8207\u4f9b\u61c9\u9396\u638c\u63a7\u529b\u3002",
-        "svg_title": "Anthropic Reportedly Commits $200B to Google Cloud",
-        "svg_source": "Reuters / The Information",
-        "variant": "compute_pipeline",
+        "rank": 4,
+        "category": "Enterprise AI",
+        "color": "#f97316",
+        "emoji": "\U0001f3e6",
+        "source": "Anthropic",
+        "source_label": "Anthropic \u2192",
+        "source_url": "https://www.anthropic.com/news/finance-agents",
+        "headline_en": "Anthropic Launches 10 Finance Agent Templates and Microsoft 365 Add-Ins",
+        "headline_zh": "Anthropic \u63a8\u51fa 10 \u6b3e\u91d1\u878d AI \u4ee3\u7406\u7bc4\u672c\uff0c\u4e26\u5ef6\u4f38\u81f3 Microsoft 365",
+        "body_en": "Anthropic released ten ready-to-run agent templates for work such as pitchbooks, KYC screening and month-end close, while extending Claude into Excel, PowerPoint, Word and soon Outlook. The launch shows how enterprise AI is shifting from generic chat to packaged, governed workflows that fit directly into regulated desk work.",
+        "body_zh": "Anthropic \u63a8\u51fa 10 \u6b3e\u53ef\u76f4\u63a5\u4e0a\u624b\u7684\u91d1\u878d AI \u4ee3\u7406\u7bc4\u672c\uff0c\u6db5\u84cb pitchbook\u3001KYC \u5be9\u67e5\u8207\u6708\u7d50\u6d41\u7a0b\uff0c\u540c\u6642\u4e5f\u5c07 Claude \u5ef6\u4f38\u5230 Excel\u3001PowerPoint\u3001Word \u8207\u5373\u5c07\u652f\u63f4\u7684 Outlook\u3002\u9019\u986f\u793a\u4f01\u696d AI \u6b63\u5f9e\u901a\u7528\u5c0d\u8a71\uff0c\u8f49\u5411\u53ef\u88ab\u6cbb\u7406\u3001\u53ef\u76f4\u63a5\u5d4c\u5165\u53d7\u76e3\u7ba1\u5de5\u4f5c\u6aaf\u7684\u6253\u5305\u6d41\u7a0b\u3002",
+        "svg_title": "Anthropic Launches 10 Finance Agent Templates",
+        "svg_source": "Anthropic",
+        "variant": "finance_flow",
     },
     {
-        "rank": 4,
+        "rank": 5,
         "category": "AI Developer Tools",
         "color": "#22c55e",
-        "emoji": "\U0001f50e",
+        "emoji": "\U0001f9f0",
         "source": "Google DeepMind",
         "source_label": "Google \u2192",
         "source_url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/",
-        "headline_en": "Google Makes Gemini File Search Multimodal With Metadata Filters and Page Citations",
-        "headline_zh": "Google \u70ba Gemini File Search \u52a0\u5165\u591a\u6a21\u614b\u3001\u5f8c\u8a2d\u8cc7\u6599\u7be9\u9078\u8207\u9801\u9762\u5f15\u7528",
+        "headline_en": "Google Makes Gemini File Search Multimodal With Metadata and Page Citations",
+        "headline_zh": "Google \u8b93 Gemini File Search \u652f\u63f4\u591a\u6a21\u614b\u3001\u5f8c\u8a2d\u8cc7\u6599\u8207\u9801\u9762\u5f15\u7528",
         "body_en": "Google said Gemini API File Search now supports multimodal retrieval, custom metadata filtering and page-level citations for verifiable RAG. That matters because developers are no longer just querying text chunks; they are building grounded agent systems across mixed image and document corpora.",
-        "body_zh": "Google \u8868\u793a\uff0cGemini API File Search \u73fe\u5df2\u652f\u63f4\u591a\u6a21\u614b\u6aa2\u7d22\u3001\u81ea\u8a02\u5f8c\u8a2d\u8cc7\u6599\u7be9\u9078\uff0c\u4ee5\u53ca\u9801\u9762\u7d1a\u5f15\u7528\uff0c\u4ee5\u5efa\u7acb\u53ef\u9a57\u8b49\u7684 RAG \u7cfb\u7d71\u3002\u9019\u4ee3\u8868\u958b\u767c\u8005\u5df2\u4e0d\u53ea\u662f\u67e5\u8a62\u6587\u5b57\u7247\u6bb5\uff0c\u800c\u662f\u5728\u5716\u50cf\u8207\u6587\u4ef6\u6df7\u5408\u8a9e\u6599\u4e0a\u5efa\u7acb\u6709\u4f9d\u64da\u7684 agent \u7cfb\u7d71\u3002",
+        "body_zh": "Google \u8868\u793a\uff0cGemini API File Search \u73fe\u5df2\u652f\u63f4\u591a\u6a21\u614b\u6aa2\u7d22\u3001\u81ea\u8a02\u5f8c\u8a2d\u8cc7\u6599\u7be9\u9078\uff0c\u4ee5\u53ca\u9801\u9762\u7d1a\u5f15\u7528\uff0c\u53ef\u7528\u4f86\u5efa\u7acb\u53ef\u9a57\u8b49\u7684 RAG \u7cfb\u7d71\u3002\u9019\u4ee3\u8868\u958b\u767c\u8005\u5df2\u4e0d\u53ea\u662f\u67e5\u8a62\u6587\u5b57\u7247\u6bb5\uff0c\u800c\u662f\u5728\u5716\u50cf\u8207\u6587\u4ef6\u6df7\u5408\u8a9e\u6599\u4e0a\u5efa\u7acb\u6709\u4f9d\u64da\u7684 agent \u7cfb\u7d71\u3002",
         "svg_title": "Gemini File Search Goes Multimodal for Verifiable RAG",
         "svg_source": "Google DeepMind",
         "variant": "retrieval_grid",
     },
     {
-        "rank": 5,
+        "rank": 6,
         "category": "AI Agents",
         "color": "#14b8a6",
         "emoji": "\U0001f9ed",
@@ -113,53 +132,37 @@ STORIES = [
         "source_url": "https://blogs.nvidia.com/blog/servicenow-autonomous-ai-agents-enterprises/",
         "headline_en": "NVIDIA and ServiceNow Unveil Governed Autonomous Agents for Enterprise Workflows",
         "headline_zh": "NVIDIA \u8207 ServiceNow \u63a8\u51fa\u53ef\u6cbb\u7406\u7684\u81ea\u4e3b AI \u4ee3\u7406\uff0c\u76f4\u63a5\u5207\u5165\u4f01\u696d\u5de5\u4f5c\u6d41",
-        "body_en": "NVIDIA and ServiceNow said they are expanding their partnership around governed autonomous agents, including Project Arc and the OpenShell secure runtime. The story matters because the enterprise agent race is shifting from demos toward controlled execution, sandboxing and policy-aware runtime layers.",
-        "body_zh": "NVIDIA \u8207 ServiceNow \u8868\u793a\uff0c\u5c07\u570d\u7e5e\u53ef\u6cbb\u7406\u7684\u81ea\u4e3b AI \u4ee3\u7406\u64f4\u5927\u5408\u4f5c\uff0c\u5305\u62ec Project Arc \u8207 OpenShell \u5b89\u5168\u57f7\u884c\u74b0\u5883\u3002\u9019\u986f\u793a\u4f01\u696d agent \u7af6\u722d\u5df2\u5f9e demo \u9636\u6bb5\uff0c\u8f49\u5411\u53ef\u63a7\u57f7\u884c\u3001sandbox \u8207\u7b26\u5408\u653f\u7b56\u7684 runtime \u5c64\u3002",
+        "body_en": "NVIDIA and ServiceNow said they are expanding their collaboration around governed autonomous agents, including Project Arc and the OpenShell secure runtime for sandboxed, policy-governed execution. The story matters because the enterprise agent race is shifting from demos toward controlled execution, auditability and runtime security.",
+        "body_zh": "NVIDIA \u8207 ServiceNow \u8868\u793a\uff0c\u5c07\u570d\u7e5e\u53ef\u6cbb\u7406\u7684\u81ea\u4e3b AI \u4ee3\u7406\u64f4\u5927\u5408\u4f5c\uff0c\u5305\u62ec Project Arc \u8207 OpenShell \u9019\u500b\u7528\u65bc sandbox \u53ca\u653f\u7b56\u63a7\u5236\u7684\u5b89\u5168\u57f7\u884c\u74b0\u5883\u3002\u9019\u986f\u793a\u4f01\u696d agent \u7af6\u722d\u5df2\u5f9e demo \u9636\u6bb5\uff0c\u8f49\u5411\u53ef\u63a7\u57f7\u884c\u3001\u53ef\u7a3d\u6838\u6027\u8207 runtime \u5b89\u5168\u3002",
         "svg_title": "NVIDIA and ServiceNow Push Governed Autonomous Agents",
         "svg_source": "NVIDIA / ServiceNow",
         "variant": "agent_runtime",
-    },
-    {
-        "rank": 6,
-        "category": "Enterprise AI",
-        "color": "#f97316",
-        "emoji": "\U0001f4bc",
-        "source": "Reuters / Anthropic event",
-        "source_label": "Reuters / Investing \u2192",
-        "source_url": "https://www.investing.com/news/stock-market-news/anthropic-deepens-finance-push-with-10-new-ai-agents-for-banks-insurers-4659783",
-        "headline_en": "Anthropic Launches 10 Finance Agents and New Data Feeds for Banks and Insurers",
-        "headline_zh": "Anthropic \u63a8\u51fa 10 \u6b3e\u91d1\u878d\u4ee3\u7406\u8207\u65b0\u8cc7\u6599\u4f86\u6e90\uff0c\u9396\u5b9a\u9280\u884c\u8207\u4fdd\u96aa\u696d",
-        "body_en": "Reuters reported that Anthropic launched 10 finance-focused agents for tasks such as pitchbooks, audits and credit memos, while adding new data sources for Claude. Anthropic also said financial institutions now account for 40% of its top 50 customers, showing how fast vertical AI is becoming product, workflow and distribution strategy at once.",
-        "body_zh": "\u8def\u900f\u5831\u9053\uff0cAnthropic \u63a8\u51fa 10 \u6b3e\u91dd\u5c0d\u91d1\u878d\u5de5\u4f5c\u7684 AI \u4ee3\u7406\uff0c\u53ef\u8655\u7406 pitchbook\u3001\u5be9\u8a08\u8207\u6388\u4fe1\u5099\u5fd8\u9304\u7b49\u4efb\u52d9\uff0c\u4e26\u70ba Claude \u65b0\u589e\u8cc7\u6599\u4f86\u6e90\u3002Anthropic \u4ea6\u8868\u793a\uff0c\u91d1\u878d\u6a5f\u69cb\u5df2\u4f54\u5176\u524d 50 \u5927\u5ba2\u6236\u7684 40%\uff0c\u986f\u793a vertical AI \u6b63\u5feb\u901f\u6210\u70ba\u7522\u54c1\u5316\u3001\u5de5\u4f5c\u6d41\u8207\u5206\u767c\u7b56\u7565\u7684\u7d9c\u5408\u6230\u5834\u3002",
-        "svg_title": "Anthropic Launches 10 Finance Agents for Banks and Insurers",
-        "svg_source": "Reuters / Anthropic event",
-        "variant": "finance_flow",
     },
 ]
 
 
 LEAD = {
-    "kicker": "The Cover Story \u00b7 May 6",
-    "headline_html": "AI is hardening into an <em>operating layer of rules, runtimes and compute contracts.</em>",
-    "deck_en": "From U.S. pre-release testing to OpenAI's new default model, Anthropic's compute land-grab, Google's verifiable RAG tooling, NVIDIA-ServiceNow agent runtimes and Anthropic's finance push, today's AI market is moving beyond demos into governed deployment systems.",
-    "deck_zh": "\u5f9e\u7f8e\u570b\u7684\u767c\u5e03\u524d\u6e2c\u8a66\uff0c\u5230 OpenAI \u65b0\u9810\u8a2d\u6a21\u578b\u3001Anthropic \u7684\u7b97\u529b\u5708\u5730\u3001Google \u7684\u53ef\u9a57\u8b49 RAG \u5de5\u5177\uff0c\u4ee5\u53ca NVIDIA-ServiceNow \u7684 agent runtime \u8207 Anthropic \u91d1\u878d\u5e03\u5c40\uff0cAI \u5e02\u5834\u6b63\u5f9e demo \u6b65\u5165\u53ef\u6cbb\u7406\u7684\u90e8\u7f72\u7cfb\u7d71\u6642\u4ee3\u3002",
+    "kicker": f"The Cover Story \u00b7 {MONTH_DAY}",
+    "headline_html": "AI is shifting from a <em>model race to a battle over distribution, release gates and governed execution.</em>",
+    "deck_en": "From U.S. pre-deployment testing and ChatGPT ads monetization to OpenAI's new default model, Anthropic's finance agents, Google's verifiable RAG tooling and NVIDIA-ServiceNow runtime controls, today's AI market is organizing around who can ship, route and govern real work.",
+    "deck_zh": "\u5f9e\u7f8e\u570b\u7684\u767c\u5e03\u524d\u6e2c\u8a66\u3001ChatGPT \u5ee3\u544a\u8b8a\u73fe\uff0c\u5230 OpenAI \u65b0\u9810\u8a2d\u6a21\u578b\u3001Anthropic \u91d1\u878d agent\u3001Google \u7684\u53ef\u9a57\u8b49 RAG \u5de5\u5177\uff0c\u4ee5\u53ca NVIDIA-ServiceNow \u7684 runtime \u63a7\u5236\uff0cAI \u5e02\u5834\u6b63\u5728\u91cd\u7d44\u6210\u300c\u8ab0\u80fd\u66f4\u597d\u5730\u767c\u5e03\u3001\u5206\u767c\u8207\u6cbb\u7406\u5be6\u969b\u5de5\u4f5c\u300d\u7684\u6230\u5834\u3002",
 }
 
 TICKER = [
     ("CAISI testing", "40+<span class=\"small\">model evals</span>"),
+    ("ChatGPT ads", "CPC<span class=\"small\">+ self-serve beta</span>"),
     ("GPT-5.5 Instant", "52.5%<span class=\"small\">fewer hallucinations</span>"),
-    ("Anthropic + Google", "$200B<span class=\"small\">reported cloud commit</span>"),
-    ("Finance agents", "10<span class=\"small\">Anthropic launches</span>"),
+    ("Finance agents", "10<span class=\"small\">Anthropic templates</span>"),
 ]
 
-LINKEDIN_HOOK = "AI is no longer just racing on benchmarks. The new contest is over who controls release gates, runtime safety, retrieval quality and compute supply."
-LINKEDIN_FOCUS = "Today's six stories show AI becoming an operating system for institutions: governments want pre-release access, labs are rewriting default user experiences, and enterprises are demanding governed agents plus guaranteed infrastructure."
-LINKEDIN_WHY = "For leaders, the moat is shifting from model novelty to deployability. The companies that win the next phase will be the ones that can secure compute, ground outputs, survive regulation and ship agents into audited production workflows."
-LINKEDIN_SIGNAL = "Watch for the control layer to thicken further: more pre-deployment testing deals, more enterprise runtimes, and more multiyear compute contracts that look closer to energy or telecom infrastructure than software subscriptions."
-LINKEDIN_QUESTION = "Which will prove harder to build over the next year: a stronger model, or the trusted operating layer around it?"
+LINKEDIN_HOOK = "AI is no longer just a benchmark race. The new contest is over who controls release gates, distribution, workflow entry points and governed execution."
+LINKEDIN_FOCUS = "Today's six stories show AI becoming a full operating stack for institutions: governments want pre-release access, platforms want monetized distribution, labs are resetting default user experiences, and enterprises want agents embedded in the software they already trust."
+LINKEDIN_WHY = "For leaders, the moat is widening beyond raw model quality. The next winners will combine stronger models with dependable routes to market, product surfaces users already inhabit, and governance layers that let AI do real work without losing control."
+LINKEDIN_SIGNAL = "Watch more vendors bundle models with distribution, vertical workflows and policy-aware runtimes. The next phase of AI competition will be decided as much by execution channels as by frontier research."
+LINKEDIN_QUESTION = "Over the next year, what will matter more: the best model, or the best control over where and how it gets used?"
 
-SUMMARY_THEME_EN = "The AI control layer is becoming the new battleground."
-SUMMARY_THEME_ZH = "\u76e3\u7ba1\u3001runtime \u8207\u7b97\u529b\u5408\u7d04\uff0c\u6b63\u6210\u70ba AI \u65b0\u4e3b\u6230\u5834\u3002"
+SUMMARY_THEME_EN = "Distribution, governance and workflow control are becoming AI's new battleground."
+SUMMARY_THEME_ZH = "\u5206\u767c\u3001\u6cbb\u7406\u8207\u5de5\u4f5c\u6d41\u63a7\u5236\uff0c\u6b63\u6210\u70ba AI \u65b0\u6230\u5834\u3002"
 
 
 def font(path: Path, size: int) -> ImageFont.FreeTypeFont:
@@ -243,6 +246,19 @@ def svg_variant(story: dict) -> str:
 <path d="M254 144 H322" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
 <text x="290" y="124" font-size="11" fill="#cbd5e1" text-anchor="middle">52.5% fewer hallucinations</text>
 """
+    elif story["variant"] == "ads_market":
+        center = f"""
+<rect x="70" y="94" width="132" height="90" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="224" y="78" width="132" height="122" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
+<rect x="378" y="94" width="132" height="90" rx="16" fill="#111827" stroke="{color}" stroke-width="4"/>
+<path d="M202 139 H224 M356 139 H378" stroke="{color}" stroke-width="6" stroke-linecap="round"/>
+<text x="136" y="130" font-size="15" fill="#f8fafc" text-anchor="middle">Brands</text>
+<text x="136" y="154" font-size="11" fill="#cbd5e1" text-anchor="middle">partners</text>
+<text x="290" y="128" font-size="15" fill="#f8fafc" text-anchor="middle">Ads Manager</text>
+<text x="290" y="152" font-size="11" fill="#cbd5e1" text-anchor="middle">self-serve beta</text>
+<text x="444" y="130" font-size="15" fill="#f8fafc" text-anchor="middle">ChatGPT</text>
+<text x="444" y="154" font-size="11" fill="#cbd5e1" text-anchor="middle">CPC buying</text>
+"""
     elif story["variant"] == "compute_pipeline":
         center = f"""
 <rect x="84" y="104" width="122" height="70" rx="14" fill="#111827" stroke="{color}" stroke-width="3"/>
@@ -304,7 +320,7 @@ def svg_variant(story: dict) -> str:
   {center}
   <rect x="24" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="24" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="38" y="259" font-size="15" fill="#f8fafc" font-weight="800">#{rank}</text><text x="38" y="276" font-size="10" fill="#94a3b8">ranking</text>
   <rect x="204" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="204" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="218" y="259" font-size="15" fill="#f8fafc" font-weight="800">{html.escape(story["category"])}</text><text x="218" y="276" font-size="10" fill="#94a3b8">category</text>
-  <rect x="384" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="384" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="398" y="259" font-size="15" fill="#f8fafc" font-weight="800">May 6</text><text x="398" y="276" font-size="10" fill="#94a3b8">HKT issue</text>
+  <rect x="384" y="236" width="160" height="48" rx="8" fill="#111827" stroke="#334155"/><rect x="384" y="236" width="160" height="4" rx="2" fill="{color}"/><text x="398" y="259" font-size="15" fill="#f8fafc" font-weight="800">{MONTH_DAY}</text><text x="398" y="276" font-size="10" fill="#94a3b8">HKT issue</text>
   <text x="22" y="306" font-size="10" fill="#64748b">Source: {source}</text><text x="558" y="306" font-size="10" fill="#64748b" text-anchor="end">Ken AI Daily</text>
 </svg>"""
 
@@ -314,7 +330,7 @@ def render_story_html(story: dict) -> str:
   <div class="post-meta">
     <span class="post-cat" style="background:{story["color"]}">{html.escape(story["category"])}</span>
     <span class="post-source">{html.escape(story["source"])}</span>
-    <span class="post-date">{DAY_NAME} \u00b7 May 6</span>
+    <span class="post-date">{DAY_NAME} \u00b7 {MONTH_DAY}</span>
   </div>
   <h2 class="post-title">{html.escape(story["headline_en"])}</h2>
   <p class="post-title-zh">{html.escape(story["headline_zh"])}</p>
@@ -330,7 +346,7 @@ def render_today_block() -> str:
         f"""<div class="post-card post-visual" id="post-visual-{DATE_ID}">
   <div class="post-meta">
     <span class="post-cat" style="background:#f59e0b">Daily Summary</span>
-    <span class="post-date">{DAY_NAME} \u00b7 May 6</span>
+    <span class="post-date">{DAY_NAME} \u00b7 {MONTH_DAY}</span>
   </div>
   <img src="{SUMMARY_PNG.name}" loading="eager" width="2400" height="1350" alt="Ken AI Daily {DISPLAY_DATE}" style="width:100%;border-radius:8px;margin-top:12px"/>
 </div>"""
@@ -385,8 +401,16 @@ def render_ticker_section() -> str:
 def render_feed_head() -> str:
     return """      <div class="feed-section-head">
         <h2>The <em>Brief</em></h2>
-        <span class="count">6 stories \u00b7 May 6, 2026</span>
+        <span class="count">6 stories \u00b7 May 7, 2026</span>
       </div>"""
+
+
+def render_masthead_meta() -> str:
+    return f"""<div class="masthead-meta">
+      <strong>{DAY_NAME}, {DISPLAY_DATE}</strong><br>
+      {DISPLAY_DATE}<br>
+      <span class="vrule"></span>Hong Kong \u00b7 Updated daily
+    </div>"""
 
 
 def write_summary_png() -> None:
@@ -403,7 +427,7 @@ def write_summary_png() -> None:
     draw.polygon([(1680, 150), (2230, 292), (2040, 674), (1490, 520)], fill="#1d4ed8")
     draw.polygon([(1420, 304), (1790, 470), (1680, 824), (1280, 648)], fill="#0f766e")
     draw.rounded_rectangle((120, 120, 860, 184), radius=18, fill="#f59e0b")
-    draw.text((150, 130), "AI News Daily Brief \u00b7 Wednesday, May 6, 2026", font=font(FONT_LATIN_BOLD, 30), fill="#0b1220")
+    draw.text((150, 130), f"AI News Daily Brief \u00b7 {DAY_NAME}, {DISPLAY_DATE}", font=font(FONT_LATIN_BOLD, 30), fill="#0b1220")
     draw.text((120, 220), "Ken AI Daily", font=title_font, fill="#f8fafc")
     draw.text((120, 340), "AI\u65b0\u805e\u65e5\u5831 \u00b7 \u6bcf\u65e5\u96d9\u8a9e AI \u7cbe\u9078", font=subtitle_font, fill="#cbd5e1")
     draw.text((120, 430), SUMMARY_THEME_EN, font=font(FONT_LATIN_BOLD, 42), fill="#f8fafc")
@@ -526,7 +550,8 @@ def update_index() -> None:
     lead_pattern = re.compile(r"<section class=\"lead\">.*?</section>", re.S)
     ticker_pattern = re.compile(r"<section class=\"ticker\">.*?</section>", re.S)
     feed_head_pattern = re.compile(r"      <div class=\"feed-section-head\">.*?</div>", re.S)
-    current_marker = '<div class="post-card post-visual" id="post-visual-20260505">'
+    masthead_meta_pattern = re.compile(r"<div class=\"masthead-meta\">.*?</div>", re.S)
+    current_marker = f'<div class="post-card post-visual" id="post-visual-{PREVIOUS_DATE_ID}">'
     today_pattern = re.compile(
         rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?={re.escape(current_marker)})",
         re.S,
@@ -538,6 +563,7 @@ def update_index() -> None:
     content = lead_pattern.sub(render_lead_section(), content, count=1)
     content = ticker_pattern.sub(render_ticker_section(), content, count=1)
     content = feed_head_pattern.sub(render_feed_head(), content, count=1)
+    content = masthead_meta_pattern.sub(render_masthead_meta(), content, count=1)
     content = today_pattern.sub("", content)
     content = content.replace(current_marker, render_today_block() + current_marker, 1)
     INDEX_PATH.write_text(content, encoding="utf-8")
