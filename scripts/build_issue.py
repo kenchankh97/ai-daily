@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import html
 import json
 import re
@@ -24,9 +25,57 @@ DAY_NAME = ISSUE_DATE.strftime("%A")
 SUMMARY_PNG = ROOT / f"ai-daily-{DATE_ID}.png"
 TOP_NEWS_PNG = ROOT / f"ai-daily-{DATE_ID}-top-news.png"
 
+ALLOWED_CATEGORIES = {
+    "AI Agents",
+    "AI Voice",
+    "AI Infrastructure",
+    "Enterprise AI",
+    "AI Adoption",
+    "AI Regulation",
+    "AI Models",
+    "AI Business",
+    "AI Funding",
+    "AI Research",
+    "AI Developer Tools",
+    "AI Chips",
+    "AI Security",
+}
+
+ALLOWED_VARIANTS = {
+    "policy_gate",
+    "payment_rails",
+    "voice_stack",
+    "model_upgrade",
+    "ads_market",
+    "mcp_bridge",
+    "compute_pipeline",
+    "retrieval_grid",
+    "enterprise_control",
+    "adoption_map",
+    "agent_runtime",
+}
+
+MOJIBAKE_RE = re.compile(r"(?:Ã|Â|â€|â€™|â€œ|â€\x9d|ðŸ|æ|ç|è|é|ã€|ï¼|å[^\s]*|œ[^\s]*)")
+
 FONT_CJK = Path("C:/Windows/Fonts/msjh.ttc")
 FONT_LATIN_BOLD = Path("C:/Windows/Fonts/segoeuib.ttf")
 FONT_LATIN = Path("C:/Windows/Fonts/segoeui.ttf")
+
+FONT_FALLBACKS = {
+    FONT_CJK: [
+        Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
+        Path("/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"),
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+    ],
+    FONT_LATIN_BOLD: [
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+        Path("/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf"),
+    ],
+    FONT_LATIN: [
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+        Path("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"),
+    ],
+}
 
 
 STORIES = [
@@ -167,6 +216,10 @@ SUMMARY_THEME_ZH = "AI \u6b63\u5728\u8b8a\u6210\u53ef\u6cbb\u7406\u7684\u5de5\u4
 
 
 def font(path: Path, size: int) -> ImageFont.FreeTypeFont:
+    candidates = [path, *FONT_FALLBACKS.get(path, [])]
+    for candidate in candidates:
+        if candidate.exists():
+            return ImageFont.truetype(str(candidate), size=size)
     return ImageFont.truetype(str(path), size=size)
 
 
@@ -651,9 +704,9 @@ def validate() -> dict:
     ):
         errors.append("missing aspect-ratio guard")
     for story in STORIES:
-        if story["headline_en"] not in content:
+        if story["headline_en"] not in content and html.escape(story["headline_en"]) not in content:
             errors.append(f'missing story in html: {story["rank"]}')
-        if story["headline_zh"] not in content:
+        if story["headline_zh"] not in content and html.escape(story["headline_zh"]) not in content:
             errors.append(f'missing zh headline in html: {story["rank"]}')
         if story["source_url"] not in content:
             errors.append(f'missing source url in html: {story["rank"]}')
@@ -692,7 +745,171 @@ def validate() -> dict:
     }
 
 
+def refresh_date_globals(date_id: str) -> None:
+    global DATE_ID, ISSUE_DATE, PREVIOUS_DATE_ID, DISPLAY_DATE, MONTH_DAY, DAY_NAME, SUMMARY_PNG, TOP_NEWS_PNG
+
+    DATE_ID = date_id
+    ISSUE_DATE = datetime.strptime(DATE_ID, "%Y%m%d").date()
+    PREVIOUS_DATE_ID = (ISSUE_DATE - timedelta(days=1)).strftime("%Y%m%d")
+    DISPLAY_DATE = f"{ISSUE_DATE.strftime('%B')} {ISSUE_DATE.day}, {ISSUE_DATE.year}"
+    MONTH_DAY = f"{ISSUE_DATE.strftime('%B')} {ISSUE_DATE.day}"
+    DAY_NAME = ISSUE_DATE.strftime("%A")
+    SUMMARY_PNG = ROOT / f"ai-daily-{DATE_ID}.png"
+    TOP_NEWS_PNG = ROOT / f"ai-daily-{DATE_ID}-top-news.png"
+
+
+def normalize_story(story: dict, rank: int) -> dict:
+    normalized = dict(story)
+    normalized["rank"] = rank
+    if "source_label" not in normalized:
+        normalized["source_label"] = f"{normalized.get('source', 'Source')} \u2192"
+    if "svg_source" not in normalized:
+        normalized["svg_source"] = normalized.get("source", "")
+    if "svg_title" not in normalized:
+        normalized["svg_title"] = normalized.get("headline_en", "")
+    if "variant" not in normalized:
+        normalized["variant"] = "retrieval_grid"
+    if rank == 1:
+        normalized.setdefault("top_label", f"Top News \u00b7 #1 \u00b7 {normalized.get('category', 'AI')}")
+        normalized.setdefault("top_source", f"Source: {normalized.get('source', 'Source')} \u00b7 {DISPLAY_DATE}")
+        normalized.setdefault("top_bullets", [normalized.get("body_en", "")[:90]])
+        normalized.setdefault(
+            "top_nodes",
+            [
+                ("Signal", normalized.get("category", "AI")),
+                ("Source", normalized.get("source", "")),
+                ("Impact", "watch next"),
+            ],
+        )
+        normalized.setdefault("top_footer", "Top AI signal")
+    return normalized
+
+
+def validate_issue_data(data: dict) -> None:
+    def text_value(value: object, path: str) -> str:
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(f"{path} must be a non-empty string")
+        if "\ufffd" in value or MOJIBAKE_RE.search(value):
+            raise ValueError(f"{path} appears to contain mojibake or replacement characters")
+        return value
+
+    def check_text_tree(value: object, path: str) -> None:
+        if isinstance(value, str):
+            text_value(value, path)
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                check_text_tree(item, f"{path}[{index}]")
+        elif isinstance(value, dict):
+            for key, item in value.items():
+                check_text_tree(item, f"{path}.{key}")
+
+    required_top = ["date_id", "stories", "lead", "ticker", "linkedin", "summary_theme"]
+    missing_top = [key for key in required_top if key not in data]
+    if missing_top:
+        raise ValueError(f"issue JSON missing required keys: {missing_top}")
+    text_value(str(data["date_id"]), "date_id")
+    stories = data["stories"]
+    if not isinstance(stories, list) or len(stories) != 6:
+        raise ValueError("issue JSON must contain exactly 6 stories")
+    ticker = data["ticker"]
+    if not isinstance(ticker, list) or len(ticker) != 4:
+        raise ValueError("issue JSON ticker must contain exactly 4 items")
+    required_story = [
+        "category",
+        "color",
+        "emoji",
+        "source",
+        "source_url",
+        "headline_en",
+        "headline_zh",
+        "body_en",
+        "body_zh",
+    ]
+    for idx, story in enumerate(stories, start=1):
+        missing = [key for key in required_story if not story.get(key)]
+        if missing:
+            raise ValueError(f"story {idx} missing required keys: {missing}")
+        if story["category"] not in ALLOWED_CATEGORIES:
+            raise ValueError(f"story {idx} category must be one of {sorted(ALLOWED_CATEGORIES)}")
+        if story.get("variant") and story["variant"] not in ALLOWED_VARIANTS:
+            raise ValueError(f"story {idx} variant must be one of {sorted(ALLOWED_VARIANTS)}")
+        if story.get("variant") == story["category"]:
+            raise ValueError(f"story {idx} category and variant are mixed up")
+        if not re.match(r"^https?://", str(story["source_url"])):
+            raise ValueError(f"story {idx} source_url must be an absolute http(s) URL")
+        check_text_tree(story, f"story {idx}")
+    top_story = stories[0]
+    if len(top_story.get("top_bullets", [])) != 3:
+        raise ValueError("story 1 must contain exactly 3 top_bullets")
+    top_nodes = top_story.get("top_nodes", [])
+    if not isinstance(top_nodes, list) or len(top_nodes) != 3 or any(not isinstance(node, list | tuple) or len(node) != 2 for node in top_nodes):
+        raise ValueError("story 1 must contain exactly 3 top_nodes pairs")
+    for idx, item in enumerate(ticker, start=1):
+        if not isinstance(item, dict):
+            raise ValueError(f"ticker item {idx} must be an object")
+        text_value(item.get("label"), f"ticker {idx}.label")
+        text_value(item.get("value"), f"ticker {idx}.value")
+    required_linkedin = ["hook", "focus", "why", "signal", "question"]
+    missing_linkedin = [key for key in required_linkedin if not data["linkedin"].get(key)]
+    if missing_linkedin:
+        raise ValueError(f"linkedin data missing required keys: {missing_linkedin}")
+    check_text_tree(data["lead"], "lead")
+    check_text_tree(data["linkedin"], "linkedin")
+    check_text_tree(data["summary_theme"], "summary_theme")
+
+
+def issue_data_from_globals() -> dict:
+    return {
+        "date_id": DATE_ID,
+        "stories": STORIES,
+        "lead": LEAD,
+        "ticker": [{"label": label, "value": value} for label, value in TICKER],
+        "linkedin": {
+            "hook": LINKEDIN_HOOK,
+            "focus": LINKEDIN_FOCUS,
+            "why": LINKEDIN_WHY,
+            "signal": LINKEDIN_SIGNAL,
+            "question": LINKEDIN_QUESTION,
+        },
+        "summary_theme": {
+            "en": SUMMARY_THEME_EN,
+            "zh": SUMMARY_THEME_ZH,
+        },
+    }
+
+
+def load_issue_json(path: Path) -> None:
+    global STORIES, LEAD, TICKER, LINKEDIN_HOOK, LINKEDIN_FOCUS, LINKEDIN_WHY, LINKEDIN_SIGNAL, LINKEDIN_QUESTION
+    global SUMMARY_THEME_EN, SUMMARY_THEME_ZH
+
+    data = json.loads(path.read_text(encoding="utf-8-sig"))
+    validate_issue_data(data)
+    refresh_date_globals(str(data["date_id"]))
+    STORIES = [normalize_story(story, idx) for idx, story in enumerate(data["stories"], start=1)]
+    LEAD = data["lead"]
+    TICKER = [(item["label"], item["value"]) for item in data["ticker"]]
+    linkedin = data["linkedin"]
+    LINKEDIN_HOOK = linkedin["hook"]
+    LINKEDIN_FOCUS = linkedin["focus"]
+    LINKEDIN_WHY = linkedin["why"]
+    LINKEDIN_SIGNAL = linkedin["signal"]
+    LINKEDIN_QUESTION = linkedin["question"]
+    SUMMARY_THEME_EN = data["summary_theme"]["en"]
+    SUMMARY_THEME_ZH = data["summary_theme"]["zh"]
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--issue-json", type=Path, help="Load issue data from JSON instead of built-in defaults")
+    parser.add_argument("--dump-default-json", type=Path, help="Write the built-in issue data as JSON and exit")
+    args = parser.parse_args()
+
+    if args.dump_default_json:
+        args.dump_default_json.write_text(json.dumps(issue_data_from_globals(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return
+    if args.issue_json:
+        load_issue_json(args.issue_json)
+
     write_summary_png()
     write_top_news_png()
     write_linkedin_post()
