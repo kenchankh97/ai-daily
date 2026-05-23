@@ -673,13 +673,20 @@ def update_index() -> None:
     feed_head_pattern = re.compile(r"      <div class=\"feed-section-head\">.*?</div>", re.S)
     masthead_meta_pattern = re.compile(r"<div class=\"masthead-meta\">.*?</div>", re.S)
     current_marker = f'<div class="post-card post-visual" id="post-visual-{PREVIOUS_DATE_ID}">'
+    fallback_marker_match = re.search(r'<div class="post-card post-visual" id="post-visual-\d{8}">', content)
     today_pattern = re.compile(
         rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?={re.escape(current_marker)})",
         re.S,
     )
 
     if current_marker not in content:
-        raise RuntimeError("Could not find the latest issue marker to insert before.")
+        if not fallback_marker_match:
+            raise RuntimeError("Could not find any issue marker to insert before.")
+        current_marker = fallback_marker_match.group(0)
+        today_pattern = re.compile(
+            rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?={re.escape(current_marker)})",
+            re.S,
+        )
 
     content = lead_pattern.sub(render_lead_section(), content, count=1)
     content = ticker_pattern.sub(render_ticker_section(), content, count=1)
