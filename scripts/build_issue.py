@@ -539,8 +539,8 @@ def write_summary_png() -> None:
     draw = ImageDraw.Draw(img)
     title_font = font(FONT_LATIN_BOLD, 106)
     subtitle_font = font(FONT_CJK, 44)
-    body_en_font = font(FONT_LATIN, 34)
-    body_zh_font = font(FONT_CJK, 30)
+    body_en_font = font(FONT_LATIN, 32)
+    body_zh_font = font(FONT_CJK, 27)
     section_font = font(FONT_LATIN_BOLD, 24)
 
     draw.rounded_rectangle((60, 60, 2340, 1290), radius=42, fill="#101826", outline="#243347", width=3)
@@ -554,16 +554,16 @@ def write_summary_png() -> None:
     draw.text((120, 430), SUMMARY_THEME_EN, font=font(FONT_LATIN_BOLD, 42), fill="#f8fafc")
     draw.text((120, 490), SUMMARY_THEME_ZH, font=subtitle_font, fill="#94a3b8")
 
-    start_y = 610
-    row_gap = 102
+    start_y = 570
+    row_gap = 110
     for story in STORIES:
         y = start_y + (story["rank"] - 1) * row_gap
-        draw.rounded_rectangle((120, y - 10, 2280, y + 74), radius=18, fill="#0f172a", outline=story["color"], width=2)
+        draw.rounded_rectangle((120, y - 10, 2280, y + 86), radius=18, fill="#0f172a", outline=story["color"], width=2)
         draw.text((150, y), f"{story['rank']}.", font=font(FONT_LATIN_BOLD, 34), fill=story["color"])
         en_lines = wrap_by_width(draw, story["headline_en"], body_en_font, 1360)
         zh_lines = wrap_cjk(draw, story["headline_zh"], body_zh_font, 1300)
         draw.text((210, y - 2), en_lines[0], font=body_en_font, fill="#f8fafc")
-        draw.text((210, y + 40), zh_lines[0], font=body_zh_font, fill="#94a3b8")
+        draw.text((210, y + 42), zh_lines[0], font=body_zh_font, fill="#94a3b8")
         draw.rounded_rectangle((1830, y, 2270, y + 50), radius=14, fill=story["color"])
         draw.text((1854, y + 10), story["category"], font=section_font, fill="#0b1220")
 
@@ -673,26 +673,21 @@ def update_index() -> None:
     feed_head_pattern = re.compile(r"      <div class=\"feed-section-head\">.*?</div>", re.S)
     masthead_meta_pattern = re.compile(r"<div class=\"masthead-meta\">.*?</div>", re.S)
     current_marker = f'<div class="post-card post-visual" id="post-visual-{PREVIOUS_DATE_ID}">'
-    fallback_marker_match = re.search(r'<div class="post-card post-visual" id="post-visual-\d{8}">', content)
-    today_pattern = re.compile(
-        rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?={re.escape(current_marker)})",
+    today_block_pattern = re.compile(
+        rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?=<div class=\"post-card post-visual\" id=\"post-visual-\d{{8}}\">)",
         re.S,
     )
-
-    if current_marker not in content:
-        if not fallback_marker_match:
-            raise RuntimeError("Could not find any issue marker to insert before.")
-        current_marker = fallback_marker_match.group(0)
-        today_pattern = re.compile(
-            rf"<div class=\"post-card post-visual\" id=\"post-visual-{DATE_ID}\">.*?(?={re.escape(current_marker)})",
-            re.S,
-        )
 
     content = lead_pattern.sub(render_lead_section(), content, count=1)
     content = ticker_pattern.sub(render_ticker_section(), content, count=1)
     content = feed_head_pattern.sub(render_feed_head(), content, count=1)
     content = masthead_meta_pattern.sub(render_masthead_meta(), content, count=1)
-    content = today_pattern.sub("", content)
+    content = today_block_pattern.sub("", content)
+    if current_marker not in content:
+        fallback_marker_match = re.search(r'<div class="post-card post-visual" id="post-visual-\d{8}">', content)
+        if not fallback_marker_match:
+            raise RuntimeError("Could not find any issue marker to insert before.")
+        current_marker = fallback_marker_match.group(0)
     content = content.replace(current_marker, render_today_block() + current_marker, 1)
     INDEX_PATH.write_text(content, encoding="utf-8")
 
