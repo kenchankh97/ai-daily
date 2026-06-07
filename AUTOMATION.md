@@ -6,7 +6,9 @@ The scheduled automations should run from a dedicated non-OneDrive local clone, 
 
 ## Daily Job Contract
 
-The scheduled Codex job runs every day at 08:00 Hong Kong time.
+The primary scheduled job is now the Codex Automation run at 08:00 Hong Kong time. Do not rely on the Windows Docker scheduled task for production publishing.
+
+Operationally, the automation should be treated as one stateful run with retries, not as a one-shot publish attempt. After local preparation succeeds, the same automation run should keep retrying the publish stage against the prepared files before giving up. Use `.publish-state.json` as the local source of truth so retries resume safely instead of regenerating content or reposting LinkedIn.
 
 The active scheduled prompt should stay compact. This file and the local `ken-ai-daily-publisher` skill are the canonical detailed runbook; the scheduled job should reference them rather than duplicating the full LinkedIn template, validation checklist, and recurring lessons inline.
 
@@ -20,13 +22,13 @@ Each run should:
 6. Keep both PNGs at `2400x1350` so site display and LinkedIn compression remain sharp. Reference `ai-daily-YYYYMMDD.png` with the same dimensions in `index.html`.
 7. Create `linkedin-post.txt` with the bilingual LinkedIn post copy in the exact style below.
 8. Validate the site locally enough to catch broken HTML, missing images, missing bilingual fields, malformed Unicode, missing LinkedIn story lines, soft image output, wrong LinkedIn attachment, and repetitive infographics.
-9. Run the durable publish/resume helper from the repo root so Git preflight, commit/push, Pages verification, LinkedIn publishing, and checkpoint state all happen through one path:
+9. For the scheduled Codex path, run the bounded retry publisher so fresh-clone git push, Pages verification, LinkedIn publishing, rendered validation, state, and retry logs flow through one path:
 
    ```powershell
-   python scripts\publish_workflow.py --date YYYYMMDD --title "Ken AI Daily YYYY-MM-DD"
+   powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run-codex-publish.ps1 -Date YYYYMMDD -MaxAttempts 6 -RetryDelayMinutes 3
    ```
 
-10. The helper writes `.publish-state.json` locally. If the Git or Pages gate fails, keep the prepared files and the state file intact so a later automation can resume from the publish gate instead of regenerating the issue.
+10. The Codex publish path writes and updates `.publish-state.json` in the repo root. If Git, Pages, or LinkedIn validation fails, keep that file and the prepared artifacts so later attempts resume instead of regenerating the issue.
 11. Verify the live GitHub Pages site contains today's `post-visual-YYYYMMDD` marker and `ai-daily-YYYYMMDD.png` reference.
 12. Publish the LinkedIn post with the UGC helper using the top-news PNG:
 
@@ -44,14 +46,21 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 2. Git preflight gate: run `Test-Path .git\index.lock`, verify `.git` is writable with a harmless temporary file, and inspect `git status --short --untracked-files=all`.
 3. GitHub gate: run `git add`, `git commit -m "Daily AI brief - YYYY-MM-DD"`, and `git push origin main`. If `git add` fails with `.git/index.lock: Permission denied`, check whether the lock exists, test `.git` writability, wait briefly, retry once, and report a blocker if `.git` still cannot be written. Never call the run complete at this point.
 4. Pages gate: poll `https://kenchankh97.github.io/ai-daily/` until it contains today's issue marker and `ai-daily-YYYYMMDD.png`. If Pages remains stale, report Pages propagation as the blocker and do not publish LinkedIn yet.
-5. LinkedIn gate: publish only with `scripts\linkedin_post_ugc.py` and `--image ai-daily-YYYYMMDD-top-news.png`. A REST/API success response is not enough; validate the rendered post shape when possible and report any validation caveat.
+5. LinkedIn gate: publish only with `scripts\linkedin_post_ugc.py` and `--image ai-daily-YYYYMMDD-top-news.png`. A REST/API success response is not enough; persist the created LinkedIn id before validation, then retry rendered validation because the permalink can appear before the post text has fully propagated. Report any validation caveat only after the helper exhausts permalink retries and public-activity fallback.
 
 ## Durable Recovery
 
+- Prefer the Codex scheduled path for production publishing. Use `scripts\run-codex-publish.ps1` after local preparation, not the disabled Windows Docker scheduled task.
+- `scripts\run-codex-publish.ps1` is the Codex retry entrypoint. It retries the fresh-clone helper for the same date, writes per-attempt logs under `C:\Users\<you>\.ken-ai-daily\logs\codex-publish`, and reuses `.publish-state.json` so a later attempt can resume without reposting LinkedIn. The helper itself now retries LinkedIn permalink validation when the share exists but text markers are not visible yet, so normal post-propagation lag should complete inside one scheduled run.
+- A completed `.publish-state.json` for the current date must be treated as authoritative. Reruns should recheck state and exit without duplicating the post.
 - The automation clone must be task-exclusive so `git add -A` inside `scripts\publish_workflow.py` only captures Ken AI Daily changes.
+- If `git status --short --untracked-files=all` shows unrelated tracked edits outside today's issue files, do not run `scripts\publish_workflow.py` unchanged because its `git add -A` can include those edits in the publish commit. Either clean the durable clone first or switch to a selective-stage fallback that commits only today's intended issue files.
+- Preferred selective-stage fallback: use `python scripts\publish_prepared_fresh_clone.py --date YYYYMMDD --source-root C:\Users\chank\.codex\workspaces\ai-daily-publisher --env-file C:\Users\chank\.ken-ai-daily\.env.local`. It now checkpoints git/pages/linkedin progress in `.publish-state.json`, so re-invoking it is safe and should not repost LinkedIn when a share URN already exists.
 - `.publish-state.json` is an ignored local checkpoint file. Keep it across retries and let later scheduled runs reuse it.
-- Add a second scheduled automation after the main 08:00 job that only resumes publish from the same durable clone. It should not regenerate content if today's issue files already exist and `.publish-state.json` shows incomplete publish state.
-- If the first run fails with `GIT_ACL_DENY_NO_LOCK`, the later resume automation should rerun `python scripts\publish_workflow.py --date YYYYMMDD --title "Ken AI Daily YYYY-MM-DD"` from the prepared clone once the runtime identity returns to `kenchan\chank`.
+- The main Codex automation should spend part of its own budget retrying publish automatically. Do not stop after the first blocked git attempt if the issue is already prepared.
+- If a separate later resume automation exists, it should only resume publish from the same prepared files. It should not regenerate content if today's issue files already exist and `.publish-state.json` shows incomplete publish state.
+- If the first run fails with `GIT_ACL_DENY_NO_LOCK` or another transient publish blocker, the later resume automation should rerun `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run-codex-publish.ps1 -Date YYYYMMDD -MaxAttempts 6 -RetryDelayMinutes 3` once the runtime identity returns to `kenchan\chank`.
+- At the very start of every main or resume run, check `whoami`, a harmless `.git` write probe, and `.publish-state.json`. If today's issue is already prepared and validates locally, skip research/regeneration and resume publishing only.
 
 ## Token Budget Rules
 
@@ -73,10 +82,17 @@ This automation must finish the publishing pipeline in order. Do not publish Lin
 
 ## Recurring Failure Lessons
 
+- Root cause for the repeated weekly partial-automation failures: the 08:00 automation often ran as `kenchan\codexsandboxoffline`, which hit explicit `.git` write denies. That means the main blocker was runtime identity/ACL, not the content pipeline, not `index.html`, and not a stale `.git/index.lock`.
+- The right response to that blocker is resume-first recovery, not regeneration. Preserve today's files, keep `.publish-state.json`, and let the later retry automation continue once the runtime identity returns to `kenchan\chank`.
+- The current production expectation is: one Codex automation run prepares content and then retries publish automatically before requiring any manual follow-up request.
 - Do not stop after generating files. The run is incomplete until the commit is pushed and the LinkedIn UGC helper returns a share URN, or a clear blocker is reported.
 - If `git add` fails with `Unable to create .git/index.lock: Permission denied`, check for `.git/index.lock`, verify `git status --short`, and retry after the runtime permissions are available. Do not run LinkedIn publishing until the site commit is pushed.
 - If `.git/index.lock` is absent but a harmless `.git` write test fails with `Access denied`, diagnose this as a Windows ACL/runtime-token issue rather than a stale lock. Run `whoami` and `icacls .git`; explicit `DENY` entries for sandbox-related SIDs can override later allow rules even when `KENCHAN\chank` has full control. Wait briefly and retry once. If the write test later succeeds, continue from Git preflight without regenerating the issue; if it still fails, stop at the Git gate and report the ACL/runtime-token blocker.
 - If a later retry runs as `kenchan\chank`, continue from the prepared files instead of regenerating content. Re-run Git preflight, commit and push, then poll GitHub Pages with a cache-busting query until today's marker and PNG reference are live before starting LinkedIn.
+- If the retry runtime is healthy but the clone is not task-exclusive, prefer a selective commit over a broad helper commit. For a normal daily issue, that means staging only today's `index.html`, `scripts/build_issue.py` when it changed for the new date, `ai-daily-YYYYMMDD.png`, and `ai-daily-YYYYMMDD-top-news.png`, while leaving unrelated tracked files out of the publish.
+- If the retry runtime is healthy but the durable clone is both dirty and behind `origin/main`, prefer the fresh-clone helper over an in-place selective commit. That avoids stale-branch conflicts and keeps the daily publish commit scoped to today's site and image artifacts.
+- For the fresh-clone helper, persist the created LinkedIn id before any rendered-validation request. The `https://www.linkedin.com/feed/update/{share_urn}` permalink can briefly return `404` or return media before text markers immediately after post creation even when the post is live; retry rendered validation before falling back or reporting `LINKEDIN_VALIDATION_PENDING`.
+- If LinkedIn later blocks direct scraping with HTTP `999`, retry with a browser-like user agent or fall back to the public activity page, for example `https://www.linkedin.com/in/ken-chan-1b247720/recent-activity/all/`. If that page contains today's title/date/top-story text, treat it as acceptable rendered-validation fallback and report the exact caveat.
 - A successful LinkedIn API response is not enough if the site is visually broken or the wrong image was attached. Check the site summary image, the Brief image presentation in `index.html`, the top-news LinkedIn attachment, and the LinkedIn post shape before declaring success.
 
 ## Local Secrets
@@ -151,4 +167,4 @@ Before publishing:
 After publishing:
 
 - If LinkedIn renders a malformed or low-quality post, publish the corrected post first, then delete the bad post after the corrected post succeeds.
-- Record the final LinkedIn share URN in the run summary.
+- Record the final LinkedIn share URN in the run summary. If the helper failed to persist it before validation, record that as a tooling caveat and include the fallback public-activity validation evidence.
